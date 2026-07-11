@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Dashboard | CommuteAds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { brand: { lightBg: '#f8fafc', lightCard: '#ffffff', lightBorder: '#e2e8f0', darkBg: '#09090b', darkCard: '#141417', darkBorder: '#27272a', accent: '#3b82f6' } }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-lightBg dark:bg-brand-darkBg text-gray-800 dark:text-gray-300 font-sans p-6 md:p-12 transition-colors duration-300">
+
+    <div class="max-w-5xl mx-auto">
+        <div class="flex justify-between items-center mb-10 border-b border-brand-lightBorder dark:border-brand-darkBorder pb-6">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Campaign Manager</h1>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1" id="userDisplay"></p>
+            </div>
+            <a href="login.html" class="border border-gray-300 dark:border-zinc-700 px-4 py-2 rounded-lg text-sm font-medium bg-white dark:bg-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-700 text-gray-800 dark:text-gray-200 transition">Log Out</a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-2xl p-6 md:p-8 shadow-sm">
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6">Launch a New Campaign</h3>
+                
+                <form id="campaignForm" class="space-y-6">
+                    <div>
+                        <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Campaign Name</label>
+                        <input type="text" id="cName" required placeholder="e.g., Summer Sale Hyderabad" class="w-full bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Video Link (MP4)</label>
+                        <input type="url" id="cVideo" required placeholder="https://yourwebsite.com/ad-video.mp4" class="w-full bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white">
+                    </div>
+
+                    <div class="border-t border-brand-lightBorder dark:border-brand-darkBorder pt-6">
+                        <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-4">Set Your Budgets (INR)</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="p-4 bg-gray-50 dark:bg-zinc-900 rounded-xl border border-gray-200 dark:border-zinc-800">
+                                <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Uber/Ola/Rapido</label>
+                                <input type="number" id="budgetMass" value="0" min="0" class="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-zinc-700 rounded-lg p-2 text-sm focus:outline-none text-gray-900 dark:text-white">
+                            </div>
+                            <div class="p-4 bg-gray-50 dark:bg-zinc-900 rounded-xl border border-gray-200 dark:border-zinc-800">
+                                <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Corporate Cabs</label>
+                                <input type="number" id="budgetCorp" value="0" min="0" class="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-zinc-700 rounded-lg p-2 text-sm focus:outline-none text-gray-900 dark:text-white">
+                            </div>
+                            <div class="p-4 bg-gray-50 dark:bg-zinc-900 rounded-xl border border-gray-200 dark:border-zinc-800">
+                                <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Airport Cabs</label>
+                                <input type="number" id="budgetAirport" value="0" min="0" class="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-zinc-700 rounded-lg p-2 text-sm focus:outline-none text-gray-900 dark:text-white">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-brand-accent text-white font-bold py-3.5 rounded-lg hover:bg-blue-600 transition text-sm">
+                        Launch Campaign
+                    </button>
+                </form>
+            </div>
+
+            <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-2xl p-6 shadow-sm flex flex-col">
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Active Campaigns</h3>
+                <div id="campaignList" class="space-y-4 flex-1 overflow-y-auto max-h-[500px]">
+                    <p class="text-sm text-gray-500 text-center py-8">Loading your campaigns...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        if (localStorage.getItem('color-theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        
+        const userEmail = localStorage.getItem('session_email') || 'sandbox@brand.com';
+        document.getElementById('userDisplay').textContent = `Logged in as: ${userEmail}`;
+
+        const supabaseUrl = 'db.comcsxznnlehfywdqdyx.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function fetchCampaigns() {
+            const { data, error } = await supabase.from('campaigns').select('*').eq('user_email', userEmail).order('created_at', { ascending: false });
+            const list = document.getElementById('campaignList');
+            list.innerHTML = '';
+            
+            if (!data || data.length === 0) {
+                list.innerHTML = `<p class="text-sm text-gray-500 text-center py-8">No active campaigns yet.</p>`;
+                return;
+            }
+
+            data.forEach(c => {
+                const item = document.createElement('div');
+                item.className = 'p-4 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-xl space-y-3';
+                item.innerHTML = `
+                    <div class="font-bold text-sm text-gray-900 dark:text-white">${c.campaign_name}</div>
+                    <div class="text-[11px] text-brand-accent truncate">${c.video_url}</div>
+                    <div class="grid grid-cols-3 gap-2 text-[11px] text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-zinc-700 pt-3">
+                        <div>Mass: ₹${c.mass_budget}</div>
+                        <div>Corp: ₹${c.corporate_budget}</div>
+                        <div>Air: ₹${c.airport_budget}</div>
+                    </div>
+                    <div class="text-xs font-bold text-gray-900 dark:text-white pt-1">Total Budget: ₹${c.total_budget}</div>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        document.getElementById('campaignForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const campaign_name = document.getElementById('cName').value;
+            const video_url = document.getElementById('cVideo').value;
+            const mass_budget = parseFloat(document.getElementById('budgetMass').value) || 0;
+            const corporate_budget = parseFloat(document.getElementById('budgetCorp').value) || 0;
+            const airport_budget = parseFloat(document.getElementById('budgetAirport').value) || 0;
+            const total_budget = mass_budget + corporate_budget + airport_budget;
+
+            await supabase.from('campaigns').insert([{ user_email, campaign_name, video_url, mass_budget, corporate_budget, airport_budget, total_budget }]);
+
+            document.getElementById('campaignForm').reset();
+            fetchCampaigns();
+        });
+
+        fetchCampaigns();
+    </script>
+</body>
+</html>

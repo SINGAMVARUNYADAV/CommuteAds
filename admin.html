@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Console | CommuteAds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { brand: { lightBg: '#f8fafc', lightCard: '#ffffff', lightBorder: '#e2e8f0', darkBg: '#09090b', darkCard: '#141417', darkBorder: '#27272a', accent: '#3b82f6' } }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-lightBg dark:bg-brand-darkBg text-gray-800 dark:text-gray-300 font-sans p-6 md:p-12 transition-colors duration-300">
+
+    <div class="max-w-6xl mx-auto">
+        <div class="flex justify-between items-center mb-10 border-b border-brand-lightBorder dark:border-brand-darkBorder pb-6">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Admin Dashboard</h1>
+                <p class="text-sm text-gray-500 mt-1">Manage incoming leads and system stats.</p>
+            </div>
+            <a href="login.html" class="border border-gray-300 dark:border-zinc-700 px-4 py-2 rounded-lg text-sm font-medium bg-white dark:bg-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-700 text-gray-800 dark:text-gray-200 transition">Log Out</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder p-6 rounded-2xl shadow-sm">
+                <span class="text-xs uppercase font-bold text-gray-500 tracking-wider">Total Leads</span>
+                <div class="text-4xl font-extrabold text-gray-900 dark:text-white mt-2" id="totalLeads">0</div>
+            </div>
+            <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder p-6 rounded-2xl shadow-sm">
+                <span class="text-xs uppercase font-bold text-gray-500 tracking-wider">Estimated Revenue</span>
+                <div class="text-4xl font-extrabold text-green-500 mt-2" id="estRevenue">₹0</div>
+            </div>
+            <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder p-6 rounded-2xl shadow-sm">
+                <span class="text-xs uppercase font-bold text-gray-500 tracking-wider">Active Screens</span>
+                <div class="text-4xl font-extrabold text-brand-accent mt-2">100</div>
+            </div>
+        </div>
+
+        <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-2xl overflow-hidden shadow-sm">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-50 dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-800 text-xs uppercase font-bold text-gray-500 dark:text-gray-400">
+                            <th class="p-4">Date</th>
+                            <th class="p-4">Company & Name</th>
+                            <th class="p-4">Requested Fleet</th>
+                            <th class="p-4">GSTIN</th>
+                            <th class="p-4">Contact</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dashboardTableBody" class="divide-y divide-gray-200 dark:divide-zinc-800 text-sm">
+                        <tr><td colspan="5" class="p-8 text-center text-gray-500">Loading leads...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        if (localStorage.getItem('color-theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        if (localStorage.getItem('session_role') !== 'admin') { window.location.href = 'login.html'; }
+
+        const supabaseUrl = 'db.comcsxznnlehfywdqdyx.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function pullPipelineData() {
+            const { data, error } = await supabase.from('prebooks').select('*').order('created_at', { ascending: false });
+            const tbody = document.getElementById('dashboardTableBody');
+            tbody.innerHTML = '';
+
+            if (!data || data.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-500">No leads have submitted the form yet.</td></tr>`;
+                return;
+            }
+
+            let projectedRev = 0;
+
+            data.forEach(lead => {
+                // Rough estimate based on 50k views per lead
+                let cpmValue = 150; 
+                if(lead.tier.includes("Corporate")) cpmValue = 275;
+                if(lead.tier.includes("Airport")) cpmValue = 425;
+                projectedRev += (cpmValue * 50); 
+
+                const parsedDate = new Date(lead.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+
+                const rowNode = document.createElement('tr');
+                rowNode.className = 'hover:bg-gray-50 dark:hover:bg-zinc-900 transition';
+                rowNode.innerHTML = `
+                    <td class="p-4 text-gray-500 dark:text-gray-400 text-xs">${parsedDate}</td>
+                    <td class="p-4">
+                        <div class="font-bold text-gray-900 dark:text-white">${lead.company}</div>
+                        <div class="text-xs text-gray-500">${lead.name}</div>
+                    </td>
+                    <td class="p-4"><span class="px-2 py-1 text-xs rounded-md bg-gray-100 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 text-gray-700 dark:text-gray-300">${lead.tier}</span></td>
+                    <td class="p-4 text-xs text-gray-500 dark:text-gray-400">${lead.gstin}</td>
+                    <td class="p-4 space-x-3 text-xs">
+                        <a href="mailto:${lead.email}" class="text-brand-accent hover:underline font-medium">Email</a>
+                        <a href="https://wa.me/${lead.phone.replace(/[^0-9]/g, '')}" target="_blank" class="text-green-500 hover:underline font-bold">WhatsApp</a>
+                    </td>
+                `;
+                tbody.appendChild(rowNode);
+            });
+
+            document.getElementById('totalLeads').textContent = data.length;
+            document.getElementById('estRevenue').textContent = '₹' + projectedRev.toLocaleString('en-IN');
+        }
+
+        pullPipelineData();
+    </script>
+</body>
+</html>

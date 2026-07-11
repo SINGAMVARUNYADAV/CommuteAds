@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | CommuteAds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { brand: { lightBg: '#f8fafc', lightCard: '#ffffff', lightBorder: '#e2e8f0', darkBg: '#09090b', darkCard: '#141417', darkBorder: '#27272a', accent: '#3b82f6' } }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-lightBg dark:bg-brand-darkBg min-h-screen flex items-center justify-center p-6 transition-colors duration-300">
+
+    <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder p-8 rounded-2xl shadow-lg max-w-sm w-full">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Welcome Back</h2>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Log in to manage your campaigns</p>
+        </div>
+
+        <form id="authForm" class="space-y-5">
+            <div>
+                <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Email Address</label>
+                <input type="email" id="email" required placeholder="name@company.com" class="w-full border border-gray-200 dark:border-zinc-700 rounded-lg p-3 bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-white focus:outline-none focus:border-brand-accent text-sm">
+            </div>
+            <div>
+                <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Password</label>
+                <input type="password" id="password" required placeholder="••••••••" class="w-full border border-gray-200 dark:border-zinc-700 rounded-lg p-3 bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-white focus:outline-none focus:border-brand-accent text-sm">
+            </div>
+            <button type="submit" class="w-full bg-brand-accent text-white font-semibold py-3 rounded-lg hover:bg-blue-600 transition text-sm">
+                Sign In
+            </button>
+            <p id="errorMsg" class="text-center text-sm text-red-500 hidden"></p>
+        </form>
+        <div class="mt-6 text-center">
+            <a href="index.html" class="text-xs text-gray-400 hover:text-brand-accent">&larr; Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        // Check theme preference
+        if (localStorage.getItem('color-theme') === 'light') { document.documentElement.classList.remove('dark'); }
+
+        document.getElementById('authForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            // Admin Login Check
+            if (email === 'admin@commuteads.com' && password === 'Umakanth2026!') {
+                localStorage.setItem('session_role', 'admin');
+                window.location.href = 'admin.html';
+            } else {
+                // Advertiser Login
+                localStorage.setItem('session_role', 'advertiser');
+                localStorage.setItem('session_email', email);
+                window.location.href = 'dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>
