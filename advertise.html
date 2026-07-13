@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advertise With Us | CommuteAds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            lightBg: '#f8fafc',
+                            lightCard: '#ffffff',
+                            lightBorder: '#e2e8f0',
+                            darkBg: '#09090b',
+                            darkCard: '#141417',
+                            darkBorder: '#27272a',
+                            accent: '#3b82f6',
+                        }
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body, nav, section, div, h1, h2, h3, p, span, input, select, button {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-brand-lightBg dark:bg-brand-darkBg text-gray-800 dark:text-gray-300 font-sans antialiased selection:bg-brand-accent selection:text-white flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="w-full fixed top-0 z-50 bg-white/90 dark:bg-brand-darkBg/90 backdrop-blur-md border-b border-brand-lightBorder dark:border-brand-darkBorder">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="index.html" class="font-bold text-2xl text-gray-900 dark:text-white tracking-tight hover:opacity-80 transition">Commute<span class="text-brand-accent">Ads</span></a>
+            <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
+                <a href="index.html#how-it-works" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">How it Works</a>
+                <a href="index.html#pricing" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Pricing & Audience</a>
+                <a href="login.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Brand Login</a>
+                
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="p-2 bg-gray-100 dark:bg-zinc-800 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-zinc-700 focus:outline-none">
+                    <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dedicated Form Section -->
+    <section class="pt-32 pb-24 px-6 flex-grow flex items-center justify-center">
+        <div class="max-w-3xl w-full">
+            <div class="text-center mb-10">
+                <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight">Interested? Let's talk.</h1>
+                <p class="text-lg text-gray-600 dark:text-gray-400">Drop your details below and our team will reach out to help you build the perfect campaign.</p>
+            </div>
+            
+            <form id="prebookForm" class="bg-brand-lightCard dark:bg-[#121212] border border-brand-lightBorder dark:border-zinc-800 rounded-2xl p-8 md:p-10 space-y-6 shadow-xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" id="name" required placeholder="Your Name" class="w-full bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-lg p-4 focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white text-sm">
+                    <input type="text" id="company" required placeholder="Company Name" class="w-full bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-lg p-4 focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white text-sm">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="email" id="email" required placeholder="Work Email" class="w-full bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-lg p-4 focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white text-sm">
+                    <input type="tel" id="phone" required placeholder="Phone Number" class="w-full bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-lg p-4 focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white text-sm">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <select id="tier" required class="w-full bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-lg p-4 focus:outline-none focus:border-brand-accent text-gray-600 dark:text-gray-400 text-sm">
+                        <option value="" disabled selected>Select Primary Fleet Focus</option>
+                        <option value="Mass Mobility (₹150 CPM)">Uber/Ola/Rapido Fleet</option>
+                        <option value="Corporate Executive (₹250-300 CPM)">Corporate Fleet</option>
+                        <option value="Airport Elite (₹400-450 CPM)">Airport Fleet</option>
+                    </select>
+                    <input type="text" id="gstin" placeholder="GSTIN (Optional)" class="w-full bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-lg p-4 focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white text-sm uppercase">
+                </div>
+                <button type="submit" id="submitBtn" class="w-full bg-brand-accent text-white font-bold py-4 rounded-lg hover:bg-blue-600 transition text-sm tracking-wide">
+                    Submit Details
+                </button>
+                <p id="formStatus" class="text-center text-sm hidden mt-4"></p>
+            </form>
+            <div class="mt-8 text-center">
+                <a href="index.html" class="text-sm text-gray-500 hover:text-brand-accent transition">&larr; Back to Homepage</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-brand-lightBorder dark:border-brand-darkBorder py-8 text-center text-sm text-gray-500 bg-brand-lightBg dark:bg-brand-darkBg mt-auto">
+        <p>© 2026 CommuteAds Network. Handcrafted in Hyderabad.</p>
+    </footer>
+
+    <!-- Theme Toggle Logic -->
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            lightIcon.classList.remove('hidden');
+            document.documentElement.classList.add('dark');
+        } else {
+            darkIcon.classList.remove('hidden');
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+    </script>
+    
+    <!-- Supabase Integration -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // DON'T FORGET TO ADD YOUR KEYS HERE!
+        const supabaseUrl = 'db.comcsxznnlehfywdqdyx.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        document.getElementById('prebookForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const status = document.getElementById('formStatus');
+            btn.textContent = 'Processing...'; btn.disabled = true;
+
+            const payload = {
+                name: document.getElementById('name').value,
+                company: document.getElementById('company').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                tier: document.getElementById('tier').value,
+                gstin: document.getElementById('gstin').value || 'N/A'
+            };
+
+            const { error } = await supabase.from('prebooks').insert([payload]);
+            status.classList.remove('hidden');
+            if (error) {
+                status.textContent = 'Error processing booking form.'; status.className = 'text-center text-sm text-red-500 mt-4';
+            } else {
+                status.textContent = 'Success! We will be in touch shortly.'; status.className = 'text-center text-sm text-green-500 mt-4 font-medium';
+                document.getElementById('prebookForm').reset();
+            }
+            btn.textContent = 'Submit Details'; btn.disabled = false;
+        });
+    </script>
+</body>
+</html>
