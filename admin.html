@@ -63,58 +63,45 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        if (localStorage.getItem('color-theme') === 'light') { document.documentElement.classList.remove('dark'); }
-        if (localStorage.getItem('session_role') !== 'admin') { window.location.href = 'login.html'; }
-
-        const supabaseUrl = 'db.comcsxznnlehfywdqdyx.supabase.co';
+        // Your real Supabase keys (https:// added to the URL!)
+        const supabaseUrl = 'https://db.comcsxznnlehfywdqdyx.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        
+        // Using 'supabaseClient' to prevent the naming collision error
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
-        async function pullPipelineData() {
-            const { data, error } = await supabase.from('prebooks').select('*').order('created_at', { ascending: false });
-            const tbody = document.getElementById('dashboardTableBody');
-            tbody.innerHTML = '';
+        document.getElementById('prebookForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const status = document.getElementById('formStatus');
+            btn.textContent = 'Processing...'; btn.disabled = true;
 
-            if (!data || data.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-500">No leads have submitted the form yet.</td></tr>`;
-                return;
+            const payload = {
+                name: document.getElementById('name').value,
+                company: document.getElementById('company').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                tier: document.getElementById('tier').value,
+                gstin: document.getElementById('gstin').value || 'N/A'
+            };
+
+            // Sending data to your newly created 'prebooks' table
+            const { error } = await supabaseClient.from('prebooks').insert([payload]);
+            
+            status.classList.remove('hidden');
+            if (error) {
+                status.textContent = 'Error processing booking form.'; 
+                status.className = 'text-center text-sm text-red-500 mt-4';
+                console.error("Supabase Error:", error); 
+            } else {
+                status.textContent = 'Success! We will be in touch shortly.'; 
+                status.className = 'text-center text-sm text-green-500 mt-4 font-medium';
+                document.getElementById('prebookForm').reset();
             }
-
-            let projectedRev = 0;
-
-            data.forEach(lead => {
-                // Rough estimate based on 50k views per lead
-                let cpmValue = 150; 
-                if(lead.tier.includes("Corporate")) cpmValue = 275;
-                if(lead.tier.includes("Airport")) cpmValue = 425;
-                projectedRev += (cpmValue * 50); 
-
-                const parsedDate = new Date(lead.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
-
-                const rowNode = document.createElement('tr');
-                rowNode.className = 'hover:bg-gray-50 dark:hover:bg-zinc-900 transition';
-                rowNode.innerHTML = `
-                    <td class="p-4 text-gray-500 dark:text-gray-400 text-xs">${parsedDate}</td>
-                    <td class="p-4">
-                        <div class="font-bold text-gray-900 dark:text-white">${lead.company}</div>
-                        <div class="text-xs text-gray-500">${lead.name}</div>
-                    </td>
-                    <td class="p-4"><span class="px-2 py-1 text-xs rounded-md bg-gray-100 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 text-gray-700 dark:text-gray-300">${lead.tier}</span></td>
-                    <td class="p-4 text-xs text-gray-500 dark:text-gray-400">${lead.gstin}</td>
-                    <td class="p-4 space-x-3 text-xs">
-                        <a href="mailto:${lead.email}" class="text-brand-accent hover:underline font-medium">Email</a>
-                        <a href="https://wa.me/${lead.phone.replace(/[^0-9]/g, '')}" target="_blank" class="text-green-500 hover:underline font-bold">WhatsApp</a>
-                    </td>
-                `;
-                tbody.appendChild(rowNode);
-            });
-
-            document.getElementById('totalLeads').textContent = data.length;
-            document.getElementById('estRevenue').textContent = '₹' + projectedRev.toLocaleString('en-IN');
-        }
-
-        pullPipelineData();
+            btn.textContent = 'Submit Details'; btn.disabled = false;
+        });
     </script>
 </body>
 </html>

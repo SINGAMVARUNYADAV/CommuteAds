@@ -76,58 +76,44 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        if (localStorage.getItem('color-theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        // Your real Supabase keys (https:// added to the URL!)
+        // Remove the 'db.' from the URL
+const supabaseUrl = 'https://comcsxznnlehfywdqdyx.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
         
-        const userEmail = localStorage.getItem('session_email') || 'sandbox@brand.com';
-        document.getElementById('userDisplay').textContent = `Logged in as: ${userEmail}`;
+        // Using 'supabaseClient' to prevent the naming collision error
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
-        const supabaseUrl = 'db.comcsxznnlehfywdqdyx.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-        async function fetchCampaigns() {
-            const { data, error } = await supabase.from('campaigns').select('*').eq('user_email', userEmail).order('created_at', { ascending: false });
-            const list = document.getElementById('campaignList');
-            list.innerHTML = '';
-            
-            if (!data || data.length === 0) {
-                list.innerHTML = `<p class="text-sm text-gray-500 text-center py-8">No active campaigns yet.</p>`;
-                return;
-            }
-
-            data.forEach(c => {
-                const item = document.createElement('div');
-                item.className = 'p-4 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-xl space-y-3';
-                item.innerHTML = `
-                    <div class="font-bold text-sm text-gray-900 dark:text-white">${c.campaign_name}</div>
-                    <div class="text-[11px] text-brand-accent truncate">${c.video_url}</div>
-                    <div class="grid grid-cols-3 gap-2 text-[11px] text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-zinc-700 pt-3">
-                        <div>Mass: ₹${c.mass_budget}</div>
-                        <div>Corp: ₹${c.corporate_budget}</div>
-                        <div>Air: ₹${c.airport_budget}</div>
-                    </div>
-                    <div class="text-xs font-bold text-gray-900 dark:text-white pt-1">Total Budget: ₹${c.total_budget}</div>
-                `;
-                list.appendChild(item);
-            });
-        }
-
-        document.getElementById('campaignForm').addEventListener('submit', async (e) => {
+        document.getElementById('prebookForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const campaign_name = document.getElementById('cName').value;
-            const video_url = document.getElementById('cVideo').value;
-            const mass_budget = parseFloat(document.getElementById('budgetMass').value) || 0;
-            const corporate_budget = parseFloat(document.getElementById('budgetCorp').value) || 0;
-            const airport_budget = parseFloat(document.getElementById('budgetAirport').value) || 0;
-            const total_budget = mass_budget + corporate_budget + airport_budget;
+            const btn = document.getElementById('submitBtn');
+            const status = document.getElementById('formStatus');
+            btn.textContent = 'Processing...'; btn.disabled = true;
 
-            await supabase.from('campaigns').insert([{ user_email, campaign_name, video_url, mass_budget, corporate_budget, airport_budget, total_budget }]);
+            const payload = {
+                name: document.getElementById('name').value,
+                company: document.getElementById('company').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                tier: document.getElementById('tier').value,
+                gstin: document.getElementById('gstin').value || 'N/A'
+            };
 
-            document.getElementById('campaignForm').reset();
-            fetchCampaigns();
+            // Sending data to your newly created 'prebooks' table
+            const { error } = await supabaseClient.from('prebooks').insert([payload]);
+            
+            status.classList.remove('hidden');
+            if (error) {
+                status.textContent = 'Error processing booking form.'; 
+                status.className = 'text-center text-sm text-red-500 mt-4';
+                console.error("Supabase Error:", error); 
+            } else {
+                status.textContent = 'Success! We will be in touch shortly.'; 
+                status.className = 'text-center text-sm text-green-500 mt-4 font-medium';
+                document.getElementById('prebookForm').reset();
+            }
+            btn.textContent = 'Submit Details'; btn.disabled = false;
         });
-
-        fetchCampaigns();
     </script>
 </body>
 </html>

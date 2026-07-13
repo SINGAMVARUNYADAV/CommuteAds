@@ -125,8 +125,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         // Your real Supabase keys (https:// added to the URL!)
-        const supabaseUrl = 'https://db.comcsxznnlehfywdqdyx.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
+       // Remove the 'db.' from the URL
+const supabaseUrl = 'https://comcsxznnlehfywdqdyx.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
         
         // Using 'supabaseClient' to prevent the naming collision error
         const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
