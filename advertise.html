@@ -124,10 +124,12 @@
     <!-- Supabase Integration -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // DON'T FORGET TO ADD YOUR KEYS HERE!
-        const supabaseUrl = 'db.comcsxznnlehfywdqdyx.supabase.co';
+        // Your real Supabase keys (https:// added to the URL!)
+        const supabaseUrl = 'https://db.comcsxznnlehfywdqdyx.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        
+        // Using 'supabaseClient' to prevent the naming collision error
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
         document.getElementById('prebookForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -144,12 +146,17 @@
                 gstin: document.getElementById('gstin').value || 'N/A'
             };
 
-            const { error } = await supabase.from('prebooks').insert([payload]);
+            // Sending data to your newly created 'prebooks' table
+            const { error } = await supabaseClient.from('prebooks').insert([payload]);
+            
             status.classList.remove('hidden');
             if (error) {
-                status.textContent = 'Error processing booking form.'; status.className = 'text-center text-sm text-red-500 mt-4';
+                status.textContent = 'Error processing booking form.'; 
+                status.className = 'text-center text-sm text-red-500 mt-4';
+                console.error("Supabase Error:", error); 
             } else {
-                status.textContent = 'Success! We will be in touch shortly.'; status.className = 'text-center text-sm text-green-500 mt-4 font-medium';
+                status.textContent = 'Success! We will be in touch shortly.'; 
+                status.className = 'text-center text-sm text-green-500 mt-4 font-medium';
                 document.getElementById('prebookForm').reset();
             }
             btn.textContent = 'Submit Details'; btn.disabled = false;
