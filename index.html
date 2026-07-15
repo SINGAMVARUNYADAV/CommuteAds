@@ -228,12 +228,17 @@
         <div class="relative max-w-4xl mx-auto">
             <img src="edited-image.png" alt="Cab Interior" class="w-full rounded-3xl shadow-2xl">
             
-            <div class="absolute top-[41%] left-[41.2%] w-[18.2%] h-[28.5%] bg-black overflow-hidden shadow-inner">
-                <video id="previewVideo" class="w-full h-full object-cover hidden" loop muted playsinline></video>
-                <div id="placeholder" class="w-full h-full flex items-center justify-center text-[8px] text-gray-600 uppercase font-bold text-center p-2 bg-zinc-900">
-                    Your ad preview
-                </div>
-            </div>
+                    <div class="absolute top-[41.1%] left-[41.5%] w-[17.5%] h-[27.8%] overflow-hidden rounded-[8px] border-[3px] border-zinc-800 shadow-[inset_0_0_15px_rgba(0,0,0,0.9)] z-20" 
+     style="transform: perspective(1000px) rotateX(1deg) rotateY(-1deg) skewX(-0.5deg);">
+    
+    <video id="previewVideo" class="w-full h-full object-cover hidden transition-opacity duration-500" loop muted playsinline></video>
+    
+    <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
+    
+    <div id="placeholder" class="w-full h-full flex items-center justify-center text-[10px] text-zinc-600 bg-zinc-950 uppercase font-bold text-center p-4">
+        Your ad here
+    </div>
+</div>
         </div>
 
         <div class="mt-10 flex justify-center">
