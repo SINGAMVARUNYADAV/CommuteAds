@@ -3,128 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Console | CommuteAds</title>
+    <title>Admin Command Center | CommuteAds</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
-                extend: {
-                    colors: { brand: { lightBg: '#f8fafc', lightCard: '#ffffff', lightBorder: '#e2e8f0', darkBg: '#09090b', darkCard: '#141417', darkBorder: '#27272a', accent: '#3b82f6' } }
-                }
+                extend: { colors: { brand: { lightBg: '#f8fafc', lightCard: '#ffffff', lightBorder: '#e2e8f0', darkBg: '#09090b', darkCard: '#141417', darkBorder: '#27272a', accent: '#8b5cf6' } } }
             }
         }
     </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
 </head>
-<body class="bg-brand-lightBg dark:bg-brand-darkBg text-gray-800 dark:text-gray-300 font-sans p-6 md:p-12 transition-colors duration-300">
+<body class="bg-brand-lightBg dark:bg-brand-darkBg text-gray-800 dark:text-gray-300 min-h-screen flex transition-colors duration-300">
 
-    <div class="max-w-6xl mx-auto">
-        <div class="flex justify-between items-center mb-10 border-b border-brand-lightBorder dark:border-brand-darkBorder pb-6">
-            <div>
-                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Admin Dashboard</h1>
-                <p class="text-sm text-gray-500 mt-1">Manage incoming leads and system stats.</p>
-            </div>
-            <a href="login.html" class="border border-gray-300 dark:border-zinc-700 px-4 py-2 rounded-lg text-sm font-medium bg-white dark:bg-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-700 text-gray-800 dark:text-gray-200 transition">Log Out</a>
+    <aside class="w-64 bg-brand-lightCard dark:bg-[#101012] border-r border-brand-lightBorder dark:border-brand-darkBorder hidden md:flex flex-col shrink-0">
+        <div class="h-16 flex items-center px-6 border-b border-brand-lightBorder dark:border-brand-darkBorder">
+            <span class="font-black text-xl text-gray-900 dark:text-white tracking-tight">Commute<span class="text-brand-accent">Admin</span></span>
         </div>
+        <nav class="flex-1 px-4 py-6 space-y-1" id="adminSidebarNav">
+            <button onclick="switchAdminTab('tab-review', this)" class="w-full text-left flex items-center px-3 py-2.5 bg-brand-accent/10 text-brand-accent rounded-lg text-sm font-bold transition-all">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Campaign Review
+            </button>
+            <button onclick="switchAdminTab('tab-leads', this)" class="w-full text-left flex items-center px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800/30 rounded-lg text-sm font-medium transition-all">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                Lead Pipeline
+            </button>
+        </nav>
+        <div class="p-4 border-t border-brand-lightBorder dark:border-brand-darkBorder text-xs text-gray-500">
+            <p class="truncate mb-2 font-bold text-gray-900 dark:text-white">Admin Access Granted</p>
+            <a href="login.html" class="text-red-500 hover:underline">Sign out</a>
+        </div>
+    </aside>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder p-6 rounded-2xl shadow-sm">
-                <span class="text-xs uppercase font-bold text-gray-500 tracking-wider">Total Leads</span>
-                <div class="text-4xl font-extrabold text-gray-900 dark:text-white mt-2" id="totalLeads">0</div>
+    <main class="flex-1 flex flex-col h-screen overflow-hidden">
+        
+        <header class="h-16 flex items-center justify-between px-6 bg-brand-lightCard dark:bg-[#101012] border-b border-brand-lightBorder dark:border-brand-darkBorder shrink-0">
+            <h1 class="text-lg font-bold text-gray-900 dark:text-white">Master Control</h1>
+            
+            <div class="flex items-center space-x-4">
+                <div class="bg-brand-accent/10 border border-brand-accent/20 px-4 py-1.5 rounded-lg text-right">
+                    <div class="text-[9px] text-brand-accent uppercase font-black tracking-widest">Live Daily Revenue</div>
+                    <div class="text-sm font-black text-gray-900 dark:text-white" id="liveRevenueDisplay">₹0</div>
+                </div>
             </div>
-            <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder p-6 rounded-2xl shadow-sm">
-                <span class="text-xs uppercase font-bold text-gray-500 tracking-wider">Estimated Revenue</span>
-                <div class="text-4xl font-extrabold text-green-500 mt-2" id="estRevenue">₹0</div>
-            </div>
-            <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder p-6 rounded-2xl shadow-sm">
-                <span class="text-xs uppercase font-bold text-gray-500 tracking-wider">Active Screens</span>
-                <div class="text-4xl font-extrabold text-brand-accent mt-2">100</div>
-            </div>
-        </div>
+        </header>
 
-        <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-2xl overflow-hidden shadow-sm">
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="bg-gray-50 dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-800 text-xs uppercase font-bold text-gray-500 dark:text-gray-400">
-                            <th class="p-4">Date</th>
-                            <th class="p-4">Company & Name</th>
-                            <th class="p-4">Requested Fleet</th>
-                            <th class="p-4">GSTIN</th>
-                            <th class="p-4">Contact</th>
-                        </tr>
-                    </thead>
-                    <tbody id="dashboardTableBody" class="divide-y divide-gray-200 dark:divide-zinc-800 text-sm">
-                        <tr><td colspan="5" class="p-8 text-center text-gray-500">Loading leads...</td></tr>
-                    </tbody>
-                </table>
+        <div class="flex-1 overflow-y-auto p-6 md:p-8 bg-brand-lightBg dark:bg-[#0a0a0c]">
+            <div class="max-w-7xl mx-auto">
+
+                <div id="tab-review" class="tab-content active space-y-6">
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <h2 class="text-2xl font-black text-gray-900 dark:text-white">Campaign Approvals</h2>
+                            <p class="text-sm text-gray-500 mt-1">Review videos and authorize campaigns submitted by brands.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl shadow-sm overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse whitespace-nowrap">
+                                <thead>
+                                    <tr class="bg-gray-50 dark:bg-zinc-900/50 border-b border-brand-lightBorder dark:border-brand-darkBorder text-[10px] uppercase font-bold text-gray-500 dark:text-gray-400 tracking-wider">
+                                        <th class="px-6 py-4">Brand / User</th>
+                                        <th class="px-6 py-4">Campaign Details</th>
+                                        <th class="px-6 py-4">Video Asset</th>
+                                        <th class="px-6 py-4 text-right">Budget & CPM</th>
+                                        <th class="px-6 py-4 text-center">Action / Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminCampaignList" class="divide-y divide-gray-200 dark:divide-zinc-800 text-sm">
+                                    <tr><td colspan="5" class="p-8 text-center text-gray-500">Loading campaigns...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-leads" class="tab-content space-y-6">
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <h2 class="text-2xl font-black text-gray-900 dark:text-white">Lead Pipeline</h2>
+                            <p class="text-sm text-gray-500 mt-1">Inbound requests from the main website contact form.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl shadow-sm overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse whitespace-nowrap">
+                                <thead>
+                                    <tr class="bg-gray-50 dark:bg-zinc-900/50 border-b border-brand-lightBorder dark:border-brand-darkBorder text-[10px] uppercase font-bold text-gray-500 dark:text-gray-400 tracking-wider">
+                                        <th class="px-6 py-4">Date</th>
+                                        <th class="px-6 py-4">Company & Name</th>
+                                        <th class="px-6 py-4">Target Tier</th>
+                                        <th class="px-6 py-4">Contact</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminLeadList" class="divide-y divide-gray-200 dark:divide-zinc-800 text-sm">
+                                    <tr><td colspan="4" class="p-8 text-center text-gray-500">Loading leads...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
+        // --- Theme Fix ---
         if (localStorage.getItem('color-theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        
+        // --- Security Check ---
         if (localStorage.getItem('session_role') !== 'admin') { window.location.href = 'login.html'; }
 
-        // 1. Initialize Supabase (with your working URL and Key)
+        // --- Admin Tab Logic ---
+        function switchAdminTab(tabId, btnElement) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            const buttons = document.getElementById('adminSidebarNav').querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.className = 'w-full text-left flex items-center px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800/30 rounded-lg text-sm font-medium transition-all';
+            });
+            document.getElementById(tabId).classList.add('active');
+            btnElement.className = 'w-full text-left flex items-center px-3 py-2.5 bg-brand-accent/10 text-brand-accent rounded-lg text-sm font-bold transition-all';
+        }
+
+        // --- Database Init (Using exact provided keys!) ---
         const supabaseUrl = 'https://comcsxznnlehfywdqdyx.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
         const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
-        // 2. Fetch and display leads
-        async function pullPipelineData() {
-            // Note: Changed from supabase.from to supabaseClient.from
+        // --- Fetch & Manage Campaigns ---
+        async function fetchAdminCampaigns() {
+            const { data, error } = await supabaseClient.from('campaigns').select('*').order('created_at', { ascending: false });
+            const list = document.getElementById('adminCampaignList');
+            list.innerHTML = '';
+            
+            if (error || !data) {
+                list.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-red-500">Failed to load database.</td></tr>`;
+                return;
+            }
+
+            let liveDailyRevenue = 0;
+
+            data.forEach(c => {
+                if(c.status === 'Live') liveDailyRevenue += Number(c.daily_budget);
+
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-gray-50 dark:hover:bg-zinc-900/30 transition-colors';
+                
+                // Fancy button to watch the video from the Supabase storage bucket!
+                const isUrl = c.video_url.startsWith('http');
+                const videoLinkHtml = isUrl 
+                    ? `<a href="${c.video_url}" target="_blank" class="inline-flex items-center space-x-1 bg-brand-accent/10 text-brand-accent hover:bg-brand-accent hover:text-white transition-colors px-2.5 py-1 rounded-md text-xs font-bold">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path></svg>
+                            <span>Watch Ad</span>
+                       </a>` 
+                    : `<span class="text-xs text-gray-500 font-mono">Missing File</span>`;
+
+                // Select styling based on status
+                let selectClass = "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-500 dark:border-yellow-900/50";
+                if(c.status === 'Live') selectClass = "bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-900/50";
+                if(c.status === 'Paused') selectClass = "bg-gray-100 text-gray-800 border-gray-200 dark:bg-zinc-800 dark:text-gray-400 dark:border-zinc-700";
+
+                tr.innerHTML = `
+                    <td class="px-6 py-4">
+                        <div class="font-bold text-gray-900 dark:text-white text-xs">${c.user_email}</div>
+                        <div class="text-[10px] text-gray-500 mt-1">${new Date(c.created_at).toLocaleDateString()}</div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="font-bold text-gray-900 dark:text-white">${c.campaign_name}</div>
+                        <div class="text-[10px] text-brand-accent uppercase font-bold tracking-wide mt-0.5">${c.fleet_target} • ${c.location_target}</div>
+                    </td>
+                    <td class="px-6 py-4">
+                        ${videoLinkHtml}
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                        <div class="font-black text-gray-900 dark:text-white">₹${Number(c.daily_budget).toLocaleString()} / day</div>
+                        <div class="text-[10px] text-gray-500 font-semibold mt-0.5">₹${c.cpm_rate} CPM (${c.ad_format})</div>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        <select onchange="updateCampaignStatus('${c.id}', this.value)" class="text-xs font-bold rounded px-3 py-1.5 border focus:outline-none cursor-pointer ${selectClass} transition-colors">
+                            <option value="Pending Review" ${c.status === 'Pending Review' ? 'selected' : ''}>Pending Review</option>
+                            <option value="Live" ${c.status === 'Live' ? 'selected' : ''}>Live</option>
+                            <option value="Paused" ${c.status === 'Paused' ? 'selected' : ''}>Paused</option>
+                        </select>
+                    </td>
+                `;
+                list.appendChild(tr);
+            });
+
+            document.getElementById('liveRevenueDisplay').textContent = '₹' + liveDailyRevenue.toLocaleString('en-IN');
+        }
+
+        // --- Change Database Status ---
+        async function updateCampaignStatus(id, newStatus) {
+            const { error } = await supabaseClient.from('campaigns').update({ status: newStatus }).eq('id', id);
+            if(error) {
+                alert("Failed to update status. Database error.");
+                console.error(error);
+            } else {
+                fetchAdminCampaigns(); // Refresh to recalculate revenue and update colors
+            }
+        }
+
+        // --- Fetch Leads ---
+        async function fetchAdminLeads() {
             const { data, error } = await supabaseClient.from('prebooks').select('*').order('created_at', { ascending: false });
-            const tbody = document.getElementById('dashboardTableBody');
-            tbody.innerHTML = '';
-
-            if (error) {
-                console.error("Database Error:", error);
-                tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-red-500">Failed to load leads from database.</td></tr>`;
-                return;
-            }
-
-            if (!data || data.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-500">No leads have submitted the form yet.</td></tr>`;
-                return;
-            }
-
-            let projectedRev = 0;
+            const list = document.getElementById('adminLeadList');
+            list.innerHTML = '';
+            
+            if (error || !data) return;
 
             data.forEach(lead => {
-                // Rough estimate based on 50k views per lead
-                let cpmValue = 150; 
-                if(lead.tier.includes("Corporate")) cpmValue = 275;
-                if(lead.tier.includes("Airport")) cpmValue = 425;
-                projectedRev += (cpmValue * 50); 
-
-                const parsedDate = new Date(lead.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
-
-                const rowNode = document.createElement('tr');
-                rowNode.className = 'hover:bg-gray-50 dark:hover:bg-zinc-900 transition';
-                rowNode.innerHTML = `
-                    <td class="p-4 text-gray-500 dark:text-gray-400 text-xs">${parsedDate}</td>
-                    <td class="p-4">
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-gray-50 dark:hover:bg-zinc-900/30 transition-colors';
+                tr.innerHTML = `
+                    <td class="px-6 py-4 text-xs text-gray-500">${new Date(lead.created_at).toLocaleDateString()}</td>
+                    <td class="px-6 py-4">
                         <div class="font-bold text-gray-900 dark:text-white">${lead.company}</div>
-                        <div class="text-xs text-gray-500">${lead.name}</div>
+                        <div class="text-[11px] text-gray-500">${lead.name}</div>
                     </td>
-                    <td class="p-4"><span class="px-2 py-1 text-xs rounded-md bg-gray-100 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 text-gray-700 dark:text-gray-300">${lead.tier}</span></td>
-                    <td class="p-4 text-xs text-gray-500 dark:text-gray-400">${lead.gstin}</td>
-                    <td class="p-4 space-x-3 text-xs">
-                        <a href="mailto:${lead.email}" class="text-brand-accent hover:underline font-medium">Email</a>
+                    <td class="px-6 py-4 text-xs font-medium text-gray-600 dark:text-gray-400">${lead.tier}</td>
+                    <td class="px-6 py-4 text-xs space-x-3">
+                        <a href="mailto:${lead.email}" class="text-brand-accent hover:underline font-bold">Email</a>
                         <a href="https://wa.me/${lead.phone.replace(/[^0-9]/g, '')}" target="_blank" class="text-green-500 hover:underline font-bold">WhatsApp</a>
                     </td>
                 `;
-                tbody.appendChild(rowNode);
+                list.appendChild(tr);
             });
-
-            document.getElementById('totalLeads').textContent = data.length;
-            document.getElementById('estRevenue').textContent = '₹' + projectedRev.toLocaleString('en-IN');
         }
 
-        // Run the function when the page loads
-        pullPipelineData();
+        // Run on load
+        fetchAdminCampaigns();
+        fetchAdminLeads();
     </script>
 </body>
 </html>

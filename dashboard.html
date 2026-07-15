@@ -26,7 +26,6 @@
 </head>
 <body class="bg-brand-lightBg dark:bg-brand-darkBg text-gray-800 dark:text-gray-300 min-h-screen flex transition-colors duration-300">
 
-    <!-- Sidebar Navigation -->
     <aside class="w-64 bg-brand-lightCard dark:bg-[#101012] border-r border-brand-lightBorder dark:border-brand-darkBorder hidden md:flex flex-col shrink-0">
         <div class="h-16 flex items-center px-6 border-b border-brand-lightBorder dark:border-brand-darkBorder">
             <span class="font-bold text-xl text-gray-900 dark:text-white tracking-tight">Commute<span class="text-brand-accent">Ads</span></span>
@@ -55,20 +54,16 @@
         </div>
     </aside>
 
-    <!-- Main Content Area -->
     <main class="flex-1 flex flex-col h-screen overflow-hidden">
         
-        <!-- Top Toolbar -->
         <header class="h-16 flex items-center justify-between px-6 bg-brand-lightCard dark:bg-[#101012] border-b border-brand-lightBorder dark:border-brand-darkBorder shrink-0">
             <h1 id="headerTitle" class="text-lg font-bold text-gray-900 dark:text-white transition-all">Workspace Overview</h1>
             <div class="flex items-center space-x-6">
-                <!-- Theme Toggle Button -->
                 <button id="theme-toggle" class="p-2 bg-gray-100 dark:bg-zinc-800 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-zinc-700 focus:outline-none transition-transform hover:scale-105">
                     <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                     <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
                 </button>
 
-                <!-- Fleet Status -->
                 <div class="flex items-center space-x-2 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 px-3 py-1.5 rounded-md hover:border-green-500/50 transition-colors">
                     <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)] animate-pulse"></span>
                     <span class="text-xs font-bold text-gray-700 dark:text-gray-300">100 Cabs Live</span>
@@ -76,13 +71,10 @@
             </div>
         </header>
 
-        <!-- Scrollable Dashboard Content -->
         <div class="flex-1 overflow-y-auto p-6 md:p-8 bg-brand-lightBg dark:bg-[#0a0a0c]">
             <div class="max-w-7xl mx-auto">
                 
-                <!-- TAB 1: CAMPAIGNS (Default) -->
                 <div id="tab-campaigns" class="tab-content active animate-fade-in space-y-8">
-                    <!-- Campaign Builder -->
                     <section class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md">
                         <div class="border-b border-brand-lightBorder dark:border-brand-darkBorder px-6 py-4 bg-gray-50 dark:bg-zinc-900/30 flex justify-between items-center">
                             <h2 class="text-base font-bold text-gray-900 dark:text-white flex items-center">
@@ -93,7 +85,6 @@
                         
                         <form id="campaignForm" class="p-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <!-- Column 1 -->
                                 <div class="space-y-5">
                                     <div>
                                         <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-1.5">Campaign Name</label>
@@ -110,7 +101,6 @@
                                         </div>
                                     </div>
                                     
-                                    <!-- Interactive Video Upload Toggle -->
                                     <div>
                                         <div class="flex justify-between items-end mb-1.5">
                                             <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400">Creative Asset (MP4)</label>
@@ -120,11 +110,10 @@
                                             </div>
                                         </div>
                                         <input type="url" id="cVideoLink" placeholder="https://youtube.com/..." class="w-full bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-md p-2.5 text-sm focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-gray-900 dark:text-white transition-all block">
-                                        <input type="file" id="cVideoUpload" accept="video/mp4" class="w-full bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-md p-2 text-sm focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white transition-all hidden file:mr-4 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-brand-accent file:text-white hover:file:bg-blue-600">
+                                        <input type="file" id="cVideoUpload" accept="video/mp4,video/mov" class="w-full bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-md p-2 text-sm focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white transition-all hidden file:mr-4 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-brand-accent file:text-white hover:file:bg-blue-600">
                                     </div>
                                 </div>
                                 
-                                <!-- Column 2 -->
                                 <div class="space-y-5">
                                     <div class="grid grid-cols-2 gap-4">
                                         <div>
@@ -144,7 +133,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Dynamic Location Container (Hides on Airport Fleet) -->
                                     <div id="locationContainer" class="transition-all duration-300 ease-in-out opacity-100">
                                         <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-1.5">Target Location</label>
                                         <select id="cLocation" class="w-full bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-md p-2.5 text-sm focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-gray-900 dark:text-white transition-all cursor-pointer">
@@ -154,7 +142,6 @@
                                         </select>
                                     </div>
                                     
-                                    <!-- Dynamic CPM Display -->
                                     <div class="bg-blue-50/50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/50 rounded-lg p-5 flex justify-between items-center transition-all duration-300 transform hover:-translate-y-1">
                                         <div>
                                             <p class="text-xs font-bold text-brand-accent dark:text-blue-400 uppercase tracking-wider">Locked CPM Rate</p>
@@ -173,7 +160,6 @@
                         </form>
                     </section>
 
-                    <!-- Data Table -->
                     <section class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl shadow-sm overflow-hidden transition-all duration-300">
                         <div class="border-b border-brand-lightBorder dark:border-brand-darkBorder px-6 py-4 flex justify-between items-center">
                             <h3 class="text-base font-bold text-gray-900 dark:text-white">Active Campaigns</h3>
@@ -198,7 +184,6 @@
                     </section>
                 </div>
 
-                <!-- TAB 2: AD GROUPS (Placeholder) -->
                 <div id="tab-adgroups" class="tab-content animate-fade-in">
                     <div class="flex flex-col items-center justify-center h-96 bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl border-dashed">
                         <svg class="w-16 h-16 text-gray-300 dark:text-zinc-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
@@ -207,7 +192,6 @@
                     </div>
                 </div>
 
-                <!-- TAB 3: LOCATIONS (Placeholder) -->
                 <div id="tab-locations" class="tab-content animate-fade-in">
                     <div class="flex flex-col items-center justify-center h-96 bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl border-dashed">
                         <svg class="w-16 h-16 text-gray-300 dark:text-zinc-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
@@ -216,7 +200,6 @@
                     </div>
                 </div>
 
-                <!-- TAB 4: BILLING & WALLET -->
                 <div id="tab-billing" class="tab-content animate-fade-in">
                     <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl shadow-sm overflow-hidden p-8">
                         <div class="max-w-md">
@@ -240,7 +223,6 @@
         </div>
     </main>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         // --- 1. Theme Logic ---
@@ -265,19 +247,15 @@
 
         // --- 2. Tab Switching Logic ---
         function switchTab(tabId, btnElement) {
-            // Hide all contents
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            // Reset all button styles
             const buttons = document.getElementById('sidebarNav').querySelectorAll('button');
             buttons.forEach(btn => {
                 btn.className = 'w-full text-left flex items-center px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800/30 rounded-lg text-sm font-medium transition-all';
             });
             
-            // Activate selected tab and button
             document.getElementById(tabId).classList.add('active');
             btnElement.className = 'w-full text-left flex items-center px-3 py-2.5 bg-gray-100 dark:bg-zinc-800/50 text-brand-accent rounded-lg text-sm font-medium transition-all';
             
-            // Update Header Title
             const titles = { 'tab-campaigns': 'Workspace Overview', 'tab-adgroups': 'Ad Groups', 'tab-locations': 'Location Targets', 'tab-billing': 'Billing & Wallet' };
             document.getElementById('headerTitle').textContent = titles[tabId];
         }
@@ -321,14 +299,13 @@
             
             if(fleet === 'Airport') { 
                 currentCPM = format === '10s' ? 450 : 650; 
-                // Hide location target and remove requirement
                 locContainer.style.opacity = '0';
                 setTimeout(() => locContainer.style.display = 'none', 300);
             } else if(fleet === 'Corporate') { 
                 currentCPM = format === '10s' ? 250 : 400; 
                 locContainer.style.display = 'block';
                 setTimeout(() => locContainer.style.opacity = '1', 50);
-            } else { // Mass
+            } else { 
                 currentCPM = format === '10s' ? 120 : 200;
                 locContainer.style.display = 'block';
                 setTimeout(() => locContainer.style.opacity = '1', 50);
@@ -350,6 +327,7 @@
                 
                 let statusBadge = '<span class="w-2 h-2 rounded-full bg-yellow-500 mr-2 shadow-[0_0_5px_rgba(234,179,8,0.5)]"></span> <span class="text-xs font-bold text-yellow-600 dark:text-yellow-500">Pending Review</span>';
                 if(c.status === 'Live') statusBadge = '<span class="w-2 h-2 rounded-full bg-green-500 mr-2 shadow-[0_0_5px_rgba(34,197,94,0.5)] animate-pulse-slow"></span> <span class="text-xs font-bold text-green-600 dark:text-green-400">Live</span>';
+                if(c.status === 'Paused') statusBadge = '<span class="w-2 h-2 rounded-full bg-gray-400 mr-2"></span> <span class="text-xs font-bold text-gray-500 dark:text-gray-400">Paused</span>';
                 
                 tr.innerHTML = `
                     <td class="px-6 py-4 flex items-center mt-1.5">${statusBadge}</td>
@@ -376,12 +354,40 @@
             btn.innerHTML = `<svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Processing...`;
             btn.disabled = true;
             
-            // Determine the video asset string
             let finalVideoAsset = document.getElementById('cVideoLink').value;
+            
+            // Handle actual file upload to Supabase Storage
             if (assetType === 'upload') {
                 const fileInput = document.getElementById('cVideoUpload');
                 if (fileInput.files.length > 0) {
-                    finalVideoAsset = `[Local File Uploaded]: ${fileInput.files[0].name}`;
+                    const file = fileInput.files[0];
+                    const fileExt = file.name.split('.').pop();
+                    const fileName = `${Date.now()}_${Math.random().toString(36).substr(2, 9)}.${fileExt}`;
+                    
+                    // Attempt upload to 'campaign-videos' bucket
+                    const { data: uploadData, error: uploadError } = await supabaseClient
+                        .storage
+                        .from('campaign-videos')
+                        .upload(fileName, file);
+
+                    if (uploadError) {
+                        console.error("Upload Error:", uploadError);
+                        alert("Failed to upload video. Ensure your 'campaign-videos' bucket is public and allows uploads (RLS).");
+                        btn.textContent = originalText; btn.disabled = false;
+                        return; // Stop submission
+                    }
+
+                    // Get public URL of the uploaded video
+                    const { data: publicUrlData } = supabaseClient
+                        .storage
+                        .from('campaign-videos')
+                        .getPublicUrl(fileName);
+
+                    finalVideoAsset = publicUrlData.publicUrl;
+                } else {
+                    alert("Please select a video file to upload.");
+                    btn.textContent = originalText; btn.disabled = false;
+                    return;
                 }
             }
 
@@ -399,7 +405,8 @@
                 fleet_target: fleet,
                 ad_format: document.getElementById('cFormat').value,
                 cpm_rate: currentCPM,
-                daily_budget: document.getElementById('cBudget').value
+                daily_budget: document.getElementById('cBudget').value,
+                status: 'Pending Review'
             };
 
             const { error } = await supabaseClient.from('campaigns').insert([payload]);
@@ -410,7 +417,6 @@
             } else {
                 document.getElementById('campaignForm').reset();
                 calculateCPM(); 
-                setAssetType('link'); // reset toggle
                 fetchCampaigns(); 
             }
 
