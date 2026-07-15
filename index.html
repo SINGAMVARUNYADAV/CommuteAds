@@ -263,11 +263,15 @@
             video.src = url;
             video.classList.remove('hidden');
             placeholder.classList.add('hidden');
-            video.play();
+            
+            // Force play and handle potential errors
+            video.play().catch(error => {
+                console.error("Video play failed:", error);
+                alert("Video loaded, but browser prevented auto-play. Please ensure the video is muted.");
+            });
         }
     });
 </script>
-
     <!-- Pricing & Audience Overview Section -->
     <section id="pricing" class="py-24 px-6 max-w-7xl mx-auto border-t border-brand-lightBorder dark:border-brand-darkBorder">
         <div class="text-center mb-16 max-w-3xl mx-auto">
