@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brand Dashboard | CommuteAds</title>
+    <title>Ads Workspace | CommuteAds</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -15,105 +15,272 @@
             }
         }
     </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
-<body class="bg-brand-lightBg dark:bg-brand-darkBg text-gray-800 dark:text-gray-300 font-sans p-6 md:p-12 transition-colors duration-300">
+<body class="bg-brand-lightBg dark:bg-brand-darkBg text-gray-800 dark:text-gray-300 min-h-screen flex transition-colors duration-300">
 
-    <div class="max-w-5xl mx-auto">
-        <div class="flex justify-between items-center mb-10 border-b border-brand-lightBorder dark:border-brand-darkBorder pb-6">
-            <div>
-                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Campaign Manager</h1>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1" id="userDisplay"></p>
-            </div>
-            <a href="login.html" class="border border-gray-300 dark:border-zinc-700 px-4 py-2 rounded-lg text-sm font-medium bg-white dark:bg-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-700 text-gray-800 dark:text-gray-200 transition">Log Out</a>
+    <aside class="w-64 bg-brand-lightCard dark:bg-[#101012] border-r border-brand-lightBorder dark:border-brand-darkBorder hidden md:flex flex-col">
+        <div class="h-16 flex items-center px-6 border-b border-brand-lightBorder dark:border-brand-darkBorder">
+            <span class="font-bold text-xl text-gray-900 dark:text-white tracking-tight">Commute<span class="text-brand-accent">Ads</span></span>
         </div>
+        <nav class="flex-1 px-4 py-6 space-y-1">
+            <a href="#" class="flex items-center px-3 py-2.5 bg-gray-100 dark:bg-zinc-800/50 text-brand-accent rounded-lg text-sm font-medium">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                Campaigns
+            </a>
+            <a href="#" class="flex items-center px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800/30 rounded-lg text-sm font-medium transition">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                Ad Groups
+            </a>
+            <a href="#" class="flex items-center px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800/30 rounded-lg text-sm font-medium transition">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                Locations
+            </a>
+            <a href="#" class="flex items-center px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800/30 rounded-lg text-sm font-medium transition">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                Billing & Wallet
+            </a>
+        </nav>
+        <div class="p-4 border-t border-brand-lightBorder dark:border-brand-darkBorder text-xs text-gray-500">
+            <p id="userDisplay" class="truncate mb-2 font-medium"></p>
+            <a href="login.html" class="text-red-500 hover:underline">Sign out</a>
+        </div>
+    </aside>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div class="lg:col-span-2 bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-2xl p-6 md:p-8 shadow-sm">
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6">Launch a New Campaign</h3>
-                
-                <form id="campaignForm" class="space-y-6">
-                    <div>
-                        <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Campaign Name</label>
-                        <input type="text" id="cName" required placeholder="e.g., Summer Sale Hyderabad" class="w-full bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white">
+    <main class="flex-1 flex flex-col h-screen overflow-hidden">
+        
+        <header class="h-16 flex items-center justify-between px-6 bg-brand-lightCard dark:bg-[#101012] border-b border-brand-lightBorder dark:border-brand-darkBorder shrink-0">
+            <h1 class="text-lg font-bold text-gray-900 dark:text-white">Workspace Overview</h1>
+            <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-2 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 px-3 py-1.5 rounded-md">
+                    <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)] animate-pulse"></span>
+                    <span class="text-xs font-bold text-gray-700 dark:text-gray-300">100 Cabs Live</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div class="text-right">
+                        <div class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Available Funds</div>
+                        <div class="text-sm font-bold text-gray-900 dark:text-white">₹0.00</div>
                     </div>
-                    <div>
-                        <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Video Link (MP4)</label>
-                        <input type="url" id="cVideo" required placeholder="https://yourwebsite.com/ad-video.mp4" class="w-full bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white">
-                    </div>
-
-                    <div class="border-t border-brand-lightBorder dark:border-brand-darkBorder pt-6">
-                        <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-4">Set Your Budgets (INR)</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div class="p-4 bg-gray-50 dark:bg-zinc-900 rounded-xl border border-gray-200 dark:border-zinc-800">
-                                <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Uber/Ola/Rapido</label>
-                                <input type="number" id="budgetMass" value="0" min="0" class="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-zinc-700 rounded-lg p-2 text-sm focus:outline-none text-gray-900 dark:text-white">
-                            </div>
-                            <div class="p-4 bg-gray-50 dark:bg-zinc-900 rounded-xl border border-gray-200 dark:border-zinc-800">
-                                <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Corporate Cabs</label>
-                                <input type="number" id="budgetCorp" value="0" min="0" class="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-zinc-700 rounded-lg p-2 text-sm focus:outline-none text-gray-900 dark:text-white">
-                            </div>
-                            <div class="p-4 bg-gray-50 dark:bg-zinc-900 rounded-xl border border-gray-200 dark:border-zinc-800">
-                                <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Airport Cabs</label>
-                                <input type="number" id="budgetAirport" value="0" min="0" class="w-full bg-white dark:bg-[#121212] border border-gray-200 dark:border-zinc-700 rounded-lg p-2 text-sm focus:outline-none text-gray-900 dark:text-white">
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="w-full bg-brand-accent text-white font-bold py-3.5 rounded-lg hover:bg-blue-600 transition text-sm">
-                        Launch Campaign
+                    <button onclick="alert('To load funds into your wallet, please contact your account manager or email billing@commuteads.com')" class="bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs font-bold px-4 py-2 rounded-md hover:opacity-90 transition">
+                        Load Funds
                     </button>
-                </form>
-            </div>
-
-            <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-2xl p-6 shadow-sm flex flex-col">
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Active Campaigns</h3>
-                <div id="campaignList" class="space-y-4 flex-1 overflow-y-auto max-h-[500px]">
-                    <p class="text-sm text-gray-500 text-center py-8">Loading your campaigns...</p>
                 </div>
             </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-6 md:p-8 bg-brand-lightBg dark:bg-[#0a0a0c]">
+            <div class="max-w-7xl mx-auto space-y-8">
+                
+                <section class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl shadow-sm overflow-hidden">
+                    <div class="border-b border-brand-lightBorder dark:border-brand-darkBorder px-6 py-4 bg-gray-50 dark:bg-zinc-900/30 flex justify-between items-center">
+                        <h2 class="text-base font-bold text-gray-900 dark:text-white flex items-center">
+                            <span class="text-brand-accent mr-2">+</span> Create New Campaign
+                        </h2>
+                        <span class="text-xs font-mono bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-brand-accent px-2 py-1 rounded">CPM PRICING ENGINE ACTIVE</span>
+                    </div>
+                    
+                    <form id="campaignForm" class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="space-y-5">
+                                <div>
+                                    <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-1.5">Campaign Name</label>
+                                    <input type="text" id="cName" required placeholder="e.g., Q3 App Install - Hyderabad" class="w-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-md p-2.5 text-sm focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white transition">
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-1.5">Ad Group</label>
+                                        <input type="text" id="cGroup" required placeholder="e.g., Retargeting" class="w-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-md p-2.5 text-sm focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-1.5">Daily Budget (₹)</label>
+                                        <input type="number" id="cBudget" required min="1000" placeholder="1000" class="w-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-md p-2.5 text-sm focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white transition">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-1.5">Video Asset URL (MP4)</label>
+                                    <input type="url" id="cVideo" required placeholder="https://..." class="w-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-md p-2.5 text-sm focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white transition">
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-5">
+                                <div>
+                                    <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-1.5">Target Location</label>
+                                    <select id="cLocation" required class="w-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-md p-2.5 text-sm focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white transition">
+                                        <option value="Hyderabad All">All Hyderabad</option>
+                                        <option value="Hitec City & Gachibowli">IT Corridor (Hitec City & Gachibowli)</option>
+                                        <option value="Financial District">Financial District</option>
+                                        <option value="Airport Route (RGIA)">Airport Route (RGIA)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-1.5">Fleet Target</label>
+                                        <select id="cFleet" required onchange="calculateCPM()" class="w-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-md p-2.5 text-sm focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white transition">
+                                            <option value="Mass">Uber/Ola/Rapido</option>
+                                            <option value="Corporate">Corporate Executives</option>
+                                            <option value="Airport">Airport Transfers</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-1.5">Ad Format</label>
+                                        <select id="cFormat" required onchange="calculateCPM()" class="w-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-md p-2.5 text-sm focus:outline-none focus:border-brand-accent text-gray-900 dark:text-white transition">
+                                            <option value="10s">10 Second Video</option>
+                                            <option value="20s">20 Second Video</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-900 rounded-md p-4 flex justify-between items-center">
+                                    <div>
+                                        <p class="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide">Locked CPM Rate</p>
+                                        <p class="text-[10px] text-gray-500 mt-0.5">Cost per 1,000 verified impressions</p>
+                                    </div>
+                                    <div class="text-2xl font-black text-gray-900 dark:text-white" id="displayCPM">₹120</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 flex justify-end border-t border-brand-lightBorder dark:border-brand-darkBorder pt-4">
+                            <button type="submit" id="submitBtn" class="bg-brand-accent text-white font-semibold py-2 px-6 rounded-md hover:bg-blue-600 transition text-sm shadow-sm">
+                                Submit for Review
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                <section class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl shadow-sm overflow-hidden">
+                    <div class="border-b border-brand-lightBorder dark:border-brand-darkBorder px-6 py-4 flex justify-between items-center">
+                        <h3 class="text-base font-bold text-gray-900 dark:text-white">Active Campaigns</h3>
+                        <div class="flex space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-gray-300"></span><span class="w-2 h-2 rounded-full bg-gray-300"></span><span class="w-2 h-2 rounded-full bg-gray-300"></span>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse whitespace-nowrap">
+                            <thead>
+                                <tr class="bg-gray-50 dark:bg-zinc-900/50 border-b border-brand-lightBorder dark:border-brand-darkBorder text-[11px] uppercase font-bold text-gray-500 dark:text-gray-400 tracking-wider">
+                                    <th class="px-6 py-3">Status</th>
+                                    <th class="px-6 py-3">Campaign / Ad Group</th>
+                                    <th class="px-6 py-3">Format & Fleet</th>
+                                    <th class="px-6 py-3">Location Target</th>
+                                    <th class="px-6 py-3 text-right">Target CPM</th>
+                                    <th class="px-6 py-3 text-right">Daily Budget</th>
+                                </tr>
+                            </thead>
+                            <tbody id="campaignList" class="divide-y divide-gray-200 dark:divide-zinc-800 text-sm">
+                                <tr><td colspan="6" class="p-8 text-center text-gray-500">Loading workspace data...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
         </div>
-    </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // Your real Supabase keys (https:// added to the URL!)
-        // Remove the 'db.' from the URL
-const supabaseUrl = 'https://comcsxznnlehfywdqdyx.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
+        // Check Theme
+        if (localStorage.getItem('color-theme') === 'light') { document.documentElement.classList.remove('dark'); }
         
-        // Using 'supabaseClient' to prevent the naming collision error
+        // Check User Session
+        const userEmail = localStorage.getItem('session_email') || 'sandbox@brand.com';
+        document.getElementById('userDisplay').textContent = userEmail;
+
+        // Init Supabase
+        const supabaseUrl = 'https://comcsxznnlehfywdqdyx.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
         const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
-        document.getElementById('prebookForm').addEventListener('submit', async (e) => {
+        // --- CPM Pricing Engine ---
+        let currentCPM = 120;
+        
+        function calculateCPM() {
+            const fleet = document.getElementById('cFleet').value;
+            const format = document.getElementById('cFormat').value;
+            
+            // Mass Mobility Rules
+            if(fleet === 'Mass') { currentCPM = format === '10s' ? 120 : 200; }
+            // Corporate Rules
+            else if(fleet === 'Corporate') { currentCPM = format === '10s' ? 250 : 400; }
+            // Airport Rules
+            else if(fleet === 'Airport') { currentCPM = format === '10s' ? 400 : 650; }
+            
+            document.getElementById('displayCPM').textContent = '₹' + currentCPM;
+        }
+
+        // --- Fetch & Display Campaigns ---
+        async function fetchCampaigns() {
+            const { data, error } = await supabaseClient.from('campaigns').select('*').eq('user_email', userEmail).order('created_at', { ascending: false });
+            const list = document.getElementById('campaignList');
+            list.innerHTML = '';
+            
+            if (error) { list.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-red-500">Error loading data.</td></tr>`; return; }
+            if (!data || data.length === 0) { list.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-gray-500">No campaigns found. Create one above.</td></tr>`; return; }
+
+            data.forEach(c => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-gray-50 dark:hover:bg-zinc-900/30 transition';
+                
+                // Determine status badge color
+                let statusBadge = '<span class="w-2 h-2 rounded-full bg-yellow-500 mr-2"></span> <span class="text-xs text-yellow-600 dark:text-yellow-500">Pending Review</span>';
+                if(c.status === 'Live') statusBadge = '<span class="w-2 h-2 rounded-full bg-green-500 mr-2"></span> <span class="text-xs text-green-600 dark:text-green-400">Live</span>';
+                
+                tr.innerHTML = `
+                    <td class="px-6 py-4 flex items-center mt-1">${statusBadge}</td>
+                    <td class="px-6 py-4">
+                        <div class="font-bold text-gray-900 dark:text-white">${c.campaign_name}</div>
+                        <div class="text-[11px] text-gray-500 uppercase tracking-wide">${c.ad_group}</div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-gray-300 text-xs px-2 py-1 rounded border border-gray-200 dark:border-zinc-700">${c.ad_format}</span>
+                        <span class="text-xs text-gray-500 ml-2">${c.fleet_target}</span>
+                    </td>
+                    <td class="px-6 py-4 text-xs text-gray-600 dark:text-gray-400">${c.location_target}</td>
+                    <td class="px-6 py-4 text-right font-medium text-gray-900 dark:text-white">₹${c.cpm_rate}</td>
+                    <td class="px-6 py-4 text-right font-bold text-gray-900 dark:text-white">₹${Number(c.daily_budget).toLocaleString('en-IN')}</td>
+                `;
+                list.appendChild(tr);
+            });
+        }
+
+        // --- Handle Form Submission ---
+        document.getElementById('campaignForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
-            const status = document.getElementById('formStatus');
-            btn.textContent = 'Processing...'; btn.disabled = true;
+            btn.textContent = 'Submitting...'; btn.disabled = true;
 
             const payload = {
-                name: document.getElementById('name').value,
-                company: document.getElementById('company').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                tier: document.getElementById('tier').value,
-                gstin: document.getElementById('gstin').value || 'N/A'
+                user_email: userEmail,
+                campaign_name: document.getElementById('cName').value,
+                ad_group: document.getElementById('cGroup').value,
+                video_url: document.getElementById('cVideo').value,
+                location_target: document.getElementById('cLocation').value,
+                fleet_target: document.getElementById('cFleet').value,
+                ad_format: document.getElementById('cFormat').value,
+                cpm_rate: currentCPM,
+                daily_budget: document.getElementById('cBudget').value
             };
 
-            // Sending data to your newly created 'prebooks' table
-            const { error } = await supabaseClient.from('prebooks').insert([payload]);
-            
-            status.classList.remove('hidden');
+            const { error } = await supabaseClient.from('campaigns').insert([payload]);
+
             if (error) {
-                status.textContent = 'Error processing booking form.'; 
-                status.className = 'text-center text-sm text-red-500 mt-4';
-                console.error("Supabase Error:", error); 
+                alert("Failed to create campaign. Please try again.");
+                console.error(error);
             } else {
-                status.textContent = 'Success! We will be in touch shortly.'; 
-                status.className = 'text-center text-sm text-green-500 mt-4 font-medium';
-                document.getElementById('prebookForm').reset();
+                document.getElementById('campaignForm').reset();
+                calculateCPM(); // Reset CPM display to default
+                fetchCampaigns(); // Instantly reload table
             }
-            btn.textContent = 'Submit Details'; btn.disabled = false;
+
+            btn.textContent = 'Submit for Review'; btn.disabled = false;
         });
+
+        // Initialize
+        calculateCPM();
+        fetchCampaigns();
     </script>
 </body>
 </html>
