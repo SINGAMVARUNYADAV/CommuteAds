@@ -218,6 +218,48 @@
             </div>
         </div>
     </section>
+    <section id="preview" class="py-24 px-6 bg-gray-50 dark:bg-zinc-900 border-y border-brand-lightBorder dark:border-brand-darkBorder">
+    <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-black text-gray-900 dark:text-white mb-4">See Your Ad In Action</h2>
+            <p class="text-gray-500 dark:text-gray-400">Upload a video to preview how it looks inside our cab network.</p>
+        </div>
+
+        <div class="relative max-w-4xl mx-auto">
+            <img src="edited-image.png" alt="Cab Interior" class="w-full rounded-3xl shadow-2xl">
+            
+            <div class="absolute top-[41%] left-[41.2%] w-[18.2%] h-[28.5%] bg-black overflow-hidden shadow-inner">
+                <video id="previewVideo" class="w-full h-full object-cover hidden" loop muted playsinline></video>
+                <div id="placeholder" class="w-full h-full flex items-center justify-center text-[8px] text-gray-600 uppercase font-bold text-center p-2 bg-zinc-900">
+                    Your ad preview
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-10 flex justify-center">
+            <input type="file" id="adFile" accept="video/mp4" class="hidden">
+            <label for="adFile" class="cursor-pointer bg-brand-accent text-white font-bold px-8 py-3 rounded-lg hover:bg-blue-600 transition shadow-lg transform hover:-translate-y-1">
+                Upload Preview Video
+            </label>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.getElementById('adFile').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const video = document.getElementById('previewVideo');
+        const placeholder = document.getElementById('placeholder');
+        
+        if (file) {
+            const url = URL.createObjectURL(file);
+            video.src = url;
+            video.classList.remove('hidden');
+            placeholder.classList.add('hidden');
+            video.play();
+        }
+    });
+</script>
 
     <!-- Pricing & Audience Overview Section -->
     <section id="pricing" class="py-24 px-6 max-w-7xl mx-auto border-t border-brand-lightBorder dark:border-brand-darkBorder">
