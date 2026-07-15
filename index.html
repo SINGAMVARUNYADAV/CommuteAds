@@ -438,7 +438,6 @@
         });
     </script>
     
-    <!-- Supabase & Web3Forms Email Integration -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         const supabaseUrl = 'https://db.comcsxznnlehfywdqdyx.supabase.co';
@@ -453,7 +452,6 @@
                 const status = document.getElementById('formStatus');
                 btn.textContent = 'Processing...'; btn.disabled = true;
 
-                // Gather form data
                 const payload = {
                     name: document.getElementById('name').value,
                     company: document.getElementById('company').value,
@@ -463,7 +461,6 @@
                     gstin: document.getElementById('gstin').value || 'N/A'
                 };
 
-                // 1. Send data to Supabase
                 const { error } = await supabaseClient.from('prebooks').insert([payload]);
                 
                 status.classList.remove('hidden');
@@ -472,36 +469,6 @@
                     status.className = 'text-center text-sm text-red-500 mt-4 font-bold';
                     console.error("Supabase Error:", error); 
                 } else {
-                    
-                    // 2. Send Email Notification via Web3Forms
-                    try {
-                        await fetch("https://api.web3forms.com/submit", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                                Accept: "application/json",
-                            },
-                            body: JSON.stringify({
-                                access_key: "e77d8c8a-f70c-47b2-b6fc-b87ee1f206f3", // Your specific key
-                                subject: "🚨 New Lead: " + payload.company,
-                                from_name: "CommuteAds Website",
-                                message: `
-                                    You have a new lead from the CommuteAds website!
-                                    
-                                    Name: ${payload.name}
-                                    Company: ${payload.company}
-                                    Email: ${payload.email}
-                                    Phone: ${payload.phone}
-                                    Selected Tier: ${payload.tier}
-                                    GSTIN: ${payload.gstin}
-                                `
-                            }),
-                        });
-                    } catch (emailError) {
-                        console.error("Email failed to send, but lead was saved:", emailError);
-                    }
-
-                    // 3. Show Success Message
                     status.textContent = 'Success! We will be in touch shortly.'; 
                     status.className = 'text-center text-sm text-green-500 mt-4 font-bold';
                     document.getElementById('prebookForm').reset();
@@ -509,6 +476,16 @@
                 btn.textContent = 'Submit Details'; btn.disabled = false;
             });
         }
+    </script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+            easing: 'ease-out-cubic'
+        });
     </script>
 </body>
 </html>
