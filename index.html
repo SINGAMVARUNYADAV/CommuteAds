@@ -228,17 +228,16 @@
         <div class="relative max-w-4xl mx-auto">
             <img src="edited-image.png" alt="Cab Interior" class="w-full rounded-3xl shadow-2xl">
             
-                    <div class="absolute top-[41.1%] left-[41.5%] w-[17.5%] h-[27.8%] overflow-hidden rounded-[8px] border-[3px] border-zinc-800 shadow-[inset_0_0_15px_rgba(0,0,0,0.9)] z-20" 
-     style="transform: perspective(1000px) rotateX(1deg) rotateY(-1deg) skewX(-0.5deg);">
-    
-    <video id="previewVideo" class="w-full h-full object-cover hidden transition-opacity duration-500" loop muted playsinline></video>
-    
-    <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
-    
-    <div id="placeholder" class="w-full h-full flex items-center justify-center text-[10px] text-zinc-600 bg-zinc-950 uppercase font-bold text-center p-4">
-        Your ad here
-    </div>
-</div>
+            <div class="absolute top-[38%] left-[39%] w-[22%] h-[34%] bg-zinc-950 p-[8px] rounded-[15px] border-[2px] border-zinc-700 shadow-2xl z-20"
+                 style="transform: perspective(1000px) rotateX(1deg) rotateY(-1deg) skewX(-0.5deg);">
+                
+                <div class="w-full h-full bg-black rounded-[8px] overflow-hidden relative">
+                    <video id="previewVideo" class="w-full h-full object-cover hidden" loop muted playsinline></video>
+                    <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
+                </div>
+                
+                <div class="absolute top-2 left-1/2 w-1.5 h-1.5 bg-zinc-800 rounded-full"></div>
+            </div>
         </div>
 
         <div class="mt-10 flex justify-center">
@@ -248,6 +247,9 @@
             </label>
         </div>
     </div>
+</section>
+
+        
 </section>
 
 <script>
