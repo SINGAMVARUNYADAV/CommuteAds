@@ -26,6 +26,7 @@
 </head>
 <body class="bg-brand-lightBg dark:bg-brand-darkBg text-gray-800 dark:text-gray-300 min-h-screen flex transition-colors duration-300">
 
+    <!-- Sidebar Navigation -->
     <aside class="w-64 bg-brand-lightCard dark:bg-[#101012] border-r border-brand-lightBorder dark:border-brand-darkBorder hidden md:flex flex-col shrink-0">
         <div class="h-16 flex items-center px-6 border-b border-brand-lightBorder dark:border-brand-darkBorder">
             <span class="font-bold text-xl text-gray-900 dark:text-white tracking-tight">Commute<span class="text-brand-accent">Ads</span></span>
@@ -48,22 +49,32 @@
                 Billing & Wallet
             </button>
         </nav>
-        <div class="p-4 border-t border-brand-lightBorder dark:border-brand-darkBorder text-xs text-gray-500">
-            <p id="userDisplay" class="truncate mb-2 font-medium"></p>
-            <a href="login.html" class="text-red-500 hover:underline">Sign out</a>
+        <div class="p-5 border-t border-brand-lightBorder dark:border-brand-darkBorder">
+            <div class="text-xs text-gray-500 mb-4 pb-4 border-b border-gray-200 dark:border-zinc-800">
+                <p class="font-bold text-gray-700 dark:text-gray-300 mb-1">Need Support?</p>
+                <a href="mailto:connect@commuteads.in" class="text-brand-accent hover:underline break-all">connect@commuteads.in</a>
+            </div>
+            <div class="text-xs text-gray-500 flex justify-between items-center">
+                <p id="userDisplay" class="truncate font-medium max-w-[120px]"></p>
+                <a href="login.html" class="text-red-500 hover:underline font-semibold">Logout</a>
+            </div>
         </div>
     </aside>
 
+    <!-- Main Content Area -->
     <main class="flex-1 flex flex-col h-screen overflow-hidden">
         
+        <!-- Top Toolbar -->
         <header class="h-16 flex items-center justify-between px-6 bg-brand-lightCard dark:bg-[#101012] border-b border-brand-lightBorder dark:border-brand-darkBorder shrink-0">
             <h1 id="headerTitle" class="text-lg font-bold text-gray-900 dark:text-white transition-all">Workspace Overview</h1>
             <div class="flex items-center space-x-6">
+                <!-- Theme Toggle Button -->
                 <button id="theme-toggle" class="p-2 bg-gray-100 dark:bg-zinc-800 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-zinc-700 focus:outline-none transition-transform hover:scale-105">
                     <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                     <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
                 </button>
 
+                <!-- Fleet Status -->
                 <div class="flex items-center space-x-2 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 px-3 py-1.5 rounded-md hover:border-green-500/50 transition-colors">
                     <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)] animate-pulse"></span>
                     <span class="text-xs font-bold text-gray-700 dark:text-gray-300">100 Cabs Live</span>
@@ -71,10 +82,13 @@
             </div>
         </header>
 
+        <!-- Scrollable Dashboard Content -->
         <div class="flex-1 overflow-y-auto p-6 md:p-8 bg-brand-lightBg dark:bg-[#0a0a0c]">
             <div class="max-w-7xl mx-auto">
                 
+                <!-- TAB 1: CAMPAIGNS (Default) -->
                 <div id="tab-campaigns" class="tab-content active animate-fade-in space-y-8">
+                    <!-- Campaign Builder -->
                     <section class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md">
                         <div class="border-b border-brand-lightBorder dark:border-brand-darkBorder px-6 py-4 bg-gray-50 dark:bg-zinc-900/30 flex justify-between items-center">
                             <h2 class="text-base font-bold text-gray-900 dark:text-white flex items-center">
@@ -85,6 +99,7 @@
                         
                         <form id="campaignForm" class="p-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <!-- Column 1 -->
                                 <div class="space-y-5">
                                     <div>
                                         <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-1.5">Campaign Name</label>
@@ -101,6 +116,7 @@
                                         </div>
                                     </div>
                                     
+                                    <!-- Interactive Video Upload Toggle -->
                                     <div>
                                         <div class="flex justify-between items-end mb-1.5">
                                             <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400">Creative Asset (MP4)</label>
@@ -114,6 +130,7 @@
                                     </div>
                                 </div>
                                 
+                                <!-- Column 2 -->
                                 <div class="space-y-5">
                                     <div class="grid grid-cols-2 gap-4">
                                         <div>
@@ -133,6 +150,7 @@
                                         </div>
                                     </div>
 
+                                    <!-- Dynamic Location Container (Hides on Airport Fleet) -->
                                     <div id="locationContainer" class="transition-all duration-300 ease-in-out opacity-100">
                                         <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-1.5">Target Location</label>
                                         <select id="cLocation" class="w-full bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-md p-2.5 text-sm focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-gray-900 dark:text-white transition-all cursor-pointer">
@@ -142,6 +160,7 @@
                                         </select>
                                     </div>
                                     
+                                    <!-- Dynamic CPM Display -->
                                     <div class="bg-blue-50/50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/50 rounded-lg p-5 flex justify-between items-center transition-all duration-300 transform hover:-translate-y-1">
                                         <div>
                                             <p class="text-xs font-bold text-brand-accent dark:text-blue-400 uppercase tracking-wider">Locked CPM Rate</p>
@@ -160,6 +179,7 @@
                         </form>
                     </section>
 
+                    <!-- Data Table -->
                     <section class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl shadow-sm overflow-hidden transition-all duration-300">
                         <div class="border-b border-brand-lightBorder dark:border-brand-darkBorder px-6 py-4 flex justify-between items-center">
                             <h3 class="text-base font-bold text-gray-900 dark:text-white">Active Campaigns</h3>
@@ -168,7 +188,7 @@
                             <table class="w-full text-left border-collapse whitespace-nowrap">
                                 <thead>
                                     <tr class="bg-gray-50 dark:bg-zinc-900/50 border-b border-brand-lightBorder dark:border-brand-darkBorder text-[10px] uppercase font-bold text-gray-500 dark:text-gray-400 tracking-wider">
-                                        <th class="px-6 py-4">Status</th>
+                                        <th class="px-6 py-4">Status & Date</th>
                                         <th class="px-6 py-4">Campaign / Ad Group</th>
                                         <th class="px-6 py-4">Format & Fleet</th>
                                         <th class="px-6 py-4">Location Target</th>
@@ -184,22 +204,27 @@
                     </section>
                 </div>
 
+                <!-- TAB 2: AD GROUPS (Placeholder) -->
                 <div id="tab-adgroups" class="tab-content animate-fade-in">
                     <div class="flex flex-col items-center justify-center h-96 bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl border-dashed">
                         <svg class="w-16 h-16 text-gray-300 dark:text-zinc-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                         <h3 class="text-lg font-bold text-gray-900 dark:text-white">Ad Group Analytics</h3>
                         <p class="text-sm text-gray-500 mt-2">Granular performance metrics will appear here once your campaigns go live.</p>
+                        <p class="text-xs text-brand-accent mt-6 font-medium">Need detailed reports? Email <a href="mailto:connect@commuteads.in" class="hover:underline">connect@commuteads.in</a></p>
                     </div>
                 </div>
 
+                <!-- TAB 3: LOCATIONS (Placeholder) -->
                 <div id="tab-locations" class="tab-content animate-fade-in">
                     <div class="flex flex-col items-center justify-center h-96 bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl border-dashed">
                         <svg class="w-16 h-16 text-gray-300 dark:text-zinc-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
                         <h3 class="text-lg font-bold text-gray-900 dark:text-white">Live Heatmaps</h3>
                         <p class="text-sm text-gray-500 mt-2">Geospatial tracking maps are generating. Require 500+ impressions to plot.</p>
+                        <p class="text-xs text-brand-accent mt-6 font-medium">Want custom targeting? Email <a href="mailto:connect@commuteads.in" class="hover:underline">connect@commuteads.in</a></p>
                     </div>
                 </div>
 
+                <!-- TAB 4: BILLING & WALLET -->
                 <div id="tab-billing" class="tab-content animate-fade-in">
                     <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl shadow-sm overflow-hidden p-8">
                         <div class="max-w-md">
@@ -215,6 +240,7 @@
                                 Contact Sales to Load Funds
                             </a>
                             <p class="text-xs text-center text-gray-400 mt-4">For security, initial deposits require account manager verification.</p>
+                            <p class="text-xs text-center text-gray-500 mt-2">Billing Support: <a href="mailto:connect@commuteads.in" class="text-brand-accent hover:underline">connect@commuteads.in</a></p>
                         </div>
                     </div>
                 </div>
@@ -223,6 +249,7 @@
         </div>
     </main>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         // --- 1. Theme Logic ---
@@ -329,8 +356,16 @@
                 if(c.status === 'Live') statusBadge = '<span class="w-2 h-2 rounded-full bg-green-500 mr-2 shadow-[0_0_5px_rgba(34,197,94,0.5)] animate-pulse-slow"></span> <span class="text-xs font-bold text-green-600 dark:text-green-400">Live</span>';
                 if(c.status === 'Paused') statusBadge = '<span class="w-2 h-2 rounded-full bg-gray-400 mr-2"></span> <span class="text-xs font-bold text-gray-500 dark:text-gray-400">Paused</span>';
                 
+                // Format the Date
+                const submitDate = new Date(c.created_at);
+                const formattedDate = submitDate.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+                const formattedTime = submitDate.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+
                 tr.innerHTML = `
-                    <td class="px-6 py-4 flex items-center mt-1.5">${statusBadge}</td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">${statusBadge}</div>
+                        <div class="text-[10px] text-gray-500 dark:text-gray-400 mt-1 font-medium">${formattedDate} • ${formattedTime}</div>
+                    </td>
                     <td class="px-6 py-4">
                         <div class="font-bold text-gray-900 dark:text-white">${c.campaign_name}</div>
                         <div class="text-[10px] text-gray-500 uppercase font-semibold tracking-wide mt-0.5">${c.ad_group}</div>
@@ -356,7 +391,6 @@
             
             let finalVideoAsset = document.getElementById('cVideoLink').value;
             
-            // Handle actual file upload to Supabase Storage
             if (assetType === 'upload') {
                 const fileInput = document.getElementById('cVideoUpload');
                 if (fileInput.files.length > 0) {
@@ -364,7 +398,6 @@
                     const fileExt = file.name.split('.').pop();
                     const fileName = `${Date.now()}_${Math.random().toString(36).substr(2, 9)}.${fileExt}`;
                     
-                    // Attempt upload to 'campaign-videos' bucket
                     const { data: uploadData, error: uploadError } = await supabaseClient
                         .storage
                         .from('campaign-videos')
@@ -372,12 +405,11 @@
 
                     if (uploadError) {
                         console.error("Upload Error:", uploadError);
-                        alert("Failed to upload video. Ensure your 'campaign-videos' bucket is public and allows uploads (RLS).");
+                        alert("Failed to upload video. Please try again or contact connect@commuteads.in");
                         btn.textContent = originalText; btn.disabled = false;
-                        return; // Stop submission
+                        return; 
                     }
 
-                    // Get public URL of the uploaded video
                     const { data: publicUrlData } = supabaseClient
                         .storage
                         .from('campaign-videos')
@@ -391,7 +423,6 @@
                 }
             }
 
-            // Ensure Airport sets proper target
             const fleet = document.getElementById('cFleet').value;
             let finalLocation = document.getElementById('cLocation').value;
             if(fleet === 'Airport') finalLocation = 'Airport Route (RGIA)';
@@ -412,7 +443,7 @@
             const { error } = await supabaseClient.from('campaigns').insert([payload]);
 
             if (error) {
-                alert("Failed to create campaign. Please try again.");
+                alert("Failed to create campaign. Please contact support.");
                 console.error(error);
             } else {
                 document.getElementById('campaignForm').reset();
