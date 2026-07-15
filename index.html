@@ -232,6 +232,9 @@
                  style="transform: perspective(1000px) rotateX(1deg) rotateY(-1deg) skewX(-0.5deg);">
                 
                 <div class="w-full h-full bg-black rounded-[8px] overflow-hidden relative">
+                    <div id="placeholder" class="absolute inset-0 flex items-center justify-center text-[10px] text-zinc-500 bg-zinc-950 uppercase font-bold text-center p-2">
+                        Your ad here
+                    </div>
                     <video id="previewVideo" class="w-full h-full object-cover hidden" loop muted playsinline></video>
                     <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
                 </div>
@@ -249,9 +252,6 @@
     </div>
 </section>
 
-        
-</section>
-
 <script>
     document.getElementById('adFile').addEventListener('change', function(e) {
         const file = e.target.files[0];
@@ -262,12 +262,10 @@
             const url = URL.createObjectURL(file);
             video.src = url;
             video.classList.remove('hidden');
-            placeholder.classList.add('hidden');
+            placeholder.classList.add('hidden'); // This now works because placeholder has an ID
             
-            // Force play and handle potential errors
             video.play().catch(error => {
                 console.error("Video play failed:", error);
-                alert("Video loaded, but browser prevented auto-play. Please ensure the video is muted.");
             });
         }
     });
