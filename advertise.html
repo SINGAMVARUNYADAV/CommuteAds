@@ -121,23 +121,22 @@
         });
     </script>
     
-    <!-- Supabase Integration -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script>
-        // Your real Supabase keys (https:// added to the URL!)
-       // Remove the 'db.' from the URL
-const supabaseUrl = 'https://comcsxznnlehfywdqdyx.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
-        
-        // Using 'supabaseClient' to prevent the naming collision error
-        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+    <!-- Supabase & Web3Forms Email Integration -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    const supabaseUrl = 'https://db.comcsxznnlehfywdqdyx.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
-        document.getElementById('prebookForm').addEventListener('submit', async (e) => {
+    const form = document.getElementById('prebookForm');
+    if (form) {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
             const status = document.getElementById('formStatus');
             btn.textContent = 'Processing...'; btn.disabled = true;
 
+            // Gather form data
             const payload = {
                 name: document.getElementById('name').value,
                 company: document.getElementById('company').value,
@@ -147,21 +146,52 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
                 gstin: document.getElementById('gstin').value || 'N/A'
             };
 
-            // Sending data to your newly created 'prebooks' table
+            // 1. Send data to Supabase
             const { error } = await supabaseClient.from('prebooks').insert([payload]);
             
             status.classList.remove('hidden');
             if (error) {
-                status.textContent = 'Error processing booking form.'; 
-                status.className = 'text-center text-sm text-red-500 mt-4';
+                status.textContent = 'Error processing booking form.';
+                status.className = 'text-center text-sm text-red-500 mt-4 font-bold';
                 console.error("Supabase Error:", error); 
             } else {
+                
+                // 2. Send Email Notification via Web3Forms
+                try {
+                    await fetch("https://api.web3forms.com/submit", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Accept: "application/json",
+                        },
+                        body: JSON.stringify({
+                            access_key: "e77d8c8a-f70c-47b2-b6fc-b87ee1f206f3", // Your Access Key
+                            subject: "🚨 New Lead: " + payload.company,
+                            from_name: "CommuteAds Website",
+                            message: `
+                                You have a new lead from the CommuteAds website!
+                                
+                                Name: ${payload.name}
+                                Company: ${payload.company}
+                                Email: ${payload.email}
+                                Phone: ${payload.phone}
+                                Selected Tier: ${payload.tier}
+                                GSTIN: ${payload.gstin}
+                            `
+                        }),
+                    });
+                } catch (emailError) {
+                    console.error("Email failed to send, but lead was saved:", emailError);
+                }
+
+                // 3. Show Success Message
                 status.textContent = 'Success! We will be in touch shortly.'; 
-                status.className = 'text-center text-sm text-green-500 mt-4 font-medium';
+                status.className = 'text-center text-sm text-green-500 mt-4 font-bold';
                 document.getElementById('prebookForm').reset();
             }
             btn.textContent = 'Submit Details'; btn.disabled = false;
         });
-    </script>
+    }
+</script>
 </body>
 </html>
