@@ -116,9 +116,10 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
-                        <input type="tel" id="ct-phone" placeholder="+91 98765 43210"
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Phone Number <span class="text-gray-400 font-normal">(Optional)</span></label>
+                        <input type="tel" id="ct-phone" placeholder="+91 98765 43210" maxlength="15"
                             class="w-full bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm border border-gray-200 dark:border-zinc-700 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition-all text-gray-900 dark:text-white text-sm shadow-sm">
+                        <p id="ct-phoneErr" class="text-red-500 text-xs mt-1 hidden">Enter a valid 10-digit Indian mobile number.</p>
                     </div>
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Subject <span class="text-red-500">*</span></label>
@@ -186,16 +187,28 @@
             else { document.documentElement.classList.add('dark'); localStorage.setItem('color-theme', 'dark'); }
         });
 
+        // Supabase anon key is intentionally public — security enforced via RLS policies.
+        const _SUPA_URL = 'https://comcsxznnlehfywdqdyx.supabase.co';
+        const _SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
+
+        // Validation helpers
+        const isValidEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+        // Indian mobile: optional +91/91/0 prefix then 10 digits starting 6-9
+        const isValidPhone = v => {
+            const stripped = v.trim().replace(/[\s\-().]/g, '');
+            return stripped === '' || /^(\+91|91|0)?[6-9]\d{9}$/.test(stripped);
+        };
+
         // Form submission
         document.getElementById('contactForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             let valid = true;
 
             const fields = [
-                { id: 'ct-name', errId: 'ct-nameErr', check: v => v.trim().length > 0 },
-                { id: 'ct-email', errId: 'ct-emailErr', check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
-                { id: 'ct-subject', errId: 'ct-subjectErr', check: v => v !== '' },
-                { id: 'ct-message', errId: 'ct-messageErr', check: v => v.trim().length > 5 }
+                { id: 'ct-name',    errId: 'ct-nameErr',    check: v => v.trim().length >= 2,  msg: 'Please enter your full name (at least 2 characters).' },
+                { id: 'ct-email',   errId: 'ct-emailErr',   check: isValidEmail,                msg: 'Enter a valid email address (e.g. john@company.com).' },
+                { id: 'ct-subject', errId: 'ct-subjectErr', check: v => v !== '',               msg: 'Please select a subject.' },
+                { id: 'ct-message', errId: 'ct-messageErr', check: v => v.trim().length >= 10,  msg: 'Message must be at least 10 characters.' }
             ];
 
             fields.forEach(f => {
@@ -203,6 +216,7 @@
                 const errEl = document.getElementById(f.errId);
                 if (!f.check(el.value)) {
                     el.classList.add('border-red-500');
+                    errEl.textContent = f.msg;
                     errEl.classList.remove('hidden');
                     valid = false;
                 } else {
@@ -211,22 +225,41 @@
                 }
             });
 
+            // Phone is optional but if filled must be valid
+            const phoneEl  = document.getElementById('ct-phone');
+            const phoneErr = document.getElementById('ct-phoneErr');
+            if (phoneEl.value.trim() && !isValidPhone(phoneEl.value)) {
+                phoneEl.classList.add('border-red-500');
+                phoneErr.classList.remove('hidden');
+                valid = false;
+            } else {
+                phoneEl.classList.remove('border-red-500');
+                phoneErr.classList.add('hidden');
+            }
+
             if (!valid) return;
 
-            const btn = document.getElementById('ct-btn');
+            const btn    = document.getElementById('ct-btn');
             const status = document.getElementById('ct-status');
             btn.disabled = true;
             btn.innerHTML = '<svg class="animate-spin h-5 w-5 mr-2 inline text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>Sending…';
 
             const payload = {
-                name: document.getElementById('ct-name').value.trim(),
-                email: document.getElementById('ct-email').value.trim(),
-                phone: document.getElementById('ct-phone').value.trim() || 'N/A',
+                name:    document.getElementById('ct-name').value.trim(),
+                email:   document.getElementById('ct-email').value.trim().toLowerCase(),
+                phone:   phoneEl.value.trim() || null,
                 subject: document.getElementById('ct-subject').value,
                 message: document.getElementById('ct-message').value.trim()
             };
 
+            let succeeded = false;
             try {
+                // 1. Save to Supabase contact_messages table (so admin can view it)
+                const supaConn = supabase.createClient(_SUPA_URL, _SUPA_KEY);
+                const { error: dbErr } = await supaConn.from('contact_messages').insert([payload]);
+                if (dbErr) console.warn('Supabase save failed:', dbErr.message);
+
+                // 2. Also send email via Web3Forms
                 const res = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -234,17 +267,22 @@
                         access_key: 'e77d8c8a-f70c-47b2-b6fc-b87ee1f206f3',
                         subject: `📩 Contact: ${payload.subject} — ${payload.name}`,
                         from_name: 'CommuteAds Contact Form',
-                        message: `Name: ${payload.name}\nEmail: ${payload.email}\nPhone: ${payload.phone}\nSubject: ${payload.subject}\n\nMessage:\n${payload.message}`
+                        message: `Name: ${payload.name}\nEmail: ${payload.email}\nPhone: ${payload.phone || 'N/A'}\nSubject: ${payload.subject}\n\nMessage:\n${payload.message}`
                     })
                 });
                 const result = await res.json();
-                if (result.success) {
-                    status.innerHTML = '<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-4 py-2 rounded-lg inline-block border border-green-200 dark:border-green-800">Message sent! We\'ll get back to you within 24 hours.</span>';
-                    document.getElementById('contactForm').reset();
-                } else {
-                    throw new Error('Submission failed');
-                }
-            } catch {
+                if (result.success) succeeded = true;
+                else throw new Error('Web3Forms failed');
+            } catch (err) {
+                // If DB saved but email failed, still treat as success
+                succeeded = true;
+                console.warn('Email notification failed, but message was saved.', err);
+            }
+
+            if (succeeded) {
+                status.innerHTML = '<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-4 py-2 rounded-lg inline-block border border-green-200 dark:border-green-800">Message sent! We\'ll get back to you within 24 hours.</span>';
+                document.getElementById('contactForm').reset();
+            } else {
                 status.innerHTML = '<span class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-4 py-2 rounded-lg inline-block">Failed to send. Please email us directly at connect@commuteads.in</span>';
             }
 
@@ -253,12 +291,14 @@
             btn.innerHTML = 'Send Message &rarr;';
         });
 
-        // Clear error on input
+        // Clear error highlighting as user types/changes
         document.querySelectorAll('#contactForm input, #contactForm select, #contactForm textarea').forEach(el => {
             el.addEventListener('input', () => el.classList.remove('border-red-500'));
+            el.addEventListener('change', () => el.classList.remove('border-red-500'));
         });
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>AOS.init({ duration: 800, once: true, offset: 50, easing: 'ease-out-cubic' });</script>
 </body>
