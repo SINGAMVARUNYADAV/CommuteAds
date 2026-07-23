@@ -10,57 +10,292 @@
             darkMode: 'class',
             theme: {
                 extend: {
-                    colors: { brand: { lightBg: '#f8fafc', lightCard: '#ffffff', lightBorder: '#e2e8f0', darkBg: '#09090b', darkCard: '#141417', darkBorder: '#27272a', accent: '#3b82f6' } }
+                    colors: { brand: { lightBg: '#f8fafc', lightCard: '#ffffff', lightBorder: '#e2e8f0', darkBg: '#09090b', darkCard: '#141417', darkBorder: '#27272a', accent: '#3b82f6' } },
+                    animation: { 'fade-in': 'fadeIn 0.3s ease-out forwards' },
+                    keyframes: { fadeIn: { '0%': { opacity: '0', transform: 'translateY(8px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } }
                 }
             }
         }
     </script>
+    <style>
+        .view { display: none; }
+        .view.active { display: block; animation: fadeInView 0.25s ease-out; }
+        @keyframes fadeInView { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        body { opacity: 0; transition: opacity 0.2s; }
+    </style>
 </head>
 <body class="bg-brand-lightBg dark:bg-brand-darkBg min-h-screen flex items-center justify-center p-6 transition-colors duration-300">
 
-    <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder p-8 rounded-2xl shadow-lg max-w-sm w-full">
+    <div class="w-full max-w-sm">
+        <!-- Logo -->
         <div class="text-center mb-8">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Welcome Back</h2>
-            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Log in to manage your campaigns</p>
+            <a href="index.html" class="inline-block">
+                <span class="font-bold text-3xl text-gray-900 dark:text-white tracking-tight">Commute<span class="text-brand-accent">Ads</span></span>
+            </a>
         </div>
 
-        <form id="authForm" class="space-y-5">
-            <div>
-                <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Email Address</label>
-                <input type="email" id="email" required placeholder="name@company.com" class="w-full border border-gray-200 dark:border-zinc-700 rounded-lg p-3 bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-white focus:outline-none focus:border-brand-accent text-sm">
+        <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-2xl shadow-lg overflow-hidden">
+
+            <!-- Tab Bar (Sign In / Create Account) -->
+            <div class="flex border-b border-brand-lightBorder dark:border-brand-darkBorder" id="tabBar">
+                <button onclick="showView('signin')" id="tab-signin" class="flex-1 py-3.5 text-sm font-bold text-brand-accent border-b-2 border-brand-accent transition-all">Sign In</button>
+                <button onclick="showView('signup')" id="tab-signup" class="flex-1 py-3.5 text-sm font-semibold text-gray-500 dark:text-gray-400 border-b-2 border-transparent hover:text-gray-700 dark:hover:text-gray-200 transition-all">Create Account</button>
             </div>
-            <div>
-                <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Password</label>
-                <input type="password" id="password" required placeholder="••••••••" class="w-full border border-gray-200 dark:border-zinc-700 rounded-lg p-3 bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-white focus:outline-none focus:border-brand-accent text-sm">
+
+            <div class="p-8">
+
+                <!-- SIGN IN VIEW -->
+                <div id="view-signin" class="view active">
+                    <form id="signinForm" class="space-y-5" novalidate>
+                        <div>
+                            <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Email Address</label>
+                            <input type="email" id="si-email" required placeholder="name@company.com"
+                                class="w-full border border-gray-200 dark:border-zinc-700 rounded-lg p-3 bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-sm transition-all">
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400">Password</label>
+                                <button type="button" onclick="showView('forgot')" class="text-xs text-brand-accent hover:underline font-medium">Forgot password?</button>
+                            </div>
+                            <div class="relative">
+                                <input type="password" id="si-password" required placeholder="••••••••"
+                                    class="w-full border border-gray-200 dark:border-zinc-700 rounded-lg p-3 bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-sm transition-all pr-10">
+                                <button type="button" onclick="togglePwd('si-password', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <p id="si-error" class="text-sm text-red-500 hidden font-medium"></p>
+                        <button type="submit" id="si-btn" class="w-full bg-brand-accent text-white font-semibold py-3 rounded-lg hover:bg-blue-600 transition text-sm disabled:opacity-60 disabled:cursor-not-allowed">
+                            Sign In
+                        </button>
+                    </form>
+                </div>
+
+                <!-- SIGN UP VIEW -->
+                <div id="view-signup" class="view">
+                    <form id="signupForm" class="space-y-5" novalidate>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Full Name</label>
+                                <input type="text" id="su-name" required placeholder="John Doe"
+                                    class="w-full border border-gray-200 dark:border-zinc-700 rounded-lg p-3 bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-sm transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Company</label>
+                                <input type="text" id="su-company" required placeholder="Acme Corp"
+                                    class="w-full border border-gray-200 dark:border-zinc-700 rounded-lg p-3 bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-sm transition-all">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Work Email</label>
+                            <input type="email" id="su-email" required placeholder="name@company.com"
+                                class="w-full border border-gray-200 dark:border-zinc-700 rounded-lg p-3 bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-sm transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Password</label>
+                            <div class="relative">
+                                <input type="password" id="su-password" required placeholder="Min. 8 characters"
+                                    class="w-full border border-gray-200 dark:border-zinc-700 rounded-lg p-3 bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-sm transition-all pr-10">
+                                <button type="button" onclick="togglePwd('su-password', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Confirm Password</label>
+                            <input type="password" id="su-confirm" required placeholder="Repeat password"
+                                class="w-full border border-gray-200 dark:border-zinc-700 rounded-lg p-3 bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-sm transition-all">
+                        </div>
+                        <p id="su-error" class="text-sm text-red-500 hidden font-medium"></p>
+                        <button type="submit" id="su-btn" class="w-full bg-brand-accent text-white font-semibold py-3 rounded-lg hover:bg-blue-600 transition text-sm disabled:opacity-60 disabled:cursor-not-allowed">
+                            Create Account
+                        </button>
+                    </form>
+                    <div id="su-success" class="hidden text-center py-4">
+                        <div class="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-7 h-7 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <h3 class="font-bold text-gray-900 dark:text-white text-lg mb-2">Check your inbox!</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">We sent a confirmation link to your email. Click it to activate your account, then sign in.</p>
+                        <button onclick="showView('signin')" class="mt-5 text-brand-accent text-sm font-semibold hover:underline">Back to Sign In</button>
+                    </div>
+                </div>
+
+                <!-- FORGOT PASSWORD VIEW -->
+                <div id="view-forgot" class="view">
+                    <div class="mb-5">
+                        <button onclick="showView('signin')" class="flex items-center text-sm text-gray-500 dark:text-gray-400 hover:text-brand-accent transition-colors font-medium mb-4">
+                            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                            Back to Sign In
+                        </button>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Reset your password</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Enter your email and we'll send you a reset link.</p>
+                    </div>
+                    <form id="forgotForm" class="space-y-5" novalidate>
+                        <div>
+                            <label class="block text-xs uppercase font-semibold text-gray-500 dark:text-gray-400 mb-2">Email Address</label>
+                            <input type="email" id="fp-email" required placeholder="name@company.com"
+                                class="w-full border border-gray-200 dark:border-zinc-700 rounded-lg p-3 bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-sm transition-all">
+                        </div>
+                        <p id="fp-error" class="text-sm text-red-500 hidden font-medium"></p>
+                        <p id="fp-success" class="text-sm text-green-600 dark:text-green-400 hidden font-medium"></p>
+                        <button type="submit" id="fp-btn" class="w-full bg-brand-accent text-white font-semibold py-3 rounded-lg hover:bg-blue-600 transition text-sm disabled:opacity-60 disabled:cursor-not-allowed">
+                            Send Reset Link
+                        </button>
+                    </form>
+                </div>
+
             </div>
-            <button type="submit" class="w-full bg-brand-accent text-white font-semibold py-3 rounded-lg hover:bg-blue-600 transition text-sm">
-                Sign In
-            </button>
-            <p id="errorMsg" class="text-center text-sm text-red-500 hidden"></p>
-        </form>
-        <div class="mt-6 text-center">
-            <a href="index.html" class="text-xs text-gray-400 hover:text-brand-accent">&larr; Back to Home</a>
         </div>
+
+        <p class="text-center mt-6 text-xs text-gray-500">
+            <a href="index.html" class="hover:text-brand-accent transition">&larr; Back to Homepage</a>
+        </p>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // Check theme preference
+        // Theme
         if (localStorage.getItem('color-theme') === 'light') { document.documentElement.classList.remove('dark'); }
 
-        document.getElementById('authForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value;
+        // Supabase anon key is intentionally public — it's designed for browser use.
+        // Security is enforced via Row Level Security (RLS) policies on the Supabase project.
+        const SUPABASE_URL = 'https://comcsxznnlehfywdqdyx.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
+        const ADMIN_EMAIL = 'admin@commuteads.com';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-            // Admin Login Check
-            if (email === 'admin@commuteads.com' && password === 'Umakanth2026!') {
-                localStorage.setItem('session_role', 'admin');
-                window.location.href = 'admin.html';
+        // If already logged in, redirect appropriately
+        supabaseClient.auth.getSession().then(({ data: { session } }) => {
+            if (session) {
+                window.location.href = session.user.email === ADMIN_EMAIL ? 'admin.html' : 'dashboard.html';
             } else {
-                // Advertiser Login
-                localStorage.setItem('session_role', 'advertiser');
-                localStorage.setItem('session_email', email);
-                window.location.href = 'dashboard.html';
+                document.body.style.opacity = '1';
+            }
+        });
+
+        // --- View Switcher ---
+        function showView(name) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById('view-' + name).classList.add('active');
+
+            // Update tab bar highlights
+            const tabBar = document.getElementById('tabBar');
+            if (tabBar) {
+                document.getElementById('tab-signin').className = 'flex-1 py-3.5 text-sm font-bold border-b-2 transition-all ' +
+                    (name === 'signin' ? 'text-brand-accent border-brand-accent' : 'text-gray-500 dark:text-gray-400 border-transparent hover:text-gray-700 dark:hover:text-gray-200');
+                document.getElementById('tab-signup').className = 'flex-1 py-3.5 text-sm font-semibold border-b-2 transition-all ' +
+                    (name === 'signup' ? 'text-brand-accent border-brand-accent font-bold' : 'text-gray-500 dark:text-gray-400 border-transparent hover:text-gray-700 dark:hover:text-gray-200');
+            }
+            // Hide tab bar on forgot view
+            tabBar.style.display = name === 'forgot' ? 'none' : 'flex';
+        }
+
+        // --- Toggle password visibility ---
+        function togglePwd(inputId, btn) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === 'password' ? 'text' : 'password';
+            btn.classList.toggle('text-brand-accent');
+        }
+
+        // --- Helpers ---
+        function setLoading(btnId, loading, text) {
+            const btn = document.getElementById(btnId);
+            btn.disabled = loading;
+            btn.textContent = loading ? 'Please wait…' : text;
+        }
+        function showError(elId, msg) {
+            const el = document.getElementById(elId);
+            el.textContent = msg;
+            el.classList.remove('hidden');
+        }
+        function hideError(elId) {
+            document.getElementById(elId).classList.add('hidden');
+        }
+
+        // --- Sign In ---
+        document.getElementById('signinForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideError('si-error');
+            const email = document.getElementById('si-email').value.trim();
+            const password = document.getElementById('si-password').value;
+
+            if (!email || !password) { showError('si-error', 'Please enter your email and password.'); return; }
+
+            setLoading('si-btn', true, 'Sign In');
+            const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+            setLoading('si-btn', false, 'Sign In');
+
+            if (error) {
+                showError('si-error', error.message === 'Invalid login credentials'
+                    ? 'Incorrect email or password. Please try again.'
+                    : error.message);
+            } else {
+                window.location.href = data.user.email === ADMIN_EMAIL ? 'admin.html' : 'dashboard.html';
+            }
+        });
+
+        // --- Sign Up ---
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideError('su-error');
+
+            const name = document.getElementById('su-name').value.trim();
+            const company = document.getElementById('su-company').value.trim();
+            const email = document.getElementById('su-email').value.trim();
+            const password = document.getElementById('su-password').value;
+            const confirm = document.getElementById('su-confirm').value;
+
+            if (!name || !company || !email || !password || !confirm) {
+                showError('su-error', 'Please fill in all fields.'); return;
+            }
+            if (password.length < 8) {
+                showError('su-error', 'Password must be at least 8 characters.'); return;
+            }
+            if (password !== confirm) {
+                showError('su-error', 'Passwords do not match.'); return;
+            }
+            if (email === ADMIN_EMAIL) {
+                showError('su-error', 'This email address is not available for registration.'); return;
+            }
+
+            setLoading('su-btn', true, 'Create Account');
+            const { error } = await supabaseClient.auth.signUp({
+                email, password,
+                options: { data: { full_name: name, company } }
+            });
+            setLoading('su-btn', false, 'Create Account');
+
+            if (error) {
+                showError('su-error', error.message);
+            } else {
+                document.getElementById('signupForm').classList.add('hidden');
+                document.getElementById('su-success').classList.remove('hidden');
+            }
+        });
+
+        // --- Forgot Password ---
+        document.getElementById('forgotForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideError('fp-error');
+            document.getElementById('fp-success').classList.add('hidden');
+            const email = document.getElementById('fp-email').value.trim();
+
+            if (!email) { showError('fp-error', 'Please enter your email address.'); return; }
+
+            setLoading('fp-btn', true, 'Send Reset Link');
+            const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+                redirectTo: window.location.origin + '/login.html'
+            });
+            setLoading('fp-btn', false, 'Send Reset Link');
+
+            if (error) {
+                showError('fp-error', error.message);
+            } else {
+                const el = document.getElementById('fp-success');
+                el.textContent = 'Reset link sent! Check your inbox (and spam folder).';
+                el.classList.remove('hidden');
             }
         });
     </script>
