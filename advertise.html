@@ -168,7 +168,18 @@
                     </div>
                 </div>
 
-                <div class="pt-4">
+                <!-- Consent -->
+                <div class="bg-blue-50/60 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/30 rounded-xl p-4">
+                    <label class="flex items-start gap-3 cursor-pointer select-none">
+                        <input type="checkbox" id="adv-consent" class="mt-0.5 w-4 h-4 accent-brand-accent shrink-0 cursor-pointer">
+                        <span class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                            I consent to CommuteAds collecting and using the information submitted above to contact me about advertising opportunities and campaign proposals. My details will not be shared with third parties or used for any other purpose.
+                        </span>
+                    </label>
+                    <p id="adv-consentErr" class="text-red-500 text-xs mt-2 ml-7 hidden">Please give your consent to proceed.</p>
+                </div>
+
+                <div class="pt-2">
                     <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-brand-accent to-blue-600 text-white font-bold py-4 rounded-xl hover:from-blue-600 hover:to-brand-accent transition-all duration-300 shadow-lg hover:shadow-brand-accent/40 transform hover:-translate-y-1 text-sm tracking-wide">
                         Submit Details &rarr;
                     </button>
@@ -310,6 +321,16 @@
                     const gstinErr = document.getElementById('gstinError');
                     if (gstinErr) gstinErr.classList.add('hidden');
                     if (gstinVal) gstinEl.value = gstinVal; // normalise to uppercase
+                }
+
+                // Consent checkbox validation
+                const consentEl  = document.getElementById('adv-consent');
+                const consentErr = document.getElementById('adv-consentErr');
+                if (!consentEl.checked) {
+                    consentErr.classList.remove('hidden');
+                    isValid = false;
+                } else {
+                    consentErr.classList.add('hidden');
                 }
 
                 // Stop submission if form is incomplete
