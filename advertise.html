@@ -251,6 +251,23 @@
             });
         });
 
+        // ── Validation helpers ──────────────────────────────────────────────────
+        // Email: must have local@domain.tld structure
+        const _validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+        // Indian mobile: optional +91 / 91 / 0 prefix then 10 digits starting 6-9
+        const _validPhone = v => /^(\+91|91|0)?[6-9]\d{9}$/.test(v.trim().replace(/[\s\-().]/g, ''));
+        // GSTIN: 2-digit state code + 5-char PAN prefix + 4 digits + 1 letter + 1 alphanumeric + Z + 1 alphanumeric
+        const _validGSTIN = v => v.trim() === '' || /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(v.trim().toUpperCase());
+
+        // Field-level rules (id → { validate, message })
+        const _fieldRules = {
+            name:    { validate: v => v.trim().length >= 2,  message: 'Please enter your full name (at least 2 characters).' },
+            company: { validate: v => v.trim().length >= 2,  message: 'Please enter your company name.' },
+            email:   { validate: _validEmail,                message: 'Enter a valid email address (e.g. john@company.com).' },
+            phone:   { validate: _validPhone,                message: 'Enter a valid 10-digit Indian mobile number (e.g. 9876543210).' },
+            tier:    { validate: v => v !== '',              message: 'Please select a fleet focus option.' }
+        };
+
         if (form) {
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -258,16 +275,42 @@
                 // 1. Run Validation check
                 let isValid = true;
                 requiredFields.forEach(fieldId => {
-                    const el = document.getElementById(fieldId);
+                    const el  = document.getElementById(fieldId);
                     const err = document.getElementById(fieldId + 'Error');
-                    
-                    if (!el.value.trim()) {
+                    const rule = _fieldRules[fieldId];
+
+                    if (!rule.validate(el.value)) {
                         el.classList.add('border-red-500', 'focus:ring-red-500');
+                        err.querySelector ? (err.querySelector('svg') ? err.childNodes[err.childNodes.length - 1].textContent = ' ' + rule.message : null) : null;
+                        err.lastChild.textContent = ' ' + rule.message;
                         err.classList.remove('hidden');
-                        setTimeout(() => err.classList.remove('opacity-0'), 10); // Trigger fade in
+                        setTimeout(() => err.classList.remove('opacity-0'), 10);
                         isValid = false;
                     }
                 });
+
+                // GSTIN: optional but must be valid format if provided
+                const gstinEl  = document.getElementById('gstin');
+                const gstinVal = gstinEl.value.trim().toUpperCase();
+                if (gstinVal && !_validGSTIN(gstinVal)) {
+                    gstinEl.classList.add('border-red-500');
+                    // Inject inline error below GSTIN if not already present
+                    let gstinErr = document.getElementById('gstinError');
+                    if (!gstinErr) {
+                        gstinErr = document.createElement('p');
+                        gstinErr.id = 'gstinError';
+                        gstinErr.className = 'text-red-500 text-xs mt-1.5 ml-1 flex items-center';
+                        gstinErr.innerHTML = '<svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg> Invalid GSTIN format. Example: 29ABCDE1234F1Z5';
+                        gstinEl.parentNode.appendChild(gstinErr);
+                    }
+                    gstinErr.classList.remove('hidden');
+                    isValid = false;
+                } else {
+                    gstinEl.classList.remove('border-red-500');
+                    const gstinErr = document.getElementById('gstinError');
+                    if (gstinErr) gstinErr.classList.add('hidden');
+                    if (gstinVal) gstinEl.value = gstinVal; // normalise to uppercase
+                }
 
                 // Stop submission if form is incomplete
                 if (!isValid) return;
