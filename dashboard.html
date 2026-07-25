@@ -28,6 +28,11 @@
         /* Notification dropdown */
         #notifDropdown { display: none; }
         #notifDropdown.open { display: block; }
+        /* Mobile drawer */
+        #mobileSidebar { transform: translateX(-100%); transition: transform 0.28s cubic-bezier(0.4,0,0.2,1); }
+        #mobileSidebar.open { transform: translateX(0); }
+        #mobileOverlay { display: none; }
+        #mobileOverlay.open { display: block; }
         @media print {
             body * { visibility: hidden; }
             #invoiceContent, #invoiceContent * { visibility: visible; }
@@ -36,6 +41,47 @@
     </style>
 </head>
 <body class="bg-brand-lightBg dark:bg-brand-darkBg text-gray-800 dark:text-gray-300 min-h-screen flex transition-colors duration-300">
+
+    <!-- Mobile overlay backdrop -->
+    <div id="mobileOverlay" class="fixed inset-0 bg-black/50 z-40 md:hidden" onclick="closeMobileSidebar()"></div>
+
+    <!-- Mobile Sidebar Drawer -->
+    <div id="mobileSidebar" class="fixed top-0 left-0 h-full w-72 bg-brand-lightCard dark:bg-[#101012] border-r border-brand-lightBorder dark:border-brand-darkBorder z-50 flex flex-col md:hidden">
+        <div class="h-16 flex items-center justify-between px-6 border-b border-brand-lightBorder dark:border-brand-darkBorder shrink-0">
+            <span class="font-bold text-xl text-gray-900 dark:text-white tracking-tight">Commute<span class="text-brand-accent">Ads</span></span>
+            <button onclick="closeMobileSidebar()" class="p-1.5 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-zinc-800 transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <nav class="flex-1 px-4 py-6 space-y-1" id="mobileSidebarNav">
+            <button onclick="switchTab('tab-campaigns', this); closeMobileSidebar();" class="w-full text-left flex items-center px-3 py-2.5 bg-gray-100 dark:bg-zinc-800/50 text-brand-accent rounded-lg text-sm font-medium transition-all">
+                <svg class="w-5 h-5 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                Campaigns
+            </button>
+            <button onclick="switchTab('tab-performance', this); closeMobileSidebar();" class="w-full text-left flex items-center px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800/30 rounded-lg text-sm font-medium transition-all">
+                <svg class="w-5 h-5 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                Performance
+            </button>
+            <button onclick="switchTab('tab-locations', this); closeMobileSidebar();" class="w-full text-left flex items-center px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800/30 rounded-lg text-sm font-medium transition-all">
+                <svg class="w-5 h-5 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                Locations
+            </button>
+            <button onclick="switchTab('tab-billing', this); closeMobileSidebar();" class="w-full text-left flex items-center px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800/30 rounded-lg text-sm font-medium transition-all">
+                <svg class="w-5 h-5 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                Billing & Invoices
+            </button>
+        </nav>
+        <div class="p-5 border-t border-brand-lightBorder dark:border-brand-darkBorder">
+            <div class="text-xs text-gray-500 mb-4 pb-4 border-b border-gray-200 dark:border-zinc-800">
+                <p class="font-bold text-gray-700 dark:text-gray-300 mb-1">Need Support?</p>
+                <a href="mailto:connect@commuteads.in" class="text-brand-accent hover:underline break-all">connect@commuteads.in</a>
+            </div>
+            <div class="text-xs text-gray-500 flex justify-between items-center">
+                <p id="mobileUserDisplay" class="truncate font-medium max-w-[140px]"></p>
+                <button onclick="handleLogout()" class="text-red-500 hover:underline font-semibold">Logout</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Sidebar Navigation -->
     <aside class="w-64 bg-brand-lightCard dark:bg-[#101012] border-r border-brand-lightBorder dark:border-brand-darkBorder hidden md:flex flex-col shrink-0">
@@ -76,8 +122,13 @@
     <main class="flex-1 flex flex-col h-screen overflow-hidden">
         
         <!-- Top Toolbar -->
-        <header class="h-16 flex items-center justify-between px-6 bg-brand-lightCard dark:bg-[#101012] border-b border-brand-lightBorder dark:border-brand-darkBorder shrink-0">
-            <h1 id="headerTitle" class="text-lg font-bold text-gray-900 dark:text-white transition-all">Workspace Overview</h1>
+        <header class="h-16 flex items-center justify-between px-4 md:px-6 bg-brand-lightCard dark:bg-[#101012] border-b border-brand-lightBorder dark:border-brand-darkBorder shrink-0">
+            <div class="flex items-center space-x-3">
+                <button onclick="openMobileSidebar()" class="md:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-zinc-800 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+                <h1 id="headerTitle" class="text-base md:text-lg font-bold text-gray-900 dark:text-white transition-all">Workspace Overview</h1>
+            </div>
             <div class="flex items-center space-x-3">
                 <!-- Theme Toggle -->
                 <button id="theme-toggle" class="p-2 bg-gray-100 dark:bg-zinc-800 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-zinc-700 focus:outline-none transition-transform hover:scale-105">
@@ -469,6 +520,8 @@
             if (session.user.email === ADMIN_EMAIL) { window.location.href = 'admin.html'; return; }
             userEmail = session.user.email;
             document.getElementById('userDisplay').textContent = userEmail;
+            const mobileUD = document.getElementById('mobileUserDisplay');
+            if (mobileUD) mobileUD.textContent = userEmail;
             document.body.style.opacity = '1';
             calculateCPM();
             fetchCampaigns();
@@ -495,15 +548,45 @@
         });
 
         // ============================================================
+        // MOBILE SIDEBAR
+        // ============================================================
+        function openMobileSidebar() {
+            document.getElementById('mobileSidebar').classList.add('open');
+            document.getElementById('mobileOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMobileSidebar() {
+            document.getElementById('mobileSidebar').classList.remove('open');
+            document.getElementById('mobileOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // ============================================================
         // TAB SWITCHING
         // ============================================================
         function switchTab(tabId, btnElement) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.getElementById('sidebarNav').querySelectorAll('button').forEach(btn => {
-                btn.className = 'w-full text-left flex items-center px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800/30 rounded-lg text-sm font-medium transition-all';
+            // Reset both sidebars
+            ['sidebarNav', 'mobileSidebarNav'].forEach(navId => {
+                const nav = document.getElementById(navId);
+                if (nav) nav.querySelectorAll('button').forEach(btn => {
+                    btn.className = 'w-full text-left flex items-center px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800/30 rounded-lg text-sm font-medium transition-all';
+                });
             });
             document.getElementById(tabId).classList.add('active');
-            btnElement.className = 'w-full text-left flex items-center px-3 py-2.5 bg-gray-100 dark:bg-zinc-800/50 text-brand-accent rounded-lg text-sm font-medium transition-all';
+            // Highlight the clicked button and its counterpart in the other nav
+            const activeClass = 'w-full text-left flex items-center px-3 py-2.5 bg-gray-100 dark:bg-zinc-800/50 text-brand-accent rounded-lg text-sm font-medium transition-all';
+            btnElement.className = activeClass;
+            // Sync the sibling nav button by index
+            const allNavBtns = btnElement.closest('nav').querySelectorAll('button');
+            const idx = Array.from(allNavBtns).indexOf(btnElement);
+            ['sidebarNav', 'mobileSidebarNav'].forEach(navId => {
+                const nav = document.getElementById(navId);
+                if (nav && nav !== btnElement.closest('nav')) {
+                    const sibling = nav.querySelectorAll('button')[idx];
+                    if (sibling) sibling.className = activeClass;
+                }
+            });
             const titles = { 'tab-campaigns': 'Workspace Overview', 'tab-performance': 'Performance', 'tab-locations': 'Location Targets', 'tab-billing': 'Billing & Invoices' };
             document.getElementById('headerTitle').textContent = titles[tabId] || 'Dashboard';
         }
