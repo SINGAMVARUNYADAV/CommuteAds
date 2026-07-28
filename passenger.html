@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey Traveller! | CommuteAds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            lightBg: '#f8fafc',
+                            lightCard: '#ffffff',
+                            lightBorder: '#e2e8f0',
+                            darkBg: '#09090b',
+                            darkCard: '#141417',
+                            darkBorder: '#27272a',
+                            accent: '#3b82f6',
+                        }
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'blob': 'blob 7s infinite',
+                        'fade-up': 'fadeUp 0.6s ease-out both',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px,0px) scale(1)' },
+                            '33%': { transform: 'translate(30px,-50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px,20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px,0px) scale(1)' },
+                        },
+                        fadeUp: {
+                            from: { opacity: '0', transform: 'translateY(24px)' },
+                            to: { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .section-fade { animation: fadeUp 0.6s ease-out both; }
+        .s1 { animation-delay: 0.1s; }
+        .s2 { animation-delay: 0.25s; }
+        .s3 { animation-delay: 0.4s; }
+        .s4 { animation-delay: 0.55s; }
+
+        /* Star rating */
+        .star-btn { transition: transform 0.15s ease, filter 0.15s ease; cursor: pointer; font-size: 2.5rem; line-height: 1; }
+        .star-btn:hover { transform: scale(1.2); }
+        .star-btn.active { filter: drop-shadow(0 0 6px rgba(251,191,36,0.7)); }
+
+        /* Quick tag chips */
+        .tag-chip {
+            border: 1.5px solid;
+            transition: all 0.18s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+        .tag-chip:hover { transform: translateY(-2px); }
+        .tag-chip.selected {
+            background: rgba(59,130,246,0.15);
+            border-color: #3b82f6;
+            color: #60a5fa;
+        }
+
+        /* Success state */
+        #successView { display: none; }
+        #successView.show { display: flex; }
+
+        /* Scrollbar hide for horizontal scroll on mobile */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-brand-darkBg text-gray-300 min-h-screen relative overflow-x-hidden">
+
+    <!-- Ambient background blobs -->
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div class="absolute w-96 h-96 bg-blue-600/10 rounded-full blur-3xl -top-32 -left-32 animate-blob"></div>
+        <div class="absolute w-80 h-80 bg-purple-600/10 rounded-full blur-3xl top-1/2 -right-20 animate-blob" style="animation-delay:2.5s"></div>
+        <div class="absolute w-72 h-72 bg-teal-500/8 rounded-full blur-3xl bottom-0 left-1/3 animate-blob" style="animation-delay:4.5s"></div>
+    </div>
+
+    <div class="max-w-lg mx-auto px-5 py-10 pb-20">
+
+        <!-- ─── HERO ─────────────────────────────────────────── -->
+        <section class="text-center mb-14 section-fade s1">
+
+            <!-- CommuteAds wordmark -->
+            <div class="mb-8">
+                <a href="index.html" class="inline-block font-black text-2xl text-white tracking-tight">Commute<span class="text-brand-accent">Ads</span></a>
+            </div>
+
+            <!-- Floating emoji -->
+            <div class="text-6xl mb-5 animate-float select-none">🎯</div>
+
+            <h1 class="text-3xl md:text-4xl font-black text-white leading-tight mb-3">
+                Wow, you actually scanned it!
+            </h1>
+            <p class="text-gray-400 text-base leading-relaxed max-w-sm mx-auto">
+                10 points for your hand-eye coordination in this traffic.
+            </p>
+        </section>
+
+        <!-- ─── WHO WE ARE ────────────────────────────────────── -->
+        <section class="mb-14 section-fade s2">
+            <div class="bg-brand-darkCard border border-brand-darkBorder rounded-2xl p-6 md:p-8">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="text-2xl">👋</span>
+                    <h2 class="text-lg font-black text-white">Who We Are</h2>
+                </div>
+                <div class="space-y-4 text-gray-400 text-sm leading-relaxed">
+                    <p>If you're reading this, our tablet did exactly what it was supposed to do — cure your boredom.</p>
+                    <p>We are <span class="text-white font-bold">CommuteAds</span>. We looked at standard cab rides and thought, <em>"Staring at the back of a driver's head for 45 minutes is not a vibe."</em> So, we installed these screens to upgrade your journey.</p>
+                    <p>We're here to bring you <span class="text-blue-400 font-semibold">bite-sized daily news</span>, <span class="text-teal-400 font-semibold">quick weather updates</span> (because you never know when the Hyderabad monsoon will surprise you), a few <span class="text-yellow-400 font-semibold">cartoons to lower your blood pressure</span> in traffic, and yes, some sleek ads to keep the whole network running.</p>
+                    <p class="text-white font-semibold">Basically, we are your visual travel companion. 🚗✨</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── FEEDBACK ──────────────────────────────────────── -->
+        <section class="mb-14 section-fade s3" id="feedbackSection">
+            <div class="bg-brand-darkCard border border-brand-darkBorder rounded-2xl p-6 md:p-8">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-2xl">⭐</span>
+                    <h2 class="text-lg font-black text-white">Rate Your Screen Experience</h2>
+                </div>
+                <p class="text-gray-500 text-sm mb-7">Now that we're officially travel buddies, we need a solid favour.</p>
+
+                <!-- 5-Star Rating -->
+                <div class="text-center mb-7">
+                    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">How was it today?</p>
+                    <div class="flex justify-center gap-2" id="starRow" role="group" aria-label="Star rating">
+                        <button type="button" class="star-btn" data-star="1" aria-label="1 star" onclick="setStars(1)">☆</button>
+                        <button type="button" class="star-btn" data-star="2" aria-label="2 stars" onclick="setStars(2)">☆</button>
+                        <button type="button" class="star-btn" data-star="3" aria-label="3 stars" onclick="setStars(3)">☆</button>
+                        <button type="button" class="star-btn" data-star="4" aria-label="4 stars" onclick="setStars(4)">☆</button>
+                        <button type="button" class="star-btn" data-star="5" aria-label="5 stars" onclick="setStars(5)">☆</button>
+                    </div>
+                    <p id="starLabel" class="text-xs text-gray-600 mt-2 h-4 transition-all"></p>
+                    <p id="starError" class="text-red-400 text-xs mt-1 hidden">Please tap a star rating first.</p>
+                </div>
+
+                <!-- Quick Tags -->
+                <div class="mb-7">
+                    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Quick Thoughts <span class="text-gray-600 font-normal normal-case">(tap one)</span></p>
+                    <div class="flex flex-wrap gap-2" id="tagGroup">
+                        <button type="button" class="tag-chip px-3 py-2 rounded-xl text-sm font-semibold text-gray-400 border-brand-darkBorder bg-brand-darkBg" data-tag="loved" onclick="selectTag(this)">🍿 Loved the content!</button>
+                        <button type="button" class="tag-chip px-3 py-2 rounded-xl text-sm font-semibold text-gray-400 border-brand-darkBorder bg-brand-darkBg" data-tag="cartoons" onclick="selectTag(this)">📺 Needs more cartoons.</button>
+                        <button type="button" class="tag-chip px-3 py-2 rounded-xl text-sm font-semibold text-gray-400 border-brand-darkBorder bg-brand-darkBg" data-tag="news" onclick="selectTag(this)">📰 Give me more news.</button>
+                        <button type="button" class="tag-chip px-3 py-2 rounded-xl text-sm font-semibold text-gray-400 border-brand-darkBorder bg-brand-darkBg" data-tag="ads" onclick="selectTag(this)">🥱 Too many ads.</button>
+                        <button type="button" class="tag-chip px-3 py-2 rounded-xl text-sm font-semibold text-gray-400 border-brand-darkBorder bg-brand-darkBg" data-tag="technical" onclick="selectTag(this)">🔧 Screen was acting weird.</button>
+                    </div>
+                </div>
+
+                <!-- Comment (optional) -->
+                <div class="mb-6">
+                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Got More to Say? <span class="text-gray-600 font-normal normal-case">(Optional)</span></label>
+                    <textarea id="feedbackComment" rows="3" placeholder="Spill the tea. What should we add to the screens next?"
+                        class="w-full bg-brand-darkBg border border-brand-darkBorder rounded-xl p-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent resize-none transition-all"></textarea>
+                </div>
+
+                <!-- Email (optional) -->
+                <div class="mb-7">
+                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Your Email <span class="text-gray-600 font-normal normal-case">(Optional — if you want us to get back to you)</span></label>
+                    <input type="email" id="feedbackEmail" placeholder="you@example.com"
+                        class="w-full bg-brand-darkBg border border-brand-darkBorder rounded-xl p-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition-all">
+                    <p id="emailError" class="text-red-400 text-xs mt-1.5 hidden">Please enter a valid email address.</p>
+                </div>
+
+                <!-- Submit -->
+                <button type="button" id="submitFeedbackBtn" onclick="submitFeedback()"
+                    class="w-full bg-gradient-to-r from-brand-accent to-blue-600 text-white font-bold py-4 rounded-xl hover:from-blue-600 hover:to-brand-accent transition-all duration-300 shadow-lg hover:shadow-brand-accent/40 active:scale-95 text-sm tracking-wide">
+                    Submit Feedback →
+                </button>
+                <p id="feedbackStatus" class="text-center text-xs text-red-400 mt-3 hidden"></p>
+            </div>
+
+            <!-- Success State -->
+            <div id="successView" class="hidden flex-col items-center justify-center text-center py-10 px-6 bg-brand-darkCard border border-brand-darkBorder rounded-2xl mt-4">
+                <div class="text-5xl mb-4 animate-float">🙌</div>
+                <h3 class="text-xl font-black text-white mb-2">You're a legend.</h3>
+                <p class="text-gray-400 text-sm max-w-xs">Thanks for the honest feedback. It genuinely helps us make the ride better for everyone. See you on the next commute!</p>
+            </div>
+        </section>
+
+        <!-- ─── SOFT PITCH FOOTER ─────────────────────────────── -->
+        <section class="section-fade s4">
+            <div class="border border-brand-darkBorder rounded-2xl p-6 bg-gradient-to-br from-blue-950/30 to-purple-950/20">
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    <span class="text-gray-500 font-bold text-xs uppercase tracking-widest block mb-2">P.S.</span>
+                    Are you a local business owner sitting in the back of this cab thinking, <em>"Hey, I want my brand on that screen"?</em>
+                </p>
+                <a href="advertise.html"
+                    class="inline-flex items-center gap-2 bg-brand-accent/10 border border-brand-accent/30 text-brand-accent hover:bg-brand-accent hover:text-white transition-all duration-200 font-bold text-sm px-5 py-3 rounded-xl">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    Let's talk. Advertise with us.
+                </a>
+            </div>
+
+            <p class="text-center text-xs text-gray-700 mt-8">© 2026 CommuteAds Network · Hyderabad, India</p>
+        </section>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // ── Supabase client ──────────────────────────────────────────
+        const SUPABASE_URL = 'https://comcsxznnlehfywdqdyx.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // ── State ─────────────────────────────────────────────────────
+        let selectedStars = 0;
+        let selectedTag = '';
+
+        const starLabels = ['', 'Not great 😕', 'Could be better 🙁', 'It was okay 😐', 'Pretty good 😊', 'Loved it! 🤩'];
+
+        function setStars(n) {
+            selectedStars = n;
+            const stars = document.querySelectorAll('.star-btn');
+            stars.forEach((s, i) => {
+                s.textContent = i < n ? '★' : '☆';
+                s.classList.toggle('active', i < n);
+                s.style.color = i < n ? '#fbbf24' : '';
+            });
+            document.getElementById('starLabel').textContent = starLabels[n];
+            document.getElementById('starError').classList.add('hidden');
+        }
+
+        function selectTag(el) {
+            document.querySelectorAll('.tag-chip').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedTag = el.dataset.tag;
+        }
+
+        function escHtml(str) {
+            return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+        }
+
+        async function submitFeedback() {
+            // Validation
+            if (selectedStars === 0) {
+                document.getElementById('starError').classList.remove('hidden');
+                document.getElementById('starRow').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            const emailVal = document.getElementById('feedbackEmail').value.trim();
+            const emailErr = document.getElementById('emailError');
+            if (emailVal && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(emailVal)) {
+                emailErr.classList.remove('hidden');
+                return;
+            }
+            emailErr.classList.add('hidden');
+
+            const btn = document.getElementById('submitFeedbackBtn');
+            btn.innerHTML = '<svg class="animate-spin h-4 w-4 mr-2 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Submitting...';
+            btn.disabled = true;
+
+            const payload = {
+                star_rating: selectedStars,
+                quick_tag: selectedTag || null,
+                comment: document.getElementById('feedbackComment').value.trim() || null,
+                email: emailVal || null,
+            };
+
+            const { error } = await supabaseClient.from('passenger_feedback').insert([payload]);
+
+            if (error) {
+                const status = document.getElementById('feedbackStatus');
+                status.textContent = 'Something went wrong. Please try again.';
+                status.classList.remove('hidden');
+                btn.innerHTML = 'Submit Feedback →';
+                btn.disabled = false;
+                console.error('Supabase error:', error);
+            } else {
+                // Show success
+                document.getElementById('feedbackSection').querySelector('.bg-brand-darkCard').style.display = 'none';
+                const sv = document.getElementById('successView');
+                sv.style.display = 'flex';
+                sv.classList.add('show');
+            }
+        }
+    </script>
+</body>
+</html>

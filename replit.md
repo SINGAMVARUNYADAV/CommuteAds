@@ -40,6 +40,28 @@ No dependencies to install.
 |---|---|
 | `campaigns` | Advertiser campaign records (status: Pending Review / Live / Paused) |
 | `prebooks` | Lead pipeline from advertise.html form |
+| `passenger_feedback` | Passenger ratings & comments from the QR-scan page |
+
+### passenger_feedback schema
+Create this table in your Supabase project (SQL editor):
+```sql
+CREATE TABLE passenger_feedback (
+  id          uuid        DEFAULT gen_random_uuid() PRIMARY KEY,
+  star_rating integer     NOT NULL CHECK (star_rating >= 1 AND star_rating <= 5),
+  quick_tag   text,       -- loved | cartoons | news | ads | technical
+  comment     text,
+  email       text,
+  created_at  timestamptz DEFAULT now()
+);
+-- Allow anonymous inserts (passengers don't log in)
+ALTER TABLE passenger_feedback ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Anyone can submit feedback"
+  ON passenger_feedback FOR INSERT WITH CHECK (true);
+-- Only authenticated admin can read
+CREATE POLICY "Admin reads feedback"
+  ON passenger_feedback FOR SELECT
+  USING (auth.role() = 'authenticated');
+```
 
 ## Auth & Security
 
