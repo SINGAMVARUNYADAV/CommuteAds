@@ -42,6 +42,24 @@ No dependencies to install.
 | `prebooks` | Lead pipeline from advertise.html form |
 | `passenger_feedback` | Passenger ratings & comments from the QR-scan page |
 
+### qr_scans schema
+```sql
+CREATE TABLE qr_scans (
+  id         uuid        DEFAULT gen_random_uuid() PRIMARY KEY,
+  qr_label   text        NOT NULL DEFAULT 'default',
+  scanned_at timestamptz DEFAULT now()
+);
+
+ALTER TABLE qr_scans ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Anyone can log a scan"
+  ON qr_scans FOR INSERT WITH CHECK (true);
+
+CREATE POLICY "Admin reads scans"
+  ON qr_scans FOR SELECT
+  USING (auth.role() = 'authenticated');
+```
+
 ### passenger_feedback schema
 Create this table in your Supabase project (SQL editor):
 ```sql

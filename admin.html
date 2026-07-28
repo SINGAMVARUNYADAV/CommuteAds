@@ -55,6 +55,10 @@
                 <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
                 Screen Feedback
             </button>
+            <button onclick="switchAdminTab('tab-qr', this); closeAdminMobileSidebar();" class="w-full text-left flex items-center px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800/30 rounded-lg text-sm font-medium transition-all">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                QR &amp; Scans
+            </button>
         </nav>
         <div class="p-4 border-t border-brand-lightBorder dark:border-brand-darkBorder text-xs text-gray-500">
             <p class="truncate mb-1 font-bold text-gray-900 dark:text-white">Admin Access Granted</p>
@@ -84,6 +88,10 @@
             <button onclick="switchAdminTab('tab-feedback', this)" class="w-full text-left flex items-center px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800/30 rounded-lg text-sm font-medium transition-all">
                 <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
                 Screen Feedback
+            </button>
+            <button onclick="switchAdminTab('tab-qr', this)" class="w-full text-left flex items-center px-3 py-2.5 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-zinc-800/30 rounded-lg text-sm font-medium transition-all">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                QR &amp; Scans
             </button>
         </nav>
         <div class="p-4 border-t border-brand-lightBorder dark:border-brand-darkBorder text-xs text-gray-500">
@@ -188,6 +196,93 @@
                     </div>
                 </div>
 
+                <!-- TAB 5: QR & SCANS -->
+                <div id="tab-qr" class="tab-content space-y-8">
+                    <div>
+                        <h2 class="text-2xl font-black text-gray-900 dark:text-white">QR Codes &amp; Scan Tracking</h2>
+                        <p class="text-sm text-gray-500 mt-1">Generate named QR codes for each cab or location, download them, and watch scan analytics in real time.</p>
+                    </div>
+
+                    <!-- Generator + Preview side-by-side on desktop -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                        <!-- Generator Card -->
+                        <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl p-6 shadow-sm space-y-5">
+                            <h3 class="text-sm font-black text-gray-900 dark:text-white uppercase tracking-widest">Generate a QR Code</h3>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Label / Source</label>
+                                <input id="qrLabel" type="text" placeholder="e.g. Cab-001, Airport-Terminal-A"
+                                    class="w-full bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-lg px-4 py-3 text-sm text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition">
+                                <p class="text-[11px] text-gray-500 mt-1.5">This label is recorded every time someone scans — helps you tell cabs apart.</p>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Points To</label>
+                                <p id="qrUrlPreview" class="text-xs text-brand-accent font-mono break-all bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-lg px-3 py-2.5 select-all"></p>
+                            </div>
+
+                            <button onclick="generateQr()" class="w-full bg-gradient-to-r from-brand-accent to-blue-600 text-white font-bold py-3 rounded-lg hover:from-blue-600 hover:to-brand-accent transition-all text-sm shadow hover:shadow-brand-accent/30">
+                                Generate QR Code
+                            </button>
+                        </div>
+
+                        <!-- QR Preview Card -->
+                        <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl p-6 shadow-sm flex flex-col items-center justify-center min-h-[280px]" id="qrPreviewCard">
+                            <div id="qrPlaceholder" class="text-center">
+                                <div class="w-20 h-20 rounded-xl bg-gray-100 dark:bg-zinc-800 mx-auto mb-4 flex items-center justify-center">
+                                    <svg class="w-10 h-10 text-gray-300 dark:text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
+                                </div>
+                                <p class="text-sm text-gray-400">QR code will appear here</p>
+                                <p class="text-xs text-gray-500 mt-1">Enter a label and click Generate</p>
+                            </div>
+                            <div id="qrOutput" class="hidden flex-col items-center gap-4">
+                                <div id="qrCanvas" class="p-3 bg-white rounded-xl shadow-md"></div>
+                                <p id="qrOutputLabel" class="text-xs font-bold text-gray-900 dark:text-white text-center"></p>
+                                <button onclick="downloadQr()" class="flex items-center gap-2 bg-brand-accent/10 border border-brand-accent/20 text-brand-accent hover:bg-brand-accent hover:text-white transition-all font-bold text-xs px-4 py-2.5 rounded-lg">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                                    Download PNG
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scan Analytics -->
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-sm font-black text-gray-900 dark:text-white uppercase tracking-widest">Scan Analytics</h3>
+                            <button onclick="fetchQrScans()" class="flex items-center space-x-2 text-xs font-semibold text-gray-500 hover:text-brand-accent transition px-3 py-2 border border-gray-200 dark:border-zinc-700 rounded-lg">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                                <span>Refresh</span>
+                            </button>
+                        </div>
+
+                        <!-- Stat pills -->
+                        <div id="qrStatPills" class="flex flex-wrap gap-3"></div>
+
+                        <!-- Per-label breakdown -->
+                        <div id="qrLabelBreakdown" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+
+                        <!-- Recent scans table -->
+                        <div class="bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl shadow-sm overflow-hidden">
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse whitespace-nowrap">
+                                    <thead>
+                                        <tr class="bg-gray-50 dark:bg-zinc-900/50 border-b border-brand-lightBorder dark:border-brand-darkBorder text-[10px] uppercase font-bold text-gray-500 dark:text-gray-400 tracking-wider">
+                                            <th class="px-6 py-4">Date</th>
+                                            <th class="px-6 py-4">Time</th>
+                                            <th class="px-6 py-4">QR Label / Source</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="qrScanList" class="divide-y divide-gray-200 dark:divide-zinc-800 text-sm">
+                                        <tr><td colspan="3" class="p-8 text-center text-gray-500">Loading scans...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- TAB 4: SCREEN FEEDBACK -->
                 <div id="tab-feedback" class="tab-content space-y-6">
                     <div class="flex justify-between items-end">
@@ -240,6 +335,7 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
         // Theme
         const themeToggleBtn = document.getElementById('theme-toggle');
@@ -273,6 +369,7 @@
                 fetchAdminLeads();
                 fetchContactMessages();
                 fetchPassengerFeedback();
+                fetchQrScans();
             }
         });
 
@@ -539,6 +636,154 @@
                     </div>
                 `;
                 container.appendChild(card);
+            });
+        }
+
+        // ==========================================
+        // 5. QR CODES & SCAN TRACKING
+        // ==========================================
+        let _currentQrLabel = '';
+
+        function _buildScanUrl(label) {
+            return window.location.origin + '/scan.html?id=' + encodeURIComponent(label || 'default');
+        }
+
+        // Live URL preview as user types
+        document.addEventListener('DOMContentLoaded', () => {
+            const inp = document.getElementById('qrLabel');
+            const prev = document.getElementById('qrUrlPreview');
+            if (inp && prev) {
+                const update = () => { prev.textContent = _buildScanUrl(inp.value.trim() || 'your-label'); };
+                update();
+                inp.addEventListener('input', update);
+            }
+        });
+
+        function generateQr() {
+            const labelRaw = document.getElementById('qrLabel').value.trim();
+            if (!labelRaw) {
+                document.getElementById('qrLabel').focus();
+                document.getElementById('qrLabel').classList.add('border-red-500');
+                setTimeout(() => document.getElementById('qrLabel').classList.remove('border-red-500'), 1800);
+                return;
+            }
+            _currentQrLabel = labelRaw;
+            const url = _buildScanUrl(labelRaw);
+
+            // Clear previous QR
+            const canvas = document.getElementById('qrCanvas');
+            canvas.innerHTML = '';
+
+            new QRCode(canvas, {
+                text: url,
+                width: 220,
+                height: 220,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            document.getElementById('qrPlaceholder').classList.add('hidden');
+            const out = document.getElementById('qrOutput');
+            out.classList.remove('hidden');
+            out.classList.add('flex');
+            document.getElementById('qrOutputLabel').textContent = labelRaw;
+        }
+
+        function downloadQr() {
+            const canvas = document.querySelector('#qrCanvas canvas');
+            if (!canvas) return;
+            const link = document.createElement('a');
+            link.download = 'qr-' + (_currentQrLabel || 'commuteads') + '.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        async function fetchQrScans() {
+            const { data, error } = await supabaseClient
+                .from('qr_scans')
+                .select('*')
+                .order('scanned_at', { ascending: false })
+                .limit(500);
+
+            const list = document.getElementById('qrScanList');
+            const pills = document.getElementById('qrStatPills');
+            const breakdown = document.getElementById('qrLabelBreakdown');
+            list.innerHTML = '';
+            pills.innerHTML = '';
+            breakdown.innerHTML = '';
+
+            if (error) {
+                list.innerHTML = `<tr><td colspan="3" class="p-8 text-center text-red-500">Error: ${escHtml(error.message)}</td></tr>`;
+                return;
+            }
+            if (!data || data.length === 0) {
+                list.innerHTML = `<tr><td colspan="3" class="p-8 text-center text-gray-500">No scans recorded yet. Generate a QR code, place it in a cab, and scans will appear here.</td></tr>`;
+                return;
+            }
+
+            // Compute stats
+            const total = data.length;
+            const todayStr = new Date().toLocaleDateString('en-IN');
+            const todayCount = data.filter(r => new Date(r.scanned_at).toLocaleDateString('en-IN') === todayStr).length;
+            const labelCounts = {};
+            data.forEach(r => { const l = r.qr_label || 'default'; labelCounts[l] = (labelCounts[l] || 0) + 1; });
+            const uniqueLabels = Object.keys(labelCounts).length;
+
+            // Stat pills
+            pills.innerHTML = `
+                <div class="flex items-center gap-2 bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl px-4 py-3 text-sm">
+                    <span class="font-black text-2xl text-brand-accent">${total}</span>
+                    <span class="text-gray-500">total scans</span>
+                </div>
+                <div class="flex items-center gap-2 bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl px-4 py-3 text-sm">
+                    <span class="font-black text-2xl text-green-500">${todayCount}</span>
+                    <span class="text-gray-500">scans today</span>
+                </div>
+                <div class="flex items-center gap-2 bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl px-4 py-3 text-sm">
+                    <span class="font-black text-2xl text-purple-400">${uniqueLabels}</span>
+                    <span class="text-gray-500">active QR${uniqueLabels !== 1 ? 's' : ''}</span>
+                </div>
+            `;
+
+            // Per-label breakdown cards
+            const sortedLabels = Object.entries(labelCounts).sort((a, b) => b[1] - a[1]);
+            const maxCount = sortedLabels[0][1];
+            sortedLabels.forEach(([label, count]) => {
+                const pct = Math.round((count / maxCount) * 100);
+                const card = document.createElement('div');
+                card.className = 'bg-brand-lightCard dark:bg-brand-darkCard border border-brand-lightBorder dark:border-brand-darkBorder rounded-xl p-4 shadow-sm';
+                card.innerHTML = `
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold text-gray-900 dark:text-white truncate max-w-[140px]" title="${escHtml(label)}">${escHtml(label)}</span>
+                        <span class="text-xs font-black text-brand-accent ml-2">${count}</span>
+                    </div>
+                    <div class="w-full bg-gray-100 dark:bg-zinc-800 rounded-full h-1.5">
+                        <div class="bg-brand-accent h-1.5 rounded-full transition-all" style="width:${pct}%"></div>
+                    </div>
+                    <p class="text-[10px] text-gray-500 mt-1.5">${count} scan${count !== 1 ? 's' : ''}</p>
+                `;
+                breakdown.appendChild(card);
+            });
+
+            // Recent scans table (latest 100)
+            data.slice(0, 100).forEach(r => {
+                const d = new Date(r.scanned_at);
+                const dateStr = d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+                const timeStr = d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-gray-50 dark:hover:bg-zinc-900/30 transition-colors';
+                tr.innerHTML = `
+                    <td class="px-6 py-3 text-xs font-semibold text-gray-900 dark:text-white">${dateStr}</td>
+                    <td class="px-6 py-3 text-xs text-gray-500 font-mono">${timeStr}</td>
+                    <td class="px-6 py-3">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold bg-brand-accent/10 text-brand-accent px-2.5 py-1 rounded-md">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
+                            ${escHtml(r.qr_label || 'default')}
+                        </span>
+                    </td>
+                `;
+                list.appendChild(tr);
             });
         }
 
