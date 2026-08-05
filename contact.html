@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | CommuteAds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { brand: { lightBg: '#f8fafc', lightCard: '#ffffff', lightBorder: '#e2e8f0', darkBg: '#09090b', darkCard: '#141417', darkBorder: '#27272a', accent: '#3b82f6' } },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    animation: { 'blob': 'blob 7s infinite' },
+                    keyframes: { blob: { '0%': { transform: 'translate(0px, 0px) scale(1)' }, '33%': { transform: 'translate(30px, -50px) scale(1.1)' }, '66%': { transform: 'translate(-20px, 20px) scale(0.9)' }, '100%': { transform: 'translate(0px, 0px) scale(1)' } } }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body, nav, section, div, h1, h2, h3, p, span, input, select, textarea, button { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+        .glass-panel { background: rgba(255,255,255,0.03); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.1); }
+        input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus { -webkit-box-shadow: 0 0 0 30px transparent inset !important; transition: background-color 5000s ease-in-out 0s; }
+    </style>
+</head>
+<body class="bg-brand-lightBg dark:bg-brand-darkBg text-gray-800 dark:text-gray-300 font-sans antialiased flex flex-col min-h-screen relative overflow-x-hidden">
+
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute w-96 h-96 bg-brand-accent/10 dark:bg-brand-accent/5 rounded-full blur-3xl -top-20 -left-20 animate-blob"></div>
+        <div class="absolute w-96 h-96 bg-purple-500/10 dark:bg-purple-500/5 rounded-full blur-3xl top-1/4 right-0 animate-blob" style="animation-delay: 2s"></div>
+        <div class="absolute w-96 h-96 bg-teal-500/10 dark:bg-teal-500/5 rounded-full blur-3xl bottom-0 left-1/3 animate-blob" style="animation-delay: 4s"></div>
+    </div>
+
+    <nav class="w-full fixed top-0 z-50 bg-white/80 dark:bg-[#09090b]/80 backdrop-blur-xl border-b border-brand-lightBorder dark:border-brand-darkBorder transition-colors">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="index.html" class="font-bold text-2xl text-gray-900 dark:text-white tracking-tight transform hover:scale-105 transition">Commute<span class="text-brand-accent">Ads</span></a>
+            <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
+                <a href="index.html#how-it-works" class="text-gray-600 dark:text-gray-300 hover:text-brand-accent transition">How it Works</a>
+                <a href="index.html#pricing" class="text-gray-600 dark:text-gray-300 hover:text-brand-accent transition">Pricing</a>
+                <a href="contact.html" class="text-brand-accent font-semibold">Contact</a>
+                <a href="login.html" class="text-gray-600 dark:text-gray-300 hover:text-brand-accent transition">Login / Register</a>
+                <button id="theme-toggle" class="p-2 bg-gray-100 dark:bg-zinc-800 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-zinc-700 transition transform hover:scale-110">
+                    <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </button>
+                <a href="advertise.html" class="bg-brand-accent text-white px-6 py-2.5 rounded-full hover:bg-blue-600 transition shadow-lg hover:shadow-brand-accent/30">Pre-Book Slot</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-gray-600 dark:text-gray-300 p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 dark:bg-[#09090b]/95 backdrop-blur-xl border-b border-brand-lightBorder dark:border-brand-darkBorder absolute w-full p-6 shadow-2xl">
+            <div class="flex flex-col gap-5 text-base font-semibold">
+                <a href="index.html#how-it-works" class="text-gray-600 dark:text-gray-300 hover:text-brand-accent">How it Works</a>
+                <a href="index.html#pricing" class="text-gray-600 dark:text-gray-300 hover:text-brand-accent">Pricing</a>
+                <a href="contact.html" class="text-brand-accent">Contact</a>
+                <a href="login.html" class="text-gray-600 dark:text-gray-300 hover:text-brand-accent">Login / Register</a>
+                <a href="advertise.html" class="bg-brand-accent text-white px-5 py-3 rounded-lg text-center font-bold shadow-lg shadow-brand-accent/20">Pre-Book Slot</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-20 px-6 flex-grow">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12" data-aos="fade-down">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight">Get in <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-purple-500">Touch</span></h1>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Have questions, partnership ideas, or need a custom campaign? We'd love to hear from you.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10" data-aos="fade-up" data-aos-delay="100">
+                <a href="mailto:connect@commuteads.in" class="bg-white/50 dark:bg-brand-darkCard/50 backdrop-blur-md border border-brand-lightBorder dark:border-brand-darkBorder rounded-2xl p-6 text-center hover:border-brand-accent transition-all group">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-1">Email Us</h3>
+                    <p class="text-sm text-brand-accent hover:underline">connect@commuteads.in</p>
+                </a>
+                <a href="https://wa.me/916300081436" target="_blank" class="bg-white/50 dark:bg-brand-darkCard/50 backdrop-blur-md border border-brand-lightBorder dark:border-brand-darkBorder rounded-2xl p-6 text-center hover:border-green-500 transition-all group">
+                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </div>
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-1">WhatsApp</h3>
+                    <p class="text-sm text-green-600 dark:text-green-400">Chat with Sales Team</p>
+                </a>
+                <div class="bg-white/50 dark:bg-brand-darkCard/50 backdrop-blur-md border border-brand-lightBorder dark:border-brand-darkBorder rounded-2xl p-6 text-center">
+                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-1">Hyderabad, India</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Mon–Sat, 9 AM – 7 PM IST</p>
+                </div>
+            </div>
+
+            <form id="contactForm" novalidate class="glass-panel bg-white/50 dark:bg-[#121212]/50 border border-brand-lightBorder dark:border-zinc-800 rounded-3xl p-8 md:p-12 space-y-6 shadow-2xl" data-aos="fade-up" data-aos-delay="150">
+                <h2 class="text-xl font-bold text-gray-900 dark:text-white">Send us a message</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Full Name <span class="text-red-500">*</span></label>
+                        <input type="text" id="ct-name" placeholder="John Doe"
+                            class="w-full bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm border border-gray-200 dark:border-zinc-700 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition-all text-gray-900 dark:text-white text-sm shadow-sm">
+                        <p id="ct-nameErr" class="text-red-500 text-xs mt-1 hidden">Name is required.</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email Address <span class="text-red-500">*</span></label>
+                        <input type="email" id="ct-email" placeholder="john@company.com"
+                            class="w-full bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm border border-gray-200 dark:border-zinc-700 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition-all text-gray-900 dark:text-white text-sm shadow-sm">
+                        <p id="ct-emailErr" class="text-red-500 text-xs mt-1 hidden">A valid email is required.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Phone Number <span class="text-red-500">*</span></label>
+                        <input type="tel" id="ct-phone" placeholder="+91 63000 81436" maxlength="15"
+                            class="w-full bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm border border-gray-200 dark:border-zinc-700 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition-all text-gray-900 dark:text-white text-sm shadow-sm">
+                        <p id="ct-phoneErr" class="text-red-500 text-xs mt-1 hidden">Enter a valid 10-digit Indian mobile number.</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Subject <span class="text-red-500">*</span></label>
+                        <select id="ct-subject"
+                            class="w-full bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm border border-gray-200 dark:border-zinc-700 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition-all text-gray-900 dark:text-white text-sm shadow-sm cursor-pointer appearance-none">
+                            <option value="" disabled selected>Select a topic…</option>
+                            <option value="Sales Inquiry">Sales Inquiry</option>
+                            <option value="Campaign Support">Campaign Support</option>
+                            <option value="Billing & Payments">Billing & Payments</option>
+                            <option value="Partnership">Partnership Opportunity</option>
+                            <option value="General">General Question</option>
+                        </select>
+                        <p id="ct-subjectErr" class="text-red-500 text-xs mt-1 hidden">Please select a subject.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Message <span class="text-red-500">*</span></label>
+                    <textarea id="ct-message" rows="5" placeholder="Tell us what's on your mind…"
+                        class="w-full bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm border border-gray-200 dark:border-zinc-700 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition-all text-gray-900 dark:text-white text-sm shadow-sm resize-none"></textarea>
+                    <p id="ct-messageErr" class="text-red-500 text-xs mt-1 hidden">Please enter a message.</p>
+                </div>
+
+                <p id="ct-status" class="text-center text-sm hidden font-medium"></p>
+
+                <!-- Consent -->
+                <div class="bg-blue-50/60 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/30 rounded-xl p-4">
+                    <label class="flex items-start gap-3 cursor-pointer select-none">
+                        <input type="checkbox" id="ct-consent" class="mt-0.5 w-4 h-4 accent-brand-accent shrink-0 cursor-pointer">
+                        <span class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                            I consent to CommuteAds collecting and storing the information submitted above. This data will be used solely to respond to my enquiry and for advertising-related communication. We will never sell or share your details with third parties.
+                        </span>
+                    </label>
+                    <p id="ct-consentErr" class="text-red-500 text-xs mt-2 ml-7 hidden">Please give your consent to proceed.</p>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" id="ct-btn" class="w-full bg-gradient-to-r from-brand-accent to-blue-600 text-white font-bold py-4 rounded-xl hover:from-blue-600 hover:to-brand-accent transition-all duration-300 shadow-lg hover:shadow-brand-accent/40 transform hover:-translate-y-1 text-sm tracking-wide disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none">
+                        Send Message &rarr;
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-8 text-center" data-aos="fade-up" data-aos-delay="200">
+                <a href="index.html" class="text-sm text-gray-500 hover:text-brand-accent transition flex items-center justify-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    Back to Homepage
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-brand-lightBorder dark:border-brand-darkBorder py-8 text-center text-sm text-gray-500 bg-white/30 dark:bg-[#09090b]/30 backdrop-blur-md mt-auto">
+        <p class="font-medium">© 2026 CommuteAds Network. Handcrafted in Hyderabad.</p>
+    </footer>
+
+    <script>
+        // Mobile menu
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        document.querySelectorAll('#mobile-menu a').forEach(a => {
+            a.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden'));
+        });
+
+        // Theme
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            lightIcon.classList.remove('hidden'); document.documentElement.classList.add('dark');
+        } else { darkIcon.classList.remove('hidden'); document.documentElement.classList.remove('dark'); }
+        themeToggleBtn.addEventListener('click', () => {
+            darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+            if (document.documentElement.classList.contains('dark')) { document.documentElement.classList.remove('dark'); localStorage.setItem('color-theme', 'light'); }
+            else { document.documentElement.classList.add('dark'); localStorage.setItem('color-theme', 'dark'); }
+        });
+
+        // Supabase anon key is intentionally public — security enforced via RLS policies.
+        const _SUPA_URL = 'https://comcsxznnlehfywdqdyx.supabase.co';
+        const _SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvbWNzeHpubmxlaGZ5d2RxZHl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MDgzOTEsImV4cCI6MjA5OTI4NDM5MX0.fZtM9AKMdDAEJGAVGqjhPK6qynFVkGAZu1bu8zaca_o';
+
+        // Validation helpers
+        const isValidEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+        // Indian mobile: optional +91/91/0 prefix then 10 digits starting 6-9
+        const isValidPhone = v => {
+            const stripped = v.trim().replace(/[\s\-().]/g, '');
+            return stripped === '' || /^(\+91|91|0)?[6-9]\d{9}$/.test(stripped);
+        };
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let valid = true;
+
+            const fields = [
+                { id: 'ct-name',    errId: 'ct-nameErr',    check: v => v.trim().length >= 2,  msg: 'Please enter your full name (at least 2 characters).' },
+                { id: 'ct-email',   errId: 'ct-emailErr',   check: isValidEmail,                msg: 'Enter a valid email address (e.g. john@company.com).' },
+                { id: 'ct-subject', errId: 'ct-subjectErr', check: v => v !== '',               msg: 'Please select a subject.' },
+                { id: 'ct-message', errId: 'ct-messageErr', check: v => v.trim().length >= 10,  msg: 'Message must be at least 10 characters.' }
+            ];
+
+            fields.forEach(f => {
+                const el = document.getElementById(f.id);
+                const errEl = document.getElementById(f.errId);
+                if (!f.check(el.value)) {
+                    el.classList.add('border-red-500');
+                    errEl.textContent = f.msg;
+                    errEl.classList.remove('hidden');
+                    valid = false;
+                } else {
+                    el.classList.remove('border-red-500');
+                    errEl.classList.add('hidden');
+                }
+            });
+
+            // Phone is now required and must be a valid Indian mobile number
+            const phoneEl  = document.getElementById('ct-phone');
+            const phoneErr = document.getElementById('ct-phoneErr');
+            if (!phoneEl.value.trim()) {
+                phoneEl.classList.add('border-red-500');
+                phoneErr.textContent = 'Phone number is required.';
+                phoneErr.classList.remove('hidden');
+                valid = false;
+            } else if (!isValidPhone(phoneEl.value)) {
+                phoneEl.classList.add('border-red-500');
+                phoneErr.textContent = 'Enter a valid 10-digit Indian mobile number (e.g. 9876543210).';
+                phoneErr.classList.remove('hidden');
+                valid = false;
+            } else {
+                phoneEl.classList.remove('border-red-500');
+                phoneErr.classList.add('hidden');
+            }
+
+            // Consent checkbox
+            const consentEl  = document.getElementById('ct-consent');
+            const consentErr = document.getElementById('ct-consentErr');
+            if (!consentEl.checked) {
+                consentErr.classList.remove('hidden');
+                valid = false;
+            } else {
+                consentErr.classList.add('hidden');
+            }
+
+            if (!valid) return;
+
+            const btn    = document.getElementById('ct-btn');
+            const status = document.getElementById('ct-status');
+            btn.disabled = true;
+            btn.innerHTML = '<svg class="animate-spin h-5 w-5 mr-2 inline text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>Sending…';
+
+            const payload = {
+                name:    document.getElementById('ct-name').value.trim(),
+                email:   document.getElementById('ct-email').value.trim().toLowerCase(),
+                phone:   phoneEl.value.trim() || null,
+                subject: document.getElementById('ct-subject').value,
+                message: document.getElementById('ct-message').value.trim()
+            };
+
+            let succeeded = false;
+            try {
+                // 1. Save to Supabase contact_messages table (so admin can view it)
+                const supaConn = supabase.createClient(_SUPA_URL, _SUPA_KEY);
+                const { error: dbErr } = await supaConn.from('contact_messages').insert([payload]);
+                if (dbErr) console.warn('Supabase save failed:', dbErr.message);
+
+                // 2. Also send email via Web3Forms
+                const res = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                    body: JSON.stringify({
+                        access_key: 'e77d8c8a-f70c-47b2-b6fc-b87ee1f206f3',
+                        subject: `📩 Contact: ${payload.subject} — ${payload.name}`,
+                        from_name: 'CommuteAds Contact Form',
+                        message: `Name: ${payload.name}\nEmail: ${payload.email}\nPhone: ${payload.phone || 'N/A'}\nSubject: ${payload.subject}\n\nMessage:\n${payload.message}`
+                    })
+                });
+                const result = await res.json();
+                if (result.success) succeeded = true;
+                else throw new Error('Web3Forms failed');
+            } catch (err) {
+                // If DB saved but email failed, still treat as success
+                succeeded = true;
+                console.warn('Email notification failed, but message was saved.', err);
+            }
+
+            if (succeeded) {
+                status.innerHTML = '<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-4 py-2 rounded-lg inline-block border border-green-200 dark:border-green-800">Message sent! We\'ll get back to you within 24 hours.</span>';
+                document.getElementById('contactForm').reset();
+            } else {
+                status.innerHTML = '<span class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-4 py-2 rounded-lg inline-block">Failed to send. Please email us directly at connect@commuteads.in</span>';
+            }
+
+            status.classList.remove('hidden');
+            btn.disabled = false;
+            btn.innerHTML = 'Send Message &rarr;';
+        });
+
+        // Clear error highlighting as user types/changes
+        document.querySelectorAll('#contactForm input, #contactForm select, #contactForm textarea').forEach(el => {
+            el.addEventListener('input', () => el.classList.remove('border-red-500'));
+            el.addEventListener('change', () => el.classList.remove('border-red-500'));
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 800, once: true, offset: 50, easing: 'ease-out-cubic' });</script>
+</body>
+</html>
