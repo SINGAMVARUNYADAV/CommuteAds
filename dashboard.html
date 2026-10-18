@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ads Workspace | CommuteAds</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <meta name="robots" content="noindex, nofollow">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -75,7 +76,7 @@
         <div class="p-5 border-t border-brand-lightBorder dark:border-brand-darkBorder">
             <div class="text-xs text-gray-500 mb-4 pb-4 border-b border-gray-200 dark:border-zinc-800">
                 <p class="font-bold text-gray-700 dark:text-gray-300 mb-1">Need Support?</p>
-                <a href="mailto:connect@commuteads.in" class="text-brand-accent hover:underline break-all">connect@commuteads.in</a>
+                <a href="mailto:connect@commuteads.com" class="text-brand-accent hover:underline break-all">connect@commuteads.com</a>
             </div>
             <div class="text-xs text-gray-500 flex justify-between items-center">
                 <p id="mobileUserDisplay" class="truncate font-medium max-w-[140px]"></p>
@@ -110,7 +111,7 @@
         <div class="p-5 border-t border-brand-lightBorder dark:border-brand-darkBorder">
             <div class="text-xs text-gray-500 mb-4 pb-4 border-b border-gray-200 dark:border-zinc-800">
                 <p class="font-bold text-gray-700 dark:text-gray-300 mb-1">Need Support?</p>
-                <a href="mailto:connect@commuteads.in" class="text-brand-accent hover:underline break-all">connect@commuteads.in</a>
+                <a href="mailto:connect@commuteads.com" class="text-brand-accent hover:underline break-all">connect@commuteads.com</a>
             </div>
             <div class="text-xs text-gray-500 flex justify-between items-center">
                 <p id="userDisplay" class="truncate font-medium max-w-[120px]"></p>
@@ -344,7 +345,7 @@
                         <svg class="w-16 h-16 text-gray-300 dark:text-zinc-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
                         <h3 class="text-lg font-bold text-gray-900 dark:text-white">Live Heatmaps</h3>
                         <p class="text-sm text-gray-500 mt-2">Geospatial tracking maps generate after 500+ verified impressions.</p>
-                        <p class="text-xs text-brand-accent mt-6 font-medium">Want custom targeting? Email <a href="mailto:connect@commuteads.in" class="hover:underline">connect@commuteads.in</a></p>
+                        <p class="text-xs text-brand-accent mt-6 font-medium">Want custom targeting? Email <a href="mailto:connect@commuteads.com" class="hover:underline">connect@commuteads.com</a></p>
                     </div>
                 </div>
 
@@ -364,7 +365,7 @@
                                 <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Available Balance</p>
                                 <p class="text-4xl font-black text-gray-900 dark:text-white">₹0.00</p>
                             </div>
-                            <a href="mailto:connect@commuteads.in?subject=Wallet%20Funding%20Request" class="block text-center w-full bg-brand-accent text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-600 transition-colors shadow-lg hover:shadow-blue-500/20">
+                            <a href="mailto:connect@commuteads.com?subject=Wallet%20Funding%20Request" class="block text-center w-full bg-brand-accent text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-600 transition-colors shadow-lg hover:shadow-blue-500/20">
                                 Contact Sales to Load Funds
                             </a>
                             <p class="text-xs text-center text-gray-400 mt-4">Initial deposits require account manager verification for security.</p>
@@ -424,7 +425,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <p class="text-xs text-center text-gray-500 p-4">Billing Support: <a href="mailto:connect@commuteads.in" class="text-brand-accent hover:underline">connect@commuteads.in</a></p>
+                        <p class="text-xs text-center text-gray-500 p-4">Billing Support: <a href="mailto:connect@commuteads.com" class="text-brand-accent hover:underline">connect@commuteads.com</a></p>
                     </div>
                 </div>
 
@@ -517,8 +518,8 @@
 
         // Auth Guard
         supabaseClient.auth.getSession().then(({ data: { session } }) => {
-            if (!session) { window.location.href = 'login.html'; return; }
-            if (session.user.email === ADMIN_EMAIL) { window.location.href = 'admin.html'; return; }
+            if (!session) { window.location.href = '/login'; return; }
+            if (session.user.email === ADMIN_EMAIL) { window.location.href = '/admin'; return; }
             userEmail = session.user.email;
             document.getElementById('userDisplay').textContent = userEmail;
             const mobileUD = document.getElementById('mobileUserDisplay');
@@ -530,7 +531,7 @@
 
         async function handleLogout() {
             await supabaseClient.auth.signOut();
-            window.location.href = 'login.html';
+            window.location.href = '/login';
         }
 
         // ============================================================
@@ -1038,7 +1039,7 @@
                 <div class="header">
                     <div>
                         <div class="logo">Commute<span>Ads</span></div>
-                        <p style="color:#6b7280;font-size:13px;margin-top:6px;">CommuteAds Network Pvt. Ltd.<br>Hyderabad, Telangana, India<br>connect@commuteads.in</p>
+                        <p style="color:#6b7280;font-size:13px;margin-top:6px;">CommuteAds Private Limited<br>CIN: U73100TS2026PTC223598<br>Hyderabad, Telangana, India<br>connect@commuteads.com</p>
                     </div>
                     <div class="inv-meta">
                         <h1>INVOICE</h1>
@@ -1097,7 +1098,7 @@
 
                 <div class="footer">
                     <p>Thank you for advertising with CommuteAds. This invoice is system-generated.</p>
-                    <p>For billing queries: connect@commuteads.in | GST: 36XXXXXX (update with actual GSTIN)</p>
+                    <p>For billing queries: connect@commuteads.com | CIN: U73100TS2026PTC223598</p>
                 </div>
             </div>
             <script>window.onload=()=>window.print();<\/script>
