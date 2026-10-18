@@ -361,7 +361,7 @@
         // Auth Guard — must be admin
         supabaseClient.auth.getSession().then(({ data: { session } }) => {
             if (!session || session.user.email !== ADMIN_EMAIL) {
-                window.location.href = '/login';
+                window.location.href = '/admin-login';
             } else {
                 document.getElementById('adminEmailDisplay').textContent = session.user.email;
                 const mobileED = document.getElementById('adminMobileEmailDisplay');
@@ -377,7 +377,7 @@
 
         async function handleLogout() {
             await supabaseClient.auth.signOut();
-            window.location.href = '/login';
+            window.location.href = '/admin-login';
         }
 
         // --- Mobile Sidebar ---
