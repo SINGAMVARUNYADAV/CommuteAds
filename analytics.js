@@ -16,7 +16,7 @@
  * No form contents (names, phones, emails) are ever sent to Google.
  */
 (function () {
-    var GA_MEASUREMENT_ID = '';
+    var GA_MEASUREMENT_ID = 'G-G1F4M3ZC7J';
 
     window.caTrack = function () {};
     if (!GA_MEASUREMENT_ID) return;
