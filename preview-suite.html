@@ -143,8 +143,9 @@ section{position:relative}
 .seats{position:absolute;bottom:0;left:0;right:0;height:22%;background:repeating-linear-gradient(90deg,#1b2a4a 0 70px,#14203a 70px 76px)}
 
 /* feature rows */
-.row{display:grid;grid-template-columns:1.05fr 1fr;gap:70px;align-items:center}
-.row.rev{grid-template-columns:1fr 1.05fr}
+.row{display:grid;grid-template-columns:1fr 1.4fr;gap:56px;align-items:center}
+.row.rev{grid-template-columns:1.4fr 1fr}
+.wrap.row{max-width:1240px}
 .row.rev .copy{order:2}
 .copy h2{text-align:left}
 .copy .sub{text-align:left;margin-left:0}
@@ -194,6 +195,30 @@ footer h5{color:var(--ink);font-size:12px;margin-bottom:10px}
 footer li{list-style:none;margin:7px 0}
 footer a:hover{text-decoration:underline;color:var(--ink)}
 footer .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:16px}
+
+
+/* photography */
+.photo{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.18);background:#111}
+.photo picture,.photo img{display:block;width:100%;height:100%}
+.photo img{aspect-ratio:1408/768;object-fit:cover}
+.panel.dark .photo{box-shadow:0 30px 90px rgba(47,107,255,.18)}
+.illus{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.55);color:#fff;font-size:11px;font-weight:600;letter-spacing:.02em;padding:5px 9px;border-radius:999px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.photo-art{height:auto;margin-top:auto;width:calc(100% + 60px);margin-left:-30px;margin-right:-30px;position:relative;overflow:hidden}
+.photo-art picture,.photo-art img{display:block;width:100%}
+.photo-art img{aspect-ratio:16/10;object-fit:cover}
+.incab{position:relative;aspect-ratio:818/550;overflow:hidden}
+.incab>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.incab-screen{position:absolute;left:12.35%;top:21.6%;width:45.6%;height:43.8%;border-radius:5px;overflow:hidden;background:#0b0b10;container-type:inline-size}
+.incab-screen .slide{padding:7%}
+.incab-screen .big{font-size:9.5cqw;line-height:1.08}
+.incab-screen .tag{font-size:3.4cqw}
+.incab-screen .qr{width:17%;border-width:2px}
+.slide.brand{background:radial-gradient(80% 90% at 50% 120%,rgba(59,130,246,.55),transparent 70%),linear-gradient(135deg,#0b1030,#2a1660);justify-content:center;align-items:center;text-align:center}
+.brand .wm{font-size:12cqw;font-weight:800;letter-spacing:-.03em;color:#fff}
+.brand .wm span{color:#3b82f6}
+.brand .tl{font-size:3.8cqw;color:#c7d2fe;margin-top:2%}
+.cab-art .incab{border-radius:0}
+.photo .incab{border-radius:var(--radius)}
 
 /* reveal */
 .rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
@@ -296,28 +321,28 @@ footer .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px
     <h3>In-Cab Screens</h3>
     <p>30 unskippable minutes at eye level.</p>
     <div class="links"><span>Learn more ›</span><span>Book ›</span></div>
-    <div class="art"><div class="mini-tab"><div class="screen"><div class="slide s1" style="opacity:1;animation:none"><div class="tag">Sponsored</div><div class="big">Ride with us.</div><div class="qr"></div></div></div></div></div>
+    <div class="art photo-art cab-art"><div class="incab"><img src="/media/suite/incab-818.jpg" alt="A CommuteAds Android tablet mounted on the back of a cab headrest" loading="lazy" decoding="async"><div class="incab-screen" aria-hidden="true"><div class="slide brand"><div class="wm">Commute<span>Ads</span></div><div class="tl">Advertising that moves with the city</div></div><div class="slide s1"><div class="tag">Sponsored</div><div class="big">Your brand,<br>at eye level.</div><div class="qr"></div></div><div class="slide s2"><div class="tag">News · Hyderabad</div><div class="big">Top stories<br>for the ride.</div></div></div></div></div>
   </a>
   <a class="tile t-bill rv" href="#billboards">
     <span class="badge soon">Pre-booking open</span>
     <h3>Digital Billboards</h3>
     <p>Big, bright, and on the roads that matter.</p>
     <div class="links"><span>Learn more ›</span><span>Pre-book ›</span></div>
-    <div class="art"><div class="billboard"><div class="board"><div class="screen"><div class="slide s2" style="opacity:1;animation:none"><div class="tag">Hitec City</div><div class="big">Your brand,<br>city-sized.</div></div></div></div><div class="pole"></div></div></div>
+    <div class="art photo-art"><picture><source media="(max-width:700px)" srcset="/media/suite/billboard-800.jpg"><img src="/media/suite/billboard-1408.jpg" alt="Digital billboard showing CommuteAds above evening traffic at a Gachibowli junction" loading="lazy" decoding="async" style="object-position:center"></picture><span class="illus">Illustrative image</span></div>
   </a>
   <a class="tile t-hostel rv" href="#hostels">
     <span class="badge soon">Pre-booking open</span>
     <h3>Hostel Screens</h3>
     <p>Where Hyderabad's students and young pros live.</p>
     <div class="links"><span>Learn more ›</span><span>Pre-book ›</span></div>
-    <div class="art"><div class="lobby"><div class="portrait"><div class="screen"><div class="slide s3" style="opacity:1;animation:none"><div class="tag">Gachibowli</div><div class="big">Late-night<br>cravings?</div></div></div></div><div class="bench"></div></div></div>
+    <div class="art photo-art"><picture><source media="(max-width:700px)" srcset="/media/suite/hostel-dining-800.jpg"><img src="/media/suite/hostel-dining-1408.jpg" alt="Students in a hostel dining hall with a CommuteAds screen on the wall" loading="lazy" decoding="async" style="object-position:center"></picture><span class="illus">Illustrative image</span></div>
   </a>
   <a class="tile t-bus rv" href="#buses">
     <span class="badge soon">Pre-booking open</span>
     <h3>Bus Screens</h3>
     <p>Next-stop announcements. Next-level reach.</p>
     <div class="links"><span>Learn more ›</span><span>Pre-book ›</span></div>
-    <div class="art"><div class="businside"><div class="rails"></div><div class="busbar"><div class="nextstop"><small>Next stop</small><strong>KPHB Colony</strong><div class="ticker">Then: JNTU · Miyapur · Madinaguda</div></div><div class="screen"><div class="slide s1" style="opacity:1;animation:none"><div class="tag">Sponsored</div><div class="big">Get off here for 20% off.</div></div></div></div><div class="seats"></div></div></div>
+    <div class="art photo-art"><picture><source media="(max-width:700px)" srcset="/media/suite/bus-800.jpg"><img src="/media/suite/bus-1408.jpg" alt="Inside an electric city bus with screens showing the next stop and a CommuteAds message" loading="lazy" decoding="async" style="object-position:center"></picture><span class="illus">Illustrative image</span></div>
   </a>
 </section>
 
@@ -336,11 +361,11 @@ footer .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px
       </ul>
       <div class="links" style="justify-content:flex-start"><a href="/advertise">Book In-Cab ›</a><a href="/mediakit">Media kit ›</a></div>
     </div>
-    <div class="render rv" style="background:radial-gradient(70% 60% at 50% 100%,rgba(47,107,255,.35),transparent 70%),#0a0a0c">
-      <div class="mini-tab" style="width:84%;bottom:40px"><div class="screen">
-        <div class="tiles"><div style="background:linear-gradient(160deg,#1f2937,#111827);border-radius:10px;color:#fff;font-weight:700;font-size:12px;display:flex;align-items:flex-end;padding:10px">NEWSENSE</div><div style="background:linear-gradient(160deg,#4c1d95,#1e1b4b);border-radius:10px;color:#fff;font-weight:700;font-size:12px;display:flex;align-items:flex-end;padding:10px">ACTOR WIKI</div><div style="background:linear-gradient(160deg,#9a3412,#451a03);border-radius:10px;color:#fff;font-weight:700;font-size:12px;display:flex;align-items:flex-end;padding:10px">ASTROLOGY</div></div>
-      </div></div>
-    </div>
+    <div class="photo rv"><div class="incab"><img src="/media/suite/incab-818.jpg" alt="A CommuteAds Android tablet mounted on the back of a cab headrest" loading="lazy" decoding="async"><div class="incab-screen" aria-hidden="true"><div class="slide brand"><div class="wm">Commute<span>Ads</span></div><div class="tl">Advertising that moves with the city</div></div><div class="slide s1"><div class="tag">Sponsored</div><div class="big">Your brand,<br>at eye level.</div><div class="qr"></div></div><div class="slide s2"><div class="tag">News · Hyderabad</div><div class="big">Top stories<br>for the ride.</div></div></div></div></div>
+
+
+
+
   </div>
 </section>
 
@@ -359,9 +384,9 @@ footer .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px
       <div class="areas"><span>Hitec City</span><span>Gachibowli</span><span>Financial District</span><span>Kondapur</span><span>Madhapur</span><span>ORR</span></div>
       <div class="links" style="justify-content:flex-start"><a href="/advertise">Pre-book a billboard ›</a></div>
     </div>
-    <div class="render rv" style="background:linear-gradient(180deg,#0b1020 0%,#1b2a4a 60%,#f5f5f7 60.2%)">
-      <div class="billboard" style="height:78%;top:4%;bottom:auto"><div class="board"><div class="screen"><div class="slide s1"><div class="tag">Sponsored</div><div class="big">Your launch,<br>12 metres wide.</div></div><div class="slide s2"><div class="tag">Sponsored</div><div class="big">Rush hour?<br>Perfect.</div></div><div class="slide s3"><div class="tag">Sponsored</div><div class="big">Swap creatives<br>in minutes.</div></div></div></div><div class="pole"></div></div>
-    </div>
+    <div class="photo rv"><picture><source media="(max-width:700px)" srcset="/media/suite/billboard-800.jpg"><img src="/media/suite/billboard-1408.jpg" alt="Digital billboard showing CommuteAds above evening traffic at a Gachibowli junction" loading="lazy" decoding="async" style="object-position:center"></picture><span class="illus">Illustrative image</span></div>
+
+
   </div>
 </section>
 
@@ -380,9 +405,9 @@ footer .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px
       <div class="areas"><span>Gachibowli</span><span>Ayyappa Society</span><span>KPHB</span><span>Madhapur</span><span>Ameerpet</span><span>Kondapur</span></div>
       <div class="links" style="justify-content:flex-start"><a href="/advertise">Pre-book hostel screens ›</a></div>
     </div>
-    <div class="render rv" style="background:linear-gradient(180deg,#efe5d6,#e3d5bf)">
-      <div class="lobby" style="background:none"><div class="portrait" style="width:200px;height:320px;bottom:60px"><div class="screen"><div class="slide s3"><div class="tag">Ayyappa Society</div><div class="big">Biryani in<br>20 minutes.</div><div class="qr"></div></div><div class="slide s1"><div class="tag">KPHB</div><div class="big">Gym opening<br>this Sunday.</div></div><div class="slide s2"><div class="tag">Gachibowli</div><div class="big">Hiring freshers.<br>Walk in today.</div></div></div></div><div class="bench" style="height:40px"></div></div>
-    </div>
+    <div class="photo rv"><picture><source media="(max-width:700px)" srcset="/media/suite/hostel-dining-800.jpg"><img src="/media/suite/hostel-dining-1408.jpg" alt="Students in a hostel dining hall with a CommuteAds screen on the wall" loading="lazy" decoding="async" style="object-position:center"></picture><span class="illus">Illustrative image</span></div>
+
+
   </div>
 </section>
 
@@ -401,9 +426,9 @@ footer .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px
       <div class="areas"><span>KPHB</span><span>JNTU</span><span>Miyapur</span><span>Ameerpet</span><span>Dilsukhnagar</span><span>Secunderabad</span></div>
       <div class="links" style="justify-content:flex-start"><a href="/advertise">Pre-book bus screens ›</a></div>
     </div>
-    <div class="render rv">
-      <div class="businside"><div class="rails"></div><div class="busbar" style="top:24%;height:46%"><div class="nextstop"><small>Next stop</small><strong>Ameerpet</strong><div class="ticker">Then: SR Nagar · Erragadda · Bharat Nagar</div></div><div class="screen"><div class="slide s2"><div class="tag">Sponsored · Ameerpet</div><div class="big">Coaching admissions open.</div></div><div class="slide s1"><div class="tag">Sponsored</div><div class="big">Get off here.<br>Lunch is on us.</div></div><div class="slide s3"><div class="tag">Sponsored</div><div class="big">Scan for 20% off.</div></div></div></div><div class="seats"></div></div>
-    </div>
+    <div class="photo rv"><picture><source media="(max-width:700px)" srcset="/media/suite/bus-800.jpg"><img src="/media/suite/bus-1408.jpg" alt="Inside an electric city bus with screens showing the next stop and a CommuteAds message" loading="lazy" decoding="async" style="object-position:center"></picture><span class="illus">Illustrative image</span></div>
+
+
   </div>
 </section>
 
