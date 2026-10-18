@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advertise With Us | CommuteAds</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <script src="/analytics.js" defer></script>
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="CommuteAds">
     <meta property="og:title" content="Advertise With Us | CommuteAds">
@@ -401,6 +402,7 @@
                     // 4. Show Success Message
                     status.innerHTML = `<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-4 py-2 rounded-lg inline-block border border-green-200 dark:border-green-800">Success! We will be in touch shortly.</span>`;
                     document.getElementById('prebookForm').reset();
+                    if (window.caTrack) window.caTrack('generate_lead', { form: 'prebook_advertise' });
                 }
                 btn.innerHTML = 'Submit Details &rarr;';
                 btn.disabled = false;

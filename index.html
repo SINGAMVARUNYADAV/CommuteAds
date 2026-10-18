@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>In-Cab Screen Advertising in Hyderabad | Uber, Ola &amp; Airport Cab Ads – CommuteAds</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <script src="/analytics.js" defer></script>
     <meta name="description" content="Advertise on digital screens inside Uber, Ola, Rapido and airport cabs in Hyderabad. Pay only for verified passenger views. Go live in 24–48 hours.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://commuteads.com/">
@@ -530,11 +531,11 @@
 
             <div class="faq-item bg-white/50 dark:bg-brand-darkCard/50 backdrop-blur-md border border-brand-lightBorder dark:border-brand-darkBorder rounded-2xl overflow-hidden">
                 <button onclick="toggleFaq(this)" class="w-full text-left px-7 py-5 flex justify-between items-center hover:bg-gray-50/50 dark:hover:bg-zinc-900/30 transition-colors">
-                    <span class="font-bold text-gray-900 dark:text-white text-sm">Is GST invoicing available?</span>
+                    <span class="font-bold text-gray-900 dark:text-white text-sm">Do I get an invoice?</span>
                     <svg class="faq-icon w-5 h-5 text-gray-400 transition-transform duration-300 shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
                 <div class="faq-answer hidden px-7 pb-5">
-                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Every campaign gets a proper invoice from CommuteAds Private Limited (CIN U73100TS2026PTC223598), downloadable from your dashboard (Billing tab). For GST invoicing, share your GSTIN in the pre-book form or email connect@commuteads.com and our team will confirm the details.</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Yes. Every campaign gets a proper invoice from CommuteAds Private Limited (CIN U73100TS2026PTC223598), downloadable from your dashboard (Billing tab). For any billing question, email connect@commuteads.com.</p>
                 </div>
             </div>
 
@@ -746,6 +747,7 @@
                     status.textContent = 'Success! We will be in touch shortly.'; 
                     status.className = 'text-center text-sm text-green-500 mt-4 font-bold';
                     document.getElementById('prebookForm').reset();
+                    if (window.caTrack) window.caTrack('generate_lead', { form: 'prebook_home' });
                 }
                 btn.textContent = 'Submit Details'; btn.disabled = false;
             });
