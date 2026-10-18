@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CommuteAds — Advertising that moves with Hyderabad (preview)</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+:root{
+  --ink:#1d1d1f; --ink-2:#424245; --muted:#6e6e73; --line:#d2d2d7; --bg:#ffffff; --bg-2:#f5f5f7;
+  --night:#000000; --night-2:#101012; --night-ink:#f5f5f7; --night-muted:#a1a1a6;
+  --accent:#2f6bff; --accent-2:#7a5cff; --live:#1db954; --soon:#ff9f0a;
+  --radius:28px; --max:1120px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.47;letter-spacing:-.011em}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+
+/* ---------- global nav ---------- */
+.gnav{position:sticky;top:0;z-index:50;background:rgba(251,251,253,.8);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+.gnav .wrap{height:52px;display:flex;align-items:center;gap:28px}
+.brand{font-weight:700;font-size:19px;letter-spacing:-.02em;white-space:nowrap}
+.brand span{color:var(--accent)}
+.gnav ul{display:flex;gap:26px;list-style:none;font-size:12.5px;color:var(--ink-2);flex:1;justify-content:center}
+.gnav ul a:hover{color:var(--ink)}
+.gnav .actions{display:flex;align-items:center;gap:12px;font-size:12.5px}
+.pill-ed{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-weight:600;background:#fff;cursor:pointer;font-size:12px;color:var(--ink)}
+.pill-ed b{background:linear-gradient(90deg,#ff6a3d,#ff2d87,#7a5cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pill-ed:hover{border-color:#b9b9c0}
+.login{color:var(--ink-2)}
+.burger{display:none;background:none;border:0;font-size:22px;cursor:pointer}
+
+/* ---------- product sub-strip (Apple-style chips under nav) ---------- */
+.strip{background:var(--bg);border-bottom:1px solid #eee}
+.strip .wrap{display:flex;gap:34px;justify-content:center;padding:14px 22px;overflow-x:auto}
+.strip a{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:var(--ink-2);min-width:76px}
+.strip .ico{width:46px;height:34px;border-radius:9px;display:grid;place-items:center}
+.strip a:hover{color:var(--ink)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;background:var(--night);color:var(--night-ink);overflow:hidden;text-align:center}
+.hero .media{position:absolute;inset:0;background:
+  radial-gradient(60% 50% at 50% 115%,rgba(47,107,255,.55),transparent 70%),
+  radial-gradient(40% 40% at 85% 10%,rgba(122,92,255,.35),transparent 70%),
+  radial-gradient(35% 35% at 10% 20%,rgba(255,45,135,.22),transparent 70%),#000;}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.hero .inner{position:relative;padding:110px 22px 70px}
+.eyebrow{font-size:14px;font-weight:600;letter-spacing:.02em;color:var(--night-muted);margin-bottom:14px}
+.hero h1{font-size:clamp(44px,7.2vw,92px);line-height:1.02;letter-spacing:-.035em;font-weight:700;max-width:980px;margin:0 auto}
+.grad{background:linear-gradient(90deg,#7aa2ff,#b28bff 45%,#ff7ab6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lede{font-size:clamp(18px,2.2vw,24px);color:#d2d2d7;max-width:760px;margin:22px auto 0;font-weight:500;letter-spacing:-.015em}
+.ctas{display:flex;gap:14px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 22px;font-size:16px;font-weight:600;transition:transform .2s,background .2s}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.primary:hover{background:#2459e6;transform:translateY(-1px)}
+.btn.ghost{color:#9ec0ff}
+.btn.ghost:hover{text-decoration:underline}
+.btn.dark{background:var(--ink);color:#fff}
+.hero .stage{position:relative;margin:60px auto 0;max-width:980px;height:360px}
+
+/* ---------- device renders ---------- */
+.tablet{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(560px,86vw);aspect-ratio:16/10;background:#0b0b0d;border-radius:30px;padding:16px;box-shadow:0 40px 120px rgba(47,107,255,.35),inset 0 0 0 2px #2a2a2e}
+.screen{position:relative;width:100%;height:100%;border-radius:16px;overflow:hidden;background:#111}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:7%;opacity:0;animation:cycle 12s infinite}
+.slide:nth-child(2){animation-delay:4s}.slide:nth-child(3){animation-delay:8s}
+@keyframes cycle{0%{opacity:0}4%{opacity:1}30%{opacity:1}36%{opacity:0}100%{opacity:0}}
+.slide .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.8;font-weight:700}
+.slide .big{font-size:clamp(20px,3.2vw,34px);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-top:6px}
+.s1{background:linear-gradient(135deg,#ff6a3d,#ff2d87)}
+.s2{background:linear-gradient(135deg,#1e3a8a,#2f6bff)}
+.s3{background:linear-gradient(135deg,#0f766e,#14b8a6)}
+.tiles{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);gap:4%;padding:8% 6% 6%}
+.qr{position:absolute;right:5%;bottom:7%;width:16%;aspect-ratio:1;background:
+  conic-gradient(#000 25%,#fff 0 50%,#000 0 75%,#fff 0) 0 0/25% 25%;border:4px solid #fff;border-radius:6px}
+.headrest{position:absolute;left:50%;bottom:-40px;transform:translateX(-50%);width:min(700px,96vw);height:120px;background:radial-gradient(ellipse at 50% 0,#1b1b1f,#050506 70%);border-radius:50% 50% 0 0/40% 40% 0 0;z-index:-1}
+
+/* ---------- sections ---------- */
+section{position:relative}
+.panel{padding:120px 0}
+.panel.light{background:var(--bg)}
+.panel.grey{background:var(--bg-2)}
+.panel.dark{background:var(--night);color:var(--night-ink)}
+.panel h2{font-size:clamp(36px,5.4vw,64px);line-height:1.05;letter-spacing:-.03em;font-weight:700;text-align:center}
+.panel .sub{font-size:clamp(18px,2vw,22px);color:var(--muted);text-align:center;max-width:720px;margin:18px auto 0;font-weight:500}
+.panel.dark .sub{color:var(--night-muted)}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:999px;margin-bottom:16px}
+.badge.live{background:rgba(29,185,84,.12);color:#13863c}
+.badge.live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--live);box-shadow:0 0 0 0 rgba(29,185,84,.6);animation:ping 1.8s infinite}
+.badge.soon{background:rgba(255,159,10,.14);color:#b86e00}
+.panel.dark .badge.soon{color:#ffb340}
+.panel.dark .badge.live{color:#3be27b}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(29,185,84,.6)}100%{box-shadow:0 0 0 9px rgba(29,185,84,0)}}
+.center{text-align:center}
+.links{display:flex;gap:26px;justify-content:center;margin-top:26px;font-size:18px;font-weight:500}
+.links a{color:var(--accent)}
+.panel.dark .links a{color:#4d8dff}
+.links a:hover{text-decoration:underline}
+
+/* product grid (Apple tiles) */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:14px;background:var(--bg)}
+.tile{border-radius:var(--radius);overflow:hidden;min-height:560px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:54px 30px 0;position:relative}
+.tile h3{font-size:clamp(30px,3.4vw,44px);letter-spacing:-.03em;line-height:1.08;font-weight:700}
+.tile p{font-size:19px;margin-top:8px;font-weight:500}
+.tile .links{margin-top:16px;font-size:16px}
+.tile .art{margin-top:auto;width:100%;height:300px;position:relative}
+.t-cab{background:#000;color:#f5f5f7}.t-cab p{color:#a1a1a6}
+.t-bill{background:#f5f5f7}.t-bill p{color:var(--muted)}
+.t-hostel{background:#fbf6ef}.t-hostel p{color:#8a7a66}
+.t-bus{background:#0b1220;color:#eef2ff}.t-bus p{color:#9aa8c7}
+.t-bus .links a{color:#7fb0ff}.t-cab .links a{color:#4d8dff}
+
+/* art renders */
+.mini-tab{position:absolute;left:50%;bottom:-20px;transform:translateX(-50%);width:78%;aspect-ratio:16/10;background:#0b0b0d;border-radius:22px;padding:11px;box-shadow:0 30px 80px rgba(47,107,255,.35)}
+.billboard{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:84%;height:100%}
+.billboard .board{position:absolute;top:8%;left:0;right:0;height:56%;border-radius:10px;background:#111;padding:8px;box-shadow:0 0 0 6px #2a2a2e,0 30px 80px rgba(0,0,0,.25)}
+.billboard .board .screen{border-radius:4px}
+.billboard .pole{position:absolute;left:50%;transform:translateX(-50%);top:64%;bottom:0;width:22px;background:linear-gradient(90deg,#2a2a2e,#4a4a50,#2a2a2e)}
+.lobby{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:100%;height:100%;background:linear-gradient(180deg,#f3ebdf,#e7dccb)}
+.portrait{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);width:150px;height:240px;background:#111;border-radius:16px;padding:8px;box-shadow:0 25px 60px rgba(90,60,20,.25)}
+.lobby .bench{position:absolute;bottom:0;left:8%;right:8%;height:26px;background:#cdb89a;border-radius:8px 8px 0 0}
+.businside{position:absolute;inset:0;background:linear-gradient(180deg,#0b1220 0,#121c33 100%)}
+.busbar{position:absolute;left:6%;right:6%;top:22%;height:44%;background:#05070c;border-radius:12px;padding:8px;display:grid;grid-template-columns:1.1fr 1fr;gap:8px;box-shadow:0 0 0 4px #1d2740,0 30px 70px rgba(0,0,0,.5)}
+.nextstop{border-radius:7px;background:#0a0f1c;padding:12px 14px;text-align:left;display:flex;flex-direction:column;justify-content:center}
+.nextstop small{color:#7f8fb3;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.nextstop strong{color:#ffd60a;font-size:clamp(16px,2vw,24px);letter-spacing:-.01em;margin-top:4px;white-space:nowrap;overflow:hidden}
+.nextstop .ticker{color:#9fb0d6;font-size:11px;margin-top:6px;white-space:nowrap;overflow:hidden}
+.busbar .screen{border-radius:7px}
+/* small screens inside renders: keep ad text inside the frame */
+.portrait .slide{padding:12%}
+.portrait .big{font-size:17px;line-height:1.15}
+.render .portrait .big{font-size:21px}
+.portrait .qr{width:26%}
+.busbar .slide{padding:8%}
+.busbar .big{font-size:clamp(13px,1.5vw,19px);line-height:1.15}
+.busbar .tag{font-size:9px}
+.billboard .big{font-size:clamp(16px,2.2vw,28px)}
+.rails{position:absolute;left:0;right:0;top:12%;height:6px;background:#2a3554}
+.seats{position:absolute;bottom:0;left:0;right:0;height:22%;background:repeating-linear-gradient(90deg,#1b2a4a 0 70px,#14203a 70px 76px)}
+
+/* feature rows */
+.row{display:grid;grid-template-columns:1.05fr 1fr;gap:70px;align-items:center}
+.row.rev{grid-template-columns:1fr 1.05fr}
+.row.rev .copy{order:2}
+.copy h2{text-align:left}
+.copy .sub{text-align:left;margin-left:0}
+.points{list-style:none;margin-top:28px;display:grid;gap:16px}
+.points li{display:flex;gap:14px;align-items:flex-start;font-size:17px;color:var(--ink-2)}
+.panel.dark .points li{color:#d2d2d7}
+.points .dot{flex:none;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-size:15px;background:var(--bg-2)}
+.panel.dark .points .dot{background:#1c1c1f}
+.areas{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.areas span{border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14px;color:var(--ink-2);background:#fff}
+.panel.dark .areas span{border-color:#2c2c30;background:#111;color:#d2d2d7}
+.render{position:relative;height:440px;border-radius:var(--radius);overflow:hidden}
+
+/* stats / one dashboard */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:60px}
+.stat{background:#fff;border-radius:22px;padding:30px 26px;text-align:left}
+.panel.dark .stat{background:#111}
+.stat .n{font-size:40px;font-weight:700;letter-spacing:-.03em}
+.stat .l{color:var(--muted);margin-top:4px;font-size:15px}
+.dash{margin:60px auto 0;max-width:980px;background:#fff;border-radius:22px;box-shadow:0 30px 90px rgba(0,0,0,.12);overflow:hidden;border:1px solid #e8e8ed}
+.dash .bar{height:38px;background:#f5f5f7;display:flex;align-items:center;gap:7px;padding:0 14px}
+.dash .bar i{width:11px;height:11px;border-radius:50%;background:#ff5f57}.dash .bar i:nth-child(2){background:#febc2e}.dash .bar i:nth-child(3){background:#28c840}
+.dash .body{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:22px}
+.kpi{border:1px solid #eee;border-radius:16px;padding:16px}
+.kpi small{color:var(--muted);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.kpi b{display:block;font-size:26px;letter-spacing:-.02em;margin-top:6px}
+.chart{grid-column:1/-1;height:150px;border:1px solid #eee;border-radius:16px;background:
+  linear-gradient(180deg,rgba(47,107,255,.15),transparent),
+  repeating-linear-gradient(90deg,transparent 0 47px,#f2f2f5 47px 48px);position:relative;overflow:hidden}
+.chart svg{position:absolute;inset:0;width:100%;height:100%}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:60px}
+.step{background:var(--bg-2);border-radius:22px;padding:34px 28px}
+.step .k{font-size:15px;font-weight:700;color:var(--accent)}
+.step h4{font-size:24px;letter-spacing:-.02em;margin-top:10px}
+.step p{color:var(--muted);margin-top:8px}
+
+/* cta band */
+.band{text-align:center;padding:130px 22px;background:linear-gradient(180deg,#fff,#f5f5f7)}
+.band h2{font-size:clamp(38px,5.6vw,72px);letter-spacing:-.035em;line-height:1.04;font-weight:700}
+
+/* footer */
+footer{background:var(--bg-2);color:var(--muted);font-size:12px;padding:34px 0 40px}
+footer .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+footer h5{color:var(--ink);font-size:12px;margin-bottom:10px}
+footer li{list-style:none;margin:7px 0}
+footer a:hover{text-decoration:underline;color:var(--ink)}
+footer .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:16px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.slide{animation:none}.slide:first-child{opacity:1}.badge.live::before{animation:none}}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:22px}
+.modal.open{display:flex}
+.card{background:#fff;border-radius:28px;max-width:440px;width:100%;padding:42px 34px 34px;text-align:center;box-shadow:0 40px 120px rgba(0,0,0,.35);animation:pop .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{transform:scale(.94);opacity:0}to{transform:none;opacity:1}}
+.card .logo{font-size:30px;font-weight:800;letter-spacing:-.03em}
+.card .logo span{background:linear-gradient(90deg,#ff6a3d,#ff2d87,#7a5cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card h3{font-size:24px;margin-top:16px;letter-spacing:-.02em}
+.card p{color:var(--muted);margin-top:8px}
+.card .btn{margin-top:24px}
+
+/* responsive */
+@media (max-width:900px){
+  .gnav ul{display:none}.burger{display:block}.gnav .wrap{gap:14px;justify-content:space-between}
+  .grid2{grid-template-columns:1fr}.tile{min-height:520px}
+  .row,.row.rev{grid-template-columns:1fr;gap:40px}.row.rev .copy{order:0}
+  .copy h2,.copy .sub{text-align:center}.copy{text-align:center}.areas{justify-content:center}.points{text-align:left;max-width:520px;margin-left:auto;margin-right:auto}
+  .stats{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}
+  .dash .body{grid-template-columns:1fr 1fr}
+  footer .cols{grid-template-columns:1fr 1fr}
+  .panel{padding:90px 0}.hero .stage{height:300px}
+}
+@media (max-width:520px){.login{display:none}.stats{grid-template-columns:1fr}.dash .body{grid-template-columns:1fr}.render{height:360px}}
+.mobile-menu{display:none;background:rgba(251,251,253,.97);border-bottom:1px solid #eee}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:14px 22px;border-top:1px solid #f0f0f2;font-size:17px}
+.preview-flag{position:fixed;left:14px;bottom:14px;z-index:60;background:#1d1d1f;color:#fff;font-size:12px;font-weight:600;padding:8px 12px;border-radius:999px;opacity:.85}
+</style>
+</head>
+<body>
+
+<!-- Global navigation -->
+<nav class="gnav" aria-label="Global">
+  <div class="wrap">
+    <a href="#top" class="brand">Commute<span>Ads</span></a>
+    <ul>
+      <li><a href="#in-cab">In-Cab</a></li>
+      <li><a href="#billboards">Billboards</a></li>
+      <li><a href="#hostels">Hostels</a></li>
+      <li><a href="#buses">Buses</a></li>
+      <li><a href="#dashboard">Results</a></li>
+      <li><a href="/advertise">Pricing</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+    <div class="actions">
+      <button class="pill-ed" type="button" data-open-ed aria-haspopup="dialog">Commute<b>Ed</b></button>
+      <a class="login" href="https://app.commuteads.com/fleet/login?as=customer">Sign in</a>
+      <button class="burger" type="button" aria-label="Menu" aria-expanded="false" data-burger>☰</button>
+    </div>
+  </div>
+  <div class="mobile-menu" data-menu>
+    <a href="#in-cab">In-Cab</a><a href="#billboards">Billboards</a><a href="#hostels">Hostels</a><a href="#buses">Buses</a><a href="#dashboard">Results</a><a href="/advertise">Pricing</a><a href="/contact">Contact</a><a href="https://app.commuteads.com/fleet/login?as=customer">Sign in</a>
+  </div>
+</nav>
+
+<!-- Product strip -->
+<div class="strip">
+  <div class="wrap">
+    <a href="#in-cab"><span class="ico" style="background:#000;color:#fff">▭</span>In-Cab</a>
+    <a href="#billboards"><span class="ico" style="background:#e8e8ed">▬</span>Billboards</a>
+    <a href="#hostels"><span class="ico" style="background:#f3ebdf">▯</span>Hostels</a>
+    <a href="#buses"><span class="ico" style="background:#0b1220;color:#ffd60a">⇢</span>Buses</a>
+    <a href="#dashboard"><span class="ico" style="background:#eaf1ff;color:var(--accent)">◔</span>Results</a>
+  </div>
+</div>
+
+<!-- Hero -->
+<header class="hero" id="top">
+  <div class="media" aria-hidden="true"></div>
+  <!-- Owner's film goes here: <video autoplay muted loop playsinline poster="/media/hero.jpg"><source src="/media/hero-720.mp4" type="video/mp4"></video> -->
+  <div class="inner">
+    <div class="eyebrow">CommuteAds · Hyderabad</div>
+    <h1 class="rv">Advertising that<br><span class="grad">moves with the city.</span></h1>
+    <p class="lede rv">Cabs. Billboards. Hostels. Buses. One campaign, every screen your customers pass — with proof of every play.</p>
+    <div class="ctas rv">
+      <a class="btn primary" href="/advertise">Plan a campaign</a>
+      <a class="btn ghost" href="#in-cab">Watch how it works ›</a>
+    </div>
+    <div class="stage rv" aria-hidden="true">
+      <div class="headrest"></div>
+      <div class="tablet"><div class="screen">
+        <div class="slide s1"><div class="tag">Sponsored</div><div class="big">Your brand,<br>at eye level.</div><div class="qr"></div></div>
+        <div class="slide s2"><div class="tag">News · Hyderabad</div><div class="big">Today's top stories<br>for the ride.</div></div>
+        <div class="slide s3"><div class="tag">Sponsored</div><div class="big">Scan. Book.<br>Done before the signal.</div><div class="qr"></div></div>
+      </div></div>
+    </div>
+  </div>
+</header>
+
+<!-- Product grid -->
+<section class="grid2" aria-label="Products">
+  <a class="tile t-cab rv" href="#in-cab">
+    <span class="badge live">Live now</span>
+    <h3>In-Cab Screens</h3>
+    <p>30 unskippable minutes at eye level.</p>
+    <div class="links"><span>Learn more ›</span><span>Book ›</span></div>
+    <div class="art"><div class="mini-tab"><div class="screen"><div class="slide s1" style="opacity:1;animation:none"><div class="tag">Sponsored</div><div class="big">Ride with us.</div><div class="qr"></div></div></div></div></div>
+  </a>
+  <a class="tile t-bill rv" href="#billboards">
+    <span class="badge soon">Pre-booking open</span>
+    <h3>Digital Billboards</h3>
+    <p>Big, bright, and on the roads that matter.</p>
+    <div class="links"><span>Learn more ›</span><span>Pre-book ›</span></div>
+    <div class="art"><div class="billboard"><div class="board"><div class="screen"><div class="slide s2" style="opacity:1;animation:none"><div class="tag">Hitec City</div><div class="big">Your brand,<br>city-sized.</div></div></div></div><div class="pole"></div></div></div>
+  </a>
+  <a class="tile t-hostel rv" href="#hostels">
+    <span class="badge soon">Pre-booking open</span>
+    <h3>Hostel Screens</h3>
+    <p>Where Hyderabad's students and young pros live.</p>
+    <div class="links"><span>Learn more ›</span><span>Pre-book ›</span></div>
+    <div class="art"><div class="lobby"><div class="portrait"><div class="screen"><div class="slide s3" style="opacity:1;animation:none"><div class="tag">Gachibowli</div><div class="big">Late-night<br>cravings?</div></div></div></div><div class="bench"></div></div></div>
+  </a>
+  <a class="tile t-bus rv" href="#buses">
+    <span class="badge soon">Pre-booking open</span>
+    <h3>Bus Screens</h3>
+    <p>Next-stop announcements. Next-level reach.</p>
+    <div class="links"><span>Learn more ›</span><span>Pre-book ›</span></div>
+    <div class="art"><div class="businside"><div class="rails"></div><div class="busbar"><div class="nextstop"><small>Next stop</small><strong>KPHB Colony</strong><div class="ticker">Then: JNTU · Miyapur · Madinaguda</div></div><div class="screen"><div class="slide s1" style="opacity:1;animation:none"><div class="tag">Sponsored</div><div class="big">Get off here for 20% off.</div></div></div></div><div class="seats"></div></div></div>
+  </a>
+</section>
+
+<!-- In-Cab -->
+<section class="panel dark" id="in-cab">
+  <div class="wrap row">
+    <div class="copy rv">
+      <span class="badge live">Live now</span>
+      <h2>In-Cab Screens.<br>The captive audience.</h2>
+      <p class="sub">Interactive tablets in cabs across Hyderabad. Your ad plays when a passenger is in the seat — and they can scan to act on it instantly.</p>
+      <ul class="points">
+        <li><span class="dot">◉</span>Plays only when a passenger is present.</li>
+        <li><span class="dot">▶</span>Unskippable, at eye level, for the whole ride.</li>
+        <li><span class="dot">⌗</span>QR on every ad — straight to your offer.</li>
+        <li><span class="dot">📍</span>Proof of play with time and location, in your dashboard.</li>
+      </ul>
+      <div class="links" style="justify-content:flex-start"><a href="/advertise">Book In-Cab ›</a><a href="/mediakit">Media kit ›</a></div>
+    </div>
+    <div class="render rv" style="background:radial-gradient(70% 60% at 50% 100%,rgba(47,107,255,.35),transparent 70%),#0a0a0c">
+      <div class="mini-tab" style="width:84%;bottom:40px"><div class="screen">
+        <div class="tiles"><div style="background:linear-gradient(160deg,#1f2937,#111827);border-radius:10px;color:#fff;font-weight:700;font-size:12px;display:flex;align-items:flex-end;padding:10px">NEWSENSE</div><div style="background:linear-gradient(160deg,#4c1d95,#1e1b4b);border-radius:10px;color:#fff;font-weight:700;font-size:12px;display:flex;align-items:flex-end;padding:10px">ACTOR WIKI</div><div style="background:linear-gradient(160deg,#9a3412,#451a03);border-radius:10px;color:#fff;font-weight:700;font-size:12px;display:flex;align-items:flex-end;padding:10px">ASTROLOGY</div></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Billboards -->
+<section class="panel light" id="billboards">
+  <div class="wrap row rev">
+    <div class="copy rv">
+      <span class="badge soon">Pre-booking open</span>
+      <h2>Digital Billboards.<br>Impossible to miss.</h2>
+      <p class="sub">High-brightness LED boards on Hyderabad's busiest corridors. Change your creative in minutes, schedule by hour, and see exactly when it ran.</p>
+      <ul class="points">
+        <li><span class="dot">☀</span>Day-and-night brightness for every road.</li>
+        <li><span class="dot">⏱</span>Dayparting: morning rush, lunch, evening.</li>
+        <li><span class="dot">↻</span>Swap creatives remotely — no printing, no waiting.</li>
+      </ul>
+      <div class="areas"><span>Hitec City</span><span>Gachibowli</span><span>Financial District</span><span>Kondapur</span><span>Madhapur</span><span>ORR</span></div>
+      <div class="links" style="justify-content:flex-start"><a href="/advertise">Pre-book a billboard ›</a></div>
+    </div>
+    <div class="render rv" style="background:linear-gradient(180deg,#0b1020 0%,#1b2a4a 60%,#f5f5f7 60.2%)">
+      <div class="billboard" style="height:78%;top:4%;bottom:auto"><div class="board"><div class="screen"><div class="slide s1"><div class="tag">Sponsored</div><div class="big">Your launch,<br>12 metres wide.</div></div><div class="slide s2"><div class="tag">Sponsored</div><div class="big">Rush hour?<br>Perfect.</div></div><div class="slide s3"><div class="tag">Sponsored</div><div class="big">Swap creatives<br>in minutes.</div></div></div></div><div class="pole"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Hostels -->
+<section class="panel grey" id="hostels">
+  <div class="wrap row">
+    <div class="copy rv">
+      <span class="badge soon">Pre-booking open</span>
+      <h2>Hostel Screens.<br>Where young Hyderabad lives.</h2>
+      <p class="sub">Screens in the lobbies and dining halls of hostels and PGs — the daily routine of students and working professionals.</p>
+      <ul class="points">
+        <li><span class="dot">🎓</span>Students and early-career professionals, every day.</li>
+        <li><span class="dot">🍽</span>Prime moments: breakfast, dinner, the evening wind-down.</li>
+        <li><span class="dot">⌗</span>Scan-to-claim offers that drive real footfall nearby.</li>
+      </ul>
+      <div class="areas"><span>Gachibowli</span><span>Ayyappa Society</span><span>KPHB</span><span>Madhapur</span><span>Ameerpet</span><span>Kondapur</span></div>
+      <div class="links" style="justify-content:flex-start"><a href="/advertise">Pre-book hostel screens ›</a></div>
+    </div>
+    <div class="render rv" style="background:linear-gradient(180deg,#efe5d6,#e3d5bf)">
+      <div class="lobby" style="background:none"><div class="portrait" style="width:200px;height:320px;bottom:60px"><div class="screen"><div class="slide s3"><div class="tag">Ayyappa Society</div><div class="big">Biryani in<br>20 minutes.</div><div class="qr"></div></div><div class="slide s1"><div class="tag">KPHB</div><div class="big">Gym opening<br>this Sunday.</div></div><div class="slide s2"><div class="tag">Gachibowli</div><div class="big">Hiring freshers.<br>Walk in today.</div></div></div></div><div class="bench" style="height:40px"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Buses -->
+<section class="panel dark" id="buses">
+  <div class="wrap row rev">
+    <div class="copy rv">
+      <span class="badge soon">Pre-booking open</span>
+      <h2>Bus Screens.<br>Every stop is a moment.</h2>
+      <p class="sub">The screen passengers already watch for the next stop now carries your message — timed to the route, so the right ad plays near the right place.</p>
+      <ul class="points">
+        <li><span class="dot">⇢</span>Next-stop announcements keep every eye on the screen.</li>
+        <li><span class="dot">📍</span>Location-triggered ads: play near your store.</li>
+        <li><span class="dot">👥</span>Busy routes with heavy daily ridership.</li>
+      </ul>
+      <div class="areas"><span>KPHB</span><span>JNTU</span><span>Miyapur</span><span>Ameerpet</span><span>Dilsukhnagar</span><span>Secunderabad</span></div>
+      <div class="links" style="justify-content:flex-start"><a href="/advertise">Pre-book bus screens ›</a></div>
+    </div>
+    <div class="render rv">
+      <div class="businside"><div class="rails"></div><div class="busbar" style="top:24%;height:46%"><div class="nextstop"><small>Next stop</small><strong>Ameerpet</strong><div class="ticker">Then: SR Nagar · Erragadda · Bharat Nagar</div></div><div class="screen"><div class="slide s2"><div class="tag">Sponsored · Ameerpet</div><div class="big">Coaching admissions open.</div></div><div class="slide s1"><div class="tag">Sponsored</div><div class="big">Get off here.<br>Lunch is on us.</div></div><div class="slide s3"><div class="tag">Sponsored</div><div class="big">Scan for 20% off.</div></div></div></div><div class="seats"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- One dashboard -->
+<section class="panel grey" id="dashboard">
+  <div class="wrap center">
+    <h2 class="rv">Every screen.<br>One dashboard.</h2>
+    <p class="sub rv">Plan once, run everywhere, and see what actually played — when, where, and how often. Real proof of play, not estimates.</p>
+    <div class="dash rv" aria-hidden="true">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <div class="body">
+        <div class="kpi"><small>Verified plays</small><b>Live</b></div>
+        <div class="kpi"><small>Screens in campaign</small><b>All formats</b></div>
+        <div class="kpi"><small>QR scans</small><b>Tracked</b></div>
+        <div class="chart"><svg viewBox="0 0 600 150" preserveAspectRatio="none"><path d="M0,120 C60,110 90,70 150,80 C210,90 240,40 300,50 C360,60 390,20 450,30 C510,40 540,25 600,15" fill="none" stroke="#2f6bff" stroke-width="3"/></svg></div>
+      </div>
+    </div>
+    <div class="links rv"><a href="https://app.commuteads.com/fleet/login?as=customer">Sign in to your dashboard ›</a></div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="panel light">
+  <div class="wrap center">
+    <h2 class="rv">From brief to live,<br>in three steps.</h2>
+    <div class="steps">
+      <div class="step rv"><div class="k">01</div><h4>Choose your screens</h4><p>Cabs, billboards, hostels, buses — or all of them. Pick areas and times.</p></div>
+      <div class="step rv"><div class="k">02</div><h4>Upload your ad</h4><p>We review every creative before it plays, so your brand always looks right.</p></div>
+      <div class="step rv"><div class="k">03</div><h4>Watch it run</h4><p>Track plays, locations and scans in real time in your dashboard.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA band -->
+<section class="band">
+  <h2 class="rv">Your brand.<br><span class="grad" style="background:linear-gradient(90deg,#2f6bff,#7a5cff,#ff2d87);-webkit-background-clip:text;background-clip:text;color:transparent">Every screen.</span></h2>
+  <div class="ctas rv"><a class="btn dark" href="/advertise">Plan a campaign</a><a class="btn" style="color:var(--accent)" href="/contact">Talk to us ›</a></div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div><h5>Advertise</h5><ul><li><a href="#in-cab">In-Cab Screens</a></li><li><a href="#billboards">Digital Billboards</a></li><li><a href="#hostels">Hostel Screens</a></li><li><a href="#buses">Bus Screens</a></li></ul></div>
+      <div><h5>Plan</h5><ul><li><a href="/advertise">Pricing &amp; pre-book</a></li><li><a href="/mediakit">Media kit</a></li><li><a href="https://app.commuteads.com/fleet/login?as=customer">Advertiser sign in</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="/contact">Contact</a></li><li><a href="/contact">Partner with us</a></li><li><a href="https://www.linkedin.com/company/commuteads/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.instagram.com/commuteads.in/" target="_blank" rel="noopener">Instagram</a></li></ul></div>
+      <div><h5>Legal</h5><ul><li><a href="/privacy">Privacy Policy</a></li><li><a href="/terms">Terms of Service</a></li><li><a href="/refund-policy">Refund Policy</a></li></ul></div>
+    </div>
+    <div class="legal"><span>Copyright © 2026 CommuteAds Private Limited · CIN U73100TS2026PTC223598 · Hyderabad, Telangana</span><a href="mailto:connect@commuteads.com">connect@commuteads.com</a></div>
+  </div>
+</footer>
+
+<!-- CommuteEd coming soon -->
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="ed-title" data-ed-modal>
+  <div class="card">
+    <div class="logo">Commute<span>Ed</span></div>
+    <h3 id="ed-title">Coming soon.</h3>
+    <p>Learning on the move — bite-sized lessons for every ride. We're building something new.</p>
+    <button class="btn primary" type="button" data-close-ed>Got it</button>
+  </div>
+</div>
+
+<div class="preview-flag">Preview — not live</div>
+
+<script>
+(function(){
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15}) : null;
+  document.querySelectorAll('.rv').forEach(function(el){ io ? io.observe(el) : el.classList.add('in'); });
+  var modal=document.querySelector('[data-ed-modal]');
+  function open(){modal.classList.add('open');modal.querySelector('[data-close-ed]').focus();}
+  function close(){modal.classList.remove('open');}
+  document.querySelectorAll('[data-open-ed]').forEach(function(b){b.addEventListener('click',open);});
+  modal.addEventListener('click',function(e){if(e.target===modal||e.target.hasAttribute('data-close-ed'))close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+  var burger=document.querySelector('[data-burger]'),menu=document.querySelector('[data-menu]');
+  burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');});});
+})();
+</script>
+</body>
+</html>
