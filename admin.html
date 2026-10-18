@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Command Center | CommuteAds</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <meta name="robots" content="noindex, nofollow">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -360,7 +361,7 @@
         // Auth Guard — must be admin
         supabaseClient.auth.getSession().then(({ data: { session } }) => {
             if (!session || session.user.email !== ADMIN_EMAIL) {
-                window.location.href = 'login.html';
+                window.location.href = '/login';
             } else {
                 document.getElementById('adminEmailDisplay').textContent = session.user.email;
                 const mobileED = document.getElementById('adminMobileEmailDisplay');
@@ -376,7 +377,7 @@
 
         async function handleLogout() {
             await supabaseClient.auth.signOut();
-            window.location.href = 'login.html';
+            window.location.href = '/login';
         }
 
         // --- Mobile Sidebar ---
@@ -807,7 +808,7 @@
                 return;
             }
             if (!data || data.length === 0) {
-                list.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-500">No passenger feedback yet. Share the QR code to <a href="passenger.html" target="_blank" class="text-brand-accent hover:underline font-semibold">passenger.html</a> to start collecting responses.</td></tr>`;
+                list.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-500">No passenger feedback yet. Share the QR code to <a href="/passenger" target="_blank" class="text-brand-accent hover:underline font-semibold">passenger.html</a> to start collecting responses.</td></tr>`;
                 return;
             }
 

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | CommuteAds</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <meta name="robots" content="noindex, nofollow">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -30,7 +31,7 @@
     <div class="w-full max-w-sm">
         <!-- Logo -->
         <div class="text-center mb-8">
-            <a href="index.html" class="inline-block">
+            <a href="/" class="inline-block">
                 <span class="font-bold text-3xl text-gray-900 dark:text-white tracking-tight">Commute<span class="text-brand-accent">Ads</span></span>
             </a>
         </div>
@@ -151,7 +152,7 @@
         </div>
 
         <p class="text-center mt-6 text-xs text-gray-500">
-            <a href="index.html" class="hover:text-brand-accent transition">&larr; Back to Homepage</a>
+            <a href="/" class="hover:text-brand-accent transition">&larr; Back to Homepage</a>
         </p>
     </div>
 
@@ -170,7 +171,7 @@
         // If already logged in, redirect appropriately
         supabaseClient.auth.getSession().then(({ data: { session } }) => {
             if (session) {
-                window.location.href = session.user.email === ADMIN_EMAIL ? 'admin.html' : 'dashboard.html';
+                window.location.href = session.user.email === ADMIN_EMAIL ? '/admin' : '/dashboard';
             } else {
                 document.body.style.opacity = '1';
             }
@@ -233,7 +234,7 @@
                     ? 'Incorrect email or password. Please try again.'
                     : error.message);
             } else {
-                window.location.href = data.user.email === ADMIN_EMAIL ? 'admin.html' : 'dashboard.html';
+                window.location.href = data.user.email === ADMIN_EMAIL ? '/admin' : '/dashboard';
             }
         });
 
