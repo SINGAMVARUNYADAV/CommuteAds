@@ -73,8 +73,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   color: #e8e8ed; font-size: 12px; letter-spacing: -.01em;
 }
 .gnav .wrap { height: 44px; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
-.gnav .wordmark { font-size: 17px; font-weight: 600; letter-spacing: -.02em; color: #f5f5f7; white-space: nowrap; }
-.gnav .wordmark span { color: #6e9bff; }
+/* brand: the orange Commute Ads mark (assets/logo-mark.svg) + name */
+.mark { display: block; width: auto; height: 1em; flex: none; fill: #F34C3C; }
+.gnav .wordmark { display: flex; align-items: center; gap: 8px; font-size: 17px; font-weight: 600; letter-spacing: -.02em; color: #f5f5f7; white-space: nowrap; }
+.gnav .wordmark .mark { height: 21px; transition: transform .4s var(--ease-out); }
+.gnav .wordmark:hover .mark { transform: rotate(-6deg) scale(1.06); }
+.gfoot .crumbs .crumb-home { display: inline-flex; vertical-align: -2px; }
+.gfoot .crumbs .crumb-home .mark { height: 15px; }
+.hero-mark { display: flex; justify-content: center; margin-bottom: 18px; }
+.hero-mark .mark { height: clamp(46px, 5.6vw, 72px); filter: drop-shadow(0 10px 40px rgba(243, 76, 60, .45)); }
+.slide.s-brand .mark { height: max(18px, 8cqw); margin: 0 auto 3%; }
 .gnav ul { display: flex; gap: 0; list-style: none; flex: 1; justify-content: center; }
 .gnav ul a { display: block; padding: 0 12px; line-height: 44px; opacity: .8; transition: opacity .2s; }
 .gnav ul a:hover, .gnav ul a[aria-current] { opacity: 1; }
