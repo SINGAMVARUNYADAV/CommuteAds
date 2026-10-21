@@ -1,69 +1,146 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en-IN" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service | CommuteAds</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <script src="/analytics.js" defer></script>
-    <meta name="description" content="Terms for using CommuteAds in-cab advertising in Hyderabad: accounts, ad review, content rules, CPM pricing, payment and liability.">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://commuteads.com/terms">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="CommuteAds">
-    <meta property="og:title" content="Terms of Service | CommuteAds">
-    <meta property="og:description" content="Terms for using CommuteAds in-cab advertising in Hyderabad: accounts, ad review, content rules, CPM pricing, payment and liability.">
-    <meta property="og:url" content="https://commuteads.com/terms">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: { extend: {
-                colors: { brand: { lightBg:'#f8fafc', lightCard:'#ffffff', lightBorder:'#e2e8f0', darkBg:'#09090b', darkCard:'#141417', darkBorder:'#27272a', accent:'#3b82f6' } },
-                fontFamily: { sans: ['Inter','sans-serif'] }
-            } }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        .legal h2 { font-size:1.25rem; font-weight:700; margin-top:2.5rem; margin-bottom:.75rem; }
-        .legal h3 { font-size:1rem; font-weight:600; margin-top:1.5rem; margin-bottom:.5rem; }
-        .legal p, .legal li { line-height:1.75; font-size:.95rem; }
-        .legal p { margin-bottom:1rem; }
-        .legal ul { list-style:disc; padding-left:1.5rem; margin-bottom:1rem; }
-        .legal li { margin-bottom:.35rem; }
-        .legal a { color:#3b82f6; }
-        .legal a:hover { text-decoration:underline; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service | CommuteAds</title>
+<meta name="description" content="Terms for using CommuteAds in-cab advertising in Hyderabad: accounts, ad review, content rules, CPM pricing, payment and liability.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://commuteads.com/terms">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CommuteAds">
+<meta property="og:title" content="Terms of Service | CommuteAds">
+<meta property="og:description" content="Terms for using CommuteAds in-cab advertising in Hyderabad: accounts, ad review, content rules, CPM pricing, payment and liability.">
+<meta property="og:url" content="https://commuteads.com/terms">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/analytics.js" defer></script>
+<script src="/assets/site.js" defer></script>
+<style>
+/* Legal pages (privacy, terms, refund-policy): identical block in each page.
+   Candidate for assets/site.css: .lnav.is-light, .lg-*, .toc */
+body { background: #fff; }
+.lnav.is-light { background: rgba(255, 255, 255, .82); color: var(--ink); border-bottom-color: rgba(0, 0, 0, .1); }
+.lnav.is-light nav a.lk { display: inline; opacity: .8; }
+.lnav.is-light nav a.lk:hover { opacity: 1; text-decoration: underline; }
+.lg-shell { width: min(1120px, calc(100% - 44px)); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 760px); justify-content: center; column-gap: 72px; padding: 80px 0 140px; }
+.lg-head { padding-bottom: 44px; border-bottom: 1px solid var(--line); }
+.lg-head .eyebrow { font-size: 21px; margin-bottom: 10px; }
+.lg-head h1 { font-size: clamp(40px, 6vw, 64px); font-weight: 600; line-height: 1.06; letter-spacing: -.015em; }
+.lg-head .updated { margin-top: 16px; font-size: 17px; color: var(--muted); }
+.lg-doc { font-size: 17px; line-height: 1.6; letter-spacing: -.016em; color: var(--ink); padding-top: 40px; }
+.lg-doc > p:first-child { font-size: 21px; line-height: 1.48; letter-spacing: .004em; color: var(--ink-2); margin-bottom: 8px; }
+.lg-doc h2 { font-size: 28px; font-weight: 600; line-height: 1.18; letter-spacing: .004em; margin: 56px 0 16px; scroll-margin-top: 84px; }
+.lg-doc h3 { font-size: 19px; font-weight: 600; line-height: 1.3; letter-spacing: .012em; margin: 28px 0 8px; }
+.lg-doc p { margin: 0 0 16px; }
+.lg-doc ul { padding-left: 1.25em; margin: 0 0 18px; }
+.lg-doc li { margin: 8px 0; padding-left: 4px; }
+.lg-doc li::marker { color: var(--muted-2); }
+.lg-doc strong { font-weight: 600; }
+.lg-doc a { color: var(--link); }
+.lg-doc a:hover { text-decoration: underline; }
+.lg-more { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: 17px; }
+.lg-more span { color: var(--muted); width: 100%; font-size: 14px; }
+.toc { display: none; }
+.gfoot .legal nav a[aria-current] { color: var(--ink); }
+@media (min-width: 1069px) {
+  .lg-shell { grid-template-columns: 220px minmax(0, 760px); }
+  .lg-head, .lg-doc { grid-column: 2; }
+  .toc { display: block; grid-column: 1; grid-row: 2; position: sticky; top: 92px; align-self: start; margin-top: 48px; font-size: 14px; line-height: 1.35; }
+  .toc p { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .02em; margin-bottom: 12px; }
+  .toc ol { list-style: none; border-left: 1px solid var(--line); }
+  .toc a { display: block; padding: 7px 0 7px 14px; margin-left: -1px; border-left: 2px solid transparent; color: var(--muted); transition: color .2s, border-color .2s; }
+  .toc a:hover { color: var(--ink); }
+  .toc a.on { color: var(--ink); border-left-color: var(--ink); }
+}
+@media (max-width: 833px) {
+  .lnav.is-light nav { gap: 16px; }
+  .lg-shell { padding: 56px 0 100px; }
+  .lg-doc h2 { font-size: 24px; margin-top: 48px; }
+  .lg-doc > p:first-child { font-size: 19px; }
+}
+@media (max-width: 600px) {
+  .lnav.is-light .title { font-size: 17px; }
+  .lnav.is-light .btn-buy { display: none; }
+}
+</style>
 </head>
-<body class="bg-brand-lightBg dark:bg-brand-darkBg text-gray-800 dark:text-gray-300 font-sans antialiased">
+<body>
+<a class="skip" href="#main">Skip to content</a>
 
-    <nav class="w-full fixed top-0 z-50 bg-white/80 dark:bg-[#09090b]/80 backdrop-blur-xl border-b border-brand-lightBorder dark:border-brand-darkBorder">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="/" class="font-bold text-xl text-gray-900 dark:text-white tracking-tight">Commute<span class="text-brand-accent">Ads</span></a>
-            <div class="flex items-center gap-4 text-sm font-medium">
-                <a href="/" class="hidden sm:inline text-gray-600 dark:text-gray-300 hover:text-brand-accent transition">Home</a>
-                <a href="https://app.commuteads.com/fleet/login?as=customer" class="hidden sm:inline text-gray-600 dark:text-gray-300 hover:text-brand-accent transition">Advertiser Login</a>
-                <a href="/advertise" class="bg-brand-accent text-white px-5 py-2 rounded-full hover:bg-blue-600 transition">Pre-Book Slot</a>
-            </div>
-        </div>
+<!-- ─────────────── Global navigation ─────────────── -->
+<header class="gnav">
+  <div class="wrap">
+    <a class="wordmark" href="/">Commute<span>Ads</span></a>
+    <ul>
+      <li><a href="/#in-cab">In-Cab</a></li>
+      <li><a href="/#billboards">Billboards</a></li>
+      <li><a href="/#hostels">Hostels</a></li>
+      <li><a href="/#buses">Buses</a></li>
+      <li><a href="/#results">Results</a></li>
+      <li><a href="/advertise">Pre-book</a></li>
+      <li><a href="/mediakit">Media Kit</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+    <div class="end">
+      <button class="ed-pill" type="button" data-open-ed aria-haspopup="dialog">Commute<b>Ed</b></button>
+      <a class="hide-s" href="https://app.commuteads.com/fleet/login?as=customer">Advertiser Login</a>
+      <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="gmenu" data-burger><i></i></button>
+    </div>
+  </div>
+  <nav class="gmenu" id="gmenu" data-menu aria-label="Menu">
+    <a href="/#in-cab">In-Cab</a><a href="/#billboards">Billboards</a><a href="/#hostels">Hostels</a><a href="/#buses">Buses</a><a href="/#results">Results</a><a href="/advertise">Pre-book</a><a href="/mediakit">Media Kit</a><a href="/contact">Contact</a><a href="https://app.commuteads.com/fleet/login?as=customer">Advertiser Login</a>
+  </nav>
+</header>
+
+<!-- ─────────────── Local navigation (sticky) ─────────────── -->
+<div class="lnav is-light">
+  <div class="wrap">
+    <a class="title" href="#top">Terms of Service</a>
+    <nav aria-label="Other policies">
+      <a class="lk" href="/privacy">Privacy Policy</a>
+      <a class="lk" href="/refund-policy">Refund Policy</a>
+      <a class="btn-buy" href="/advertise">Pre-book</a>
     </nav>
+  </div>
+</div>
 
-    <main class="max-w-3xl mx-auto px-6 pt-32 pb-20">
-        <p class="text-xs font-bold uppercase tracking-widest text-brand-accent mb-3">Legal</p>
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">Terms of Service</h1>
-        <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">Last updated: 30 September 2026</p>
-        <article class="legal mt-10 text-gray-700 dark:text-gray-300 [&_h2]:text-gray-900 dark:[&_h2]:text-white [&_h3]:text-gray-900 dark:[&_h3]:text-white">
+<main id="main">
+  <div class="lg-shell">
+    <header class="lg-head" id="top">
+      <span class="eyebrow">Legal</span>
+      <h1>Terms of Service</h1>
+      <p class="updated">Last updated: 21 October 2026</p>
+    </header>
+    <nav class="toc" aria-label="On this page">
+      <p>On this page</p>
+      <ol>
+      <li><a href="#eligibility-and-accounts">1. Eligibility and accounts</a></li>
+      <li><a href="#campaigns-and-ad-review">2. Campaigns and ad review</a></li>
+      <li><a href="#content-rules">3. Content rules</a></li>
+      <li><a href="#pricing-and-payment">4. Pricing and payment</a></li>
+      <li><a href="#reporting">5. Reporting</a></li>
+      <li><a href="#intellectual-property">6. Intellectual property</a></li>
+      <li><a href="#acceptable-use">7. Acceptable use</a></li>
+      <li><a href="#liability">8. Liability</a></li>
+      <li><a href="#suspension-and-termination">9. Suspension and termination</a></li>
+      <li><a href="#governing-law">10. Governing law</a></li>
+      <li><a href="#changes">11. Changes</a></li>
+      <li><a href="#contact">12. Contact</a></li>
+      </ol>
+    </nav>
+    <article class="lg-doc">
 
 <p>These Terms of Service ("Terms") govern your use of the CommuteAds website, advertiser dashboard and in-cab advertising services (the "Services"), provided by CommuteAds Private Limited ("CommuteAds", "we", "us"). By creating an account or booking a campaign, you agree to these Terms.</p>
 
-<h2>1. Eligibility and accounts</h2>
+<h2 id="eligibility-and-accounts">1. Eligibility and accounts</h2>
 <ul>
 <li>You must be at least 18 and able to enter a binding contract. If you sign up for a business, you confirm you are authorised to act for it.</li>
 <li>Keep your account details accurate and your password confidential. You are responsible for activity under your account.</li>
 </ul>
 
-<h2>2. Campaigns and ad review</h2>
+<h2 id="campaigns-and-ad-review">2. Campaigns and ad review</h2>
 <ul>
 <li>Every creative is reviewed before it goes live, usually within 24–48 hours. We may approve, reject or ask for changes.</li>
 <li>Accepted formats are MP4 or MOV, 1080p, 16:9, in 10-second or 20-second lengths, under 200 MB.</li>
@@ -71,7 +148,7 @@
 <li>Campaign start times, routes and targeting depend on fleet availability. We aim to deliver as booked but do not guarantee a specific number of impressions unless agreed in writing.</li>
 </ul>
 
-<h2>3. Content rules</h2>
+<h2 id="content-rules">3. Content rules</h2>
 <p>You are responsible for your ads and confirm you own or have licensed everything in them. Ads must follow Indian law and the ASCI Code for Self-Regulation in Advertising. We will not run ads that:</p>
 <ul>
 <li>Promote tobacco, alcohol, gambling, illegal products or services</li>
@@ -82,25 +159,25 @@
 </ul>
 <p>We may pause or remove any ad that breaks these rules, with or without notice.</p>
 
-<h2>4. Pricing and payment</h2>
+<h2 id="pricing-and-payment">4. Pricing and payment</h2>
 <ul>
-<li>Pricing is on a CPM basis (cost per 1,000 verified impressions). Current rates range from ₹150 to ₹450 CPM depending on audience and placement, as shown on our website or in your quote.</li>
+<li>Pricing is on a CPM basis (cost per 1,000 verified impressions). Your rates are as agreed in your quote or order, and depend on the format, audience and placement you book.</li>
 <li>An impression is counted only when our sensor confirms a passenger is present while your ad plays.</li>
-<li>The minimum daily budget is ₹1,000. Prices are exclusive of GST, which is added to your invoice.</li>
+<li>Any minimum budget for your campaign is stated in your quote or order. Prices are exclusive of GST, which is added to your invoice.</li>
 <li>We may change rates for future bookings. Rates for a confirmed campaign will not change during that campaign.</li>
 <li>Refunds are covered by our <a href="/refund-policy">Refund Policy</a>.</li>
 </ul>
 
-<h2>5. Reporting</h2>
+<h2 id="reporting">5. Reporting</h2>
 <p>Impression and performance data is shown on your dashboard. Our system's records are the basis for billing. If you believe a figure is wrong, tell us within 15 days of the campaign ending and we will investigate.</p>
 
-<h2>6. Intellectual property</h2>
+<h2 id="intellectual-property">6. Intellectual property</h2>
 <p>You keep ownership of your ads. You give us a non-exclusive licence to store, format, display and report on them for your campaigns. The CommuteAds name, platform, dashboard and website content belong to us.</p>
 
-<h2>7. Acceptable use</h2>
+<h2 id="acceptable-use">7. Acceptable use</h2>
 <p>You must not misuse the Services, including by trying to manipulate impression counts, access other accounts, reverse engineer the platform, or interfere with the in-cab devices.</p>
 
-<h2>8. Liability</h2>
+<h2 id="liability">8. Liability</h2>
 <ul>
 <li>The Services are provided "as is". Device outages, network issues or fleet changes may interrupt delivery; you are billed only for verified impressions delivered.</li>
 <li>We are not liable for indirect or consequential losses such as lost profits or sales.</li>
@@ -108,30 +185,69 @@
 <li>You agree to compensate us for claims arising from your ad content or your breach of these Terms.</li>
 </ul>
 
-<h2>9. Suspension and termination</h2>
+<h2 id="suspension-and-termination">9. Suspension and termination</h2>
 <p>You can close your account at any time. We may suspend or close accounts that break these Terms or the law. Amounts owed for delivered impressions remain payable.</p>
 
-<h2>10. Governing law</h2>
+<h2 id="governing-law">10. Governing law</h2>
 <p>These Terms are governed by the laws of India. Courts in Hyderabad, Telangana have exclusive jurisdiction.</p>
 
-<h2>11. Changes</h2>
+<h2 id="changes">11. Changes</h2>
 <p>We may update these Terms. Continued use after changes take effect means you accept them.</p>
 
-<h2>12. Contact</h2>
+<h2 id="contact">12. Contact</h2>
 <p>Questions about these Terms: <a href="mailto:connect@commuteads.com">connect@commuteads.com</a></p>
 
-        </article>
-    </main>
+        
 
-    <footer class="border-t border-brand-lightBorder dark:border-brand-darkBorder">
-        <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 dark:text-gray-400">
-            <p>&copy; 2026 CommuteAds Private Limited &middot; Hyderabad, Telangana, India</p>
-            <div class="flex items-center gap-3">
-                <a href="/privacy" class="hover:text-brand-accent transition">Privacy Policy</a><span>&middot;</span>
-                <a href="/terms" class="hover:text-brand-accent transition">Terms of Service</a><span>&middot;</span>
-                <a href="/refund-policy" class="hover:text-brand-accent transition">Refund Policy</a>
-            </div>
-        </div>
-    </footer>
+      <div class="lg-more"><span>More from CommuteAds Legal</span><a class="more" href="/privacy">Privacy Policy</a><a class="more" href="/refund-policy">Refund Policy</a></div>
+    </article>
+  </div>
+</main>
+
+<!-- ─────────────── Footer ─────────────── -->
+<footer class="gfoot">
+  <div class="wrap">
+    <div class="crumbs"><a href="/"><b>CommuteAds</b></a> › Legal › Terms of Service</div>
+    <div class="cols">
+      <div><h4>Advertise</h4><ul><li><a href="/#in-cab">In-Cab Screens</a></li><li><a href="/#billboards">Digital Billboards</a></li><li><a href="/#hostels">Hostel Screens</a></li><li><a href="/#buses">Bus Screens</a></li></ul></div>
+      <div><h4>Plan</h4><ul><li><a href="/advertise">Pre-book</a></li><li><a href="/mediakit">Media kit</a></li><li><a href="/#how-it-works">How it works</a></li><li><a href="/#faq">FAQ</a></li></ul></div>
+      <div><h4>Account</h4><ul><li><a href="https://app.commuteads.com/fleet/login?as=customer">Advertiser Login</a></li><li><a href="/#results">Dashboard</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="/contact">Contact us</a></li><li><a href="/contact">Partner with us</a></li><li><a href="https://www.linkedin.com/company/commuteads/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.instagram.com/commuteads.in/" target="_blank" rel="noopener">Instagram</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="mailto:connect@commuteads.com">connect@commuteads.com</a></li><li>Hyderabad, Telangana, India</li></ul></div>
+    </div>
+    <div class="legal">
+      <span>Copyright © 2026 CommuteAds Private Limited. CIN U73100TS2026PTC223598. All rights reserved.</span>
+      <nav aria-label="Legal"><a href="/privacy">Privacy Policy</a><a href="/terms" aria-current="page">Terms of Service</a><a href="/refund-policy">Refund Policy</a></nav>
+    </div>
+  </div>
+</footer>
+
+<!-- CommuteEd: coming soon -->
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="ed-title" data-ed-modal>
+  <div class="box">
+    <div class="logo">Commute<span>Ed</span></div>
+    <h3 id="ed-title">Coming soon.</h3>
+    <p>Learning on the move: bite-sized lessons for every ride. We're building something new.</p>
+    <button class="btn btn-primary" type="button" data-close-ed>Got it</button>
+  </div>
+</div>
+<script>
+/* "On this page": mark the section being read (legal pages). */
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (!links.length || !('IntersectionObserver' in window)) return;
+  var map = {};
+  links.forEach(function (a) { map[a.hash.slice(1)] = a; });
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting || !map[e.target.id]) return;
+      links.forEach(function (a) { a.classList.remove('on'); a.removeAttribute('aria-current'); });
+      map[e.target.id].classList.add('on');
+      map[e.target.id].setAttribute('aria-current', 'location');
+    });
+  }, { rootMargin: '-90px 0px -65% 0px' });
+  Object.keys(map).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+})();
+</script>
 </body>
 </html>

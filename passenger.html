@@ -1,221 +1,239 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en-IN" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hey Traveller! | CommuteAds</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <meta name="robots" content="noindex, nofollow">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            lightBg: '#f8fafc',
-                            lightCard: '#ffffff',
-                            lightBorder: '#e2e8f0',
-                            darkBg: '#09090b',
-                            darkCard: '#141417',
-                            darkBorder: '#27272a',
-                            accent: '#3b82f6',
-                        }
-                    },
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    animation: {
-                        'float': 'float 3s ease-in-out infinite',
-                        'blob': 'blob 7s infinite',
-                        'fade-up': 'fadeUp 0.6s ease-out both',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        blob: {
-                            '0%': { transform: 'translate(0px,0px) scale(1)' },
-                            '33%': { transform: 'translate(30px,-50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px,20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px,0px) scale(1)' },
-                        },
-                        fadeUp: {
-                            from: { opacity: '0', transform: 'translateY(24px)' },
-                            to: { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .section-fade { animation: fadeUp 0.6s ease-out both; }
-        .s1 { animation-delay: 0.1s; }
-        .s2 { animation-delay: 0.25s; }
-        .s3 { animation-delay: 0.4s; }
-        .s4 { animation-delay: 0.55s; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hey Traveller! | CommuteAds</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<!-- Rider page: deliberately no analytics script (see the header comment of /analytics.js). -->
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js" defer></script>
+<style>
+/* Passenger landing page (QR on the cab tablet). Mobile-first, dark.
+   Class names used by the script below are kept as hooks:
+   .star-btn/.active, .tag-chip/.selected, .hidden, #successView/.show,
+   .bg-brand-darkCard (the form card the script hides on success),
+   and the spinner's .animate-spin/.opacity-25/.opacity-75. */
+:root { color-scheme: dark; }
+body { background: #000; color: var(--night-ink); min-height: 100vh; overflow-x: hidden; }
+.hidden { display: none; }
+.glow { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(60% 40% at 50% -6%, rgba(47, 107, 255, .32), transparent 70%),
+    radial-gradient(40% 30% at 100% 46%, rgba(139, 92, 255, .16), transparent 70%),
+    radial-gradient(40% 30% at 0% 86%, rgba(20, 184, 166, .10), transparent 70%); }
+.p-wrap { width: min(560px, calc(100% - 32px)); margin: 0 auto; padding: 8px 0 48px; }
+.p-top { height: 56px; display: flex; align-items: center; justify-content: center; }
+.p-top a { font-size: 21px; font-weight: 600; letter-spacing: -.02em; color: #f5f5f7; padding: 8px 4px; }
+.p-top a span { color: #6e9bff; }
 
-        /* Star rating */
-        .star-btn { transition: transform 0.15s ease, filter 0.15s ease; cursor: pointer; font-size: 2.5rem; line-height: 1; }
-        .star-btn:hover { transform: scale(1.2); }
-        .star-btn.active { filter: drop-shadow(0 0 6px rgba(251,191,36,0.7)); }
+/* hero */
+.p-hero { text-align: center; padding: 36px 0 44px; }
+.p-hero .emo { font-size: 64px; line-height: 1; display: inline-block; animation: float 3s ease-in-out infinite; user-select: none; }
+.p-hero h1 { margin-top: 22px; font-size: clamp(36px, 10.4vw, 56px); font-weight: 700; line-height: 1.05; letter-spacing: -.025em;
+  background: linear-gradient(180deg, #ffffff 35%, #a9b4d6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.p-hero p { margin: 16px auto 0; max-width: 400px; font-size: 19px; line-height: 1.4; color: var(--night-muted); font-weight: 500; letter-spacing: .004em; }
 
-        /* Quick tag chips */
-        .tag-chip {
-            border: 1.5px solid;
-            transition: all 0.18s ease;
-            cursor: pointer;
-            user-select: none;
-        }
-        .tag-chip:hover { transform: translateY(-2px); }
-        .tag-chip.selected {
-            background: rgba(59,130,246,0.15);
-            border-color: #3b82f6;
-            color: #60a5fa;
-        }
+/* cards */
+.card { background: #161617; border: 1px solid rgba(255, 255, 255, .06); border-radius: 28px; padding: 28px 22px 30px; }
+.p-section + .p-section { margin-top: 16px; }
+.p-head { display: flex; align-items: center; gap: 14px; }
+.p-head .ico { flex: none; width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; font-size: 22px; background: rgba(255, 255, 255, .08); }
+.p-head h2 { font-size: 24px; font-weight: 600; line-height: 1.17; letter-spacing: .009em; color: #f5f5f7; }
+.who { margin-top: 18px; display: grid; gap: 14px; font-size: 17px; line-height: 1.55; color: #a1a1a6; }
+.who b { color: #f5f5f7; font-weight: 600; }
+.who em { color: #d2d2d7; }
+.who .hl-blue { color: #6e9bff; font-weight: 600; }
+.who .hl-teal { color: #40d6c4; font-weight: 600; }
+.who .hl-yellow { color: #ffd60a; font-weight: 600; }
+.who .sign { color: #f5f5f7; font-weight: 600; }
+.p-sub { margin-top: 10px; font-size: 17px; line-height: 1.45; color: var(--night-muted); }
 
-        /* Success state */
-        #successView { display: none; }
-        #successView.show { display: flex; }
+/* form */
+.lbl { display: block; font-size: 13px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #a1a1a6; margin-bottom: 12px; }
+.lbl .opt { font-weight: 400; letter-spacing: 0; text-transform: none; color: #6e6e73; }
+.block { margin-top: 30px; }
+.rate { text-align: center; }
+#starRow { display: flex; justify-content: center; gap: 2px; }
+.star-btn { width: 56px; height: 56px; border-radius: 14px; font-size: 40px; line-height: 1; color: #48484a; display: grid; place-items: center; transition: transform .15s ease, filter .15s ease, background .2s; -webkit-tap-highlight-color: transparent; }
+.star-btn:hover { transform: scale(1.12); }
+.star-btn:focus-visible { background: rgba(255, 255, 255, .06); }
+.star-btn.active { filter: drop-shadow(0 0 8px rgba(251, 191, 36, .55)); }
+#starLabel { min-height: 22px; margin-top: 6px; font-size: 15px; color: #a1a1a6; }
+.err { color: #ff6961; font-size: 14px; margin-top: 6px; }
+#tagGroup { display: flex; flex-wrap: wrap; gap: 10px; }
+.tag-chip { min-height: 44px; padding: 10px 16px; border-radius: 999px; background: #1d1d1f; border: 1.5px solid #333336; color: #d2d2d7; font-size: 15px; font-weight: 500; letter-spacing: -.01em; text-align: left; user-select: none; transition: border-color .18s, background .18s, color .18s, transform .18s; -webkit-tap-highlight-color: transparent; }
+.tag-chip:hover { border-color: #48484a; transform: translateY(-1px); }
+.tag-chip.selected { background: rgba(41, 151, 255, .16); border-color: #2997ff; color: #6cb6ff; }
+.field { display: block; width: 100%; background: #1d1d1f; border: 1px solid #333336; border-radius: 14px; padding: 14px 16px; font: inherit; font-size: 17px; line-height: 1.4; color: #f5f5f7; transition: border-color .2s, box-shadow .2s; -webkit-appearance: none; appearance: none; }
+textarea.field { resize: none; min-height: 104px; }
+.field::placeholder { color: #6e6e73; }
+.field:focus { outline: none; border-color: #2997ff; box-shadow: 0 0 0 4px rgba(41, 151, 255, .25); }
+#submitFeedbackBtn { margin-top: 30px; width: 100%; min-height: 56px; border-radius: 999px; background: var(--blue); color: #fff; font-size: 17px; font-weight: 600; letter-spacing: -.01em; display: flex; align-items: center; justify-content: center; transition: background .2s, transform .15s, opacity .2s; }
+#submitFeedbackBtn:hover { background: var(--blue-hover); }
+#submitFeedbackBtn:active { transform: scale(.98); }
+#submitFeedbackBtn:disabled { opacity: .7; cursor: default; }
+#submitFeedbackBtn .animate-spin { width: 16px; height: 16px; margin-right: 8px; display: inline-block; animation: spin 1s linear infinite; }
+#submitFeedbackBtn .opacity-25 { opacity: .25; }
+#submitFeedbackBtn .opacity-75 { opacity: .75; }
+#feedbackStatus { margin-top: 12px; text-align: center; font-size: 14px; color: #ff6961; }
 
-        /* Scrollbar hide for horizontal scroll on mobile */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
+/* success */
+#successView { display: none; flex-direction: column; align-items: center; text-align: center; padding: 48px 24px; }
+#successView.show { display: flex; }
+#successView .emo { font-size: 56px; line-height: 1; animation: float 3s ease-in-out infinite; }
+#successView h3 { margin-top: 18px; font-size: 28px; font-weight: 700; letter-spacing: -.01em; color: #f5f5f7; }
+#successView p { margin-top: 10px; max-width: 340px; font-size: 17px; line-height: 1.5; color: #a1a1a6; }
+
+/* P.S. */
+.ps { border-radius: 28px; padding: 26px 22px 28px; border: 1px solid rgba(255, 255, 255, .08);
+  background: radial-gradient(90% 120% at 100% 0%, rgba(139, 92, 255, .2), transparent 60%), linear-gradient(135deg, rgba(47, 107, 255, .16), rgba(22, 22, 23, .9)); }
+.ps .k { display: block; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #86868b; margin-bottom: 8px; }
+.ps p { font-size: 17px; line-height: 1.5; color: #a1a1a6; }
+.ps em { color: #f5f5f7; }
+.ps-btn { margin-top: 18px; display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 20px; border-radius: 999px; font-size: 16px; font-weight: 600; color: #2997ff; background: rgba(41, 151, 255, .12); box-shadow: inset 0 0 0 1px rgba(41, 151, 255, .35); transition: background .2s, color .2s; }
+.ps-btn:hover { background: var(--blue); color: #fff; }
+.ps-btn svg { width: 16px; height: 16px; flex: none; }
+.p-foot { margin-top: 36px; text-align: center; font-size: 12px; line-height: 1.6; color: #6e6e73; }
+.p-foot nav { margin-top: 4px; }
+.p-foot a { display: inline-block; padding: 8px 6px; color: #86868b; }
+.p-foot a:hover { color: #f5f5f7; text-decoration: underline; }
+
+/* motion */
+.fade { animation: fadeUp .6s var(--ease-out) both; }
+.s1 { animation-delay: .1s; } .s2 { animation-delay: .25s; } .s3 { animation-delay: .4s; } .s4 { animation-delay: .55s; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .fade, .p-hero .emo, #successView .emo { animation: none; }
+  #submitFeedbackBtn .animate-spin { animation-duration: 2s; }
+}
+@media (min-width: 600px) {
+  .p-wrap { padding-top: 24px; }
+  .card { padding: 36px 36px 38px; }
+  .ps { padding: 30px 36px 32px; }
+  .star-btn { width: 60px; height: 60px; font-size: 44px; }
+}
+</style>
 </head>
-<body class="bg-brand-darkBg text-gray-300 min-h-screen relative overflow-x-hidden">
+<body>
+<div class="glow" aria-hidden="true"></div>
 
-    <!-- Ambient background blobs -->
-    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div class="absolute w-96 h-96 bg-blue-600/10 rounded-full blur-3xl -top-32 -left-32 animate-blob"></div>
-        <div class="absolute w-80 h-80 bg-purple-600/10 rounded-full blur-3xl top-1/2 -right-20 animate-blob" style="animation-delay:2.5s"></div>
-        <div class="absolute w-72 h-72 bg-teal-500/8 rounded-full blur-3xl bottom-0 left-1/3 animate-blob" style="animation-delay:4.5s"></div>
-    </div>
+<div class="p-wrap">
 
-    <div class="max-w-lg mx-auto px-5 py-10 pb-20">
+  <!-- ─── HEADER (wordmark only) ─── -->
+  <header class="p-top fade">
+    <a href="/" aria-label="CommuteAds home">Commute<span>Ads</span></a>
+  </header>
 
-        <!-- ─── HERO ─────────────────────────────────────────── -->
-        <section class="text-center mb-14 section-fade s1">
+  <main>
+    <!-- ─── HERO ─── -->
+    <section class="p-hero fade s1">
+      <div class="emo" aria-hidden="true">🎯</div>
+      <h1>Wow, you actually scanned it!</h1>
+      <p>10 points for your hand-eye coordination in this traffic.</p>
+    </section>
 
-            <!-- CommuteAds wordmark -->
-            <div class="mb-8">
-                <a href="/" class="inline-block font-black text-2xl text-white tracking-tight">Commute<span class="text-brand-accent">Ads</span></a>
-            </div>
+    <!-- ─── WHO WE ARE ─── -->
+    <section class="p-section fade s2">
+      <div class="card">
+        <div class="p-head">
+          <span class="ico" aria-hidden="true">👋</span>
+          <h2>Who We Are</h2>
+        </div>
+        <div class="who">
+          <p>If you're reading this, our tablet did exactly what it was supposed to do — cure your boredom.</p>
+          <p>We are <b>CommuteAds</b>. We looked at standard cab rides and thought, <em>"Staring at the back of a driver's head for 45 minutes is not a vibe."</em> So, we installed these screens to upgrade your journey.</p>
+          <p>We're here to bring you <span class="hl-blue">bite-sized daily news</span>, <span class="hl-teal">quick weather updates</span> (because you never know when the Hyderabad monsoon will surprise you), a few <span class="hl-yellow">cartoons to lower your blood pressure</span> in traffic, and yes, some sleek ads to keep the whole network running.</p>
+          <p class="sign">Basically, we are your visual travel companion. 🚗✨</p>
+        </div>
+      </div>
+    </section>
 
-            <!-- Floating emoji -->
-            <div class="text-6xl mb-5 animate-float select-none">🎯</div>
+    <!-- ─── FEEDBACK ─── -->
+    <section class="p-section fade s3" id="feedbackSection">
+      <!-- .bg-brand-darkCard is the hook the script hides after a successful submit -->
+      <div class="card bg-brand-darkCard">
+        <div class="p-head">
+          <span class="ico" aria-hidden="true">⭐</span>
+          <h2>Rate Your Screen Experience</h2>
+        </div>
+        <p class="p-sub">Now that we're officially travel buddies, we need a solid favour.</p>
 
-            <h1 class="text-3xl md:text-4xl font-black text-white leading-tight mb-3">
-                Wow, you actually scanned it!
-            </h1>
-            <p class="text-gray-400 text-base leading-relaxed max-w-sm mx-auto">
-                10 points for your hand-eye coordination in this traffic.
-            </p>
-        </section>
+        <!-- 5-Star Rating -->
+        <div class="block rate">
+          <p class="lbl">How was it today?</p>
+          <div id="starRow" role="group" aria-label="Star rating">
+            <button type="button" class="star-btn" data-star="1" aria-label="1 star" onclick="setStars(1)">☆</button>
+            <button type="button" class="star-btn" data-star="2" aria-label="2 stars" onclick="setStars(2)">☆</button>
+            <button type="button" class="star-btn" data-star="3" aria-label="3 stars" onclick="setStars(3)">☆</button>
+            <button type="button" class="star-btn" data-star="4" aria-label="4 stars" onclick="setStars(4)">☆</button>
+            <button type="button" class="star-btn" data-star="5" aria-label="5 stars" onclick="setStars(5)">☆</button>
+          </div>
+          <p id="starLabel" aria-live="polite"></p>
+          <p id="starError" class="err hidden" role="alert">Please tap a star rating first.</p>
+        </div>
 
-        <!-- ─── WHO WE ARE ────────────────────────────────────── -->
-        <section class="mb-14 section-fade s2">
-            <div class="bg-brand-darkCard border border-brand-darkBorder rounded-2xl p-6 md:p-8">
-                <div class="flex items-center gap-3 mb-5">
-                    <span class="text-2xl">👋</span>
-                    <h2 class="text-lg font-black text-white">Who We Are</h2>
-                </div>
-                <div class="space-y-4 text-gray-400 text-sm leading-relaxed">
-                    <p>If you're reading this, our tablet did exactly what it was supposed to do — cure your boredom.</p>
-                    <p>We are <span class="text-white font-bold">CommuteAds</span>. We looked at standard cab rides and thought, <em>"Staring at the back of a driver's head for 45 minutes is not a vibe."</em> So, we installed these screens to upgrade your journey.</p>
-                    <p>We're here to bring you <span class="text-blue-400 font-semibold">bite-sized daily news</span>, <span class="text-teal-400 font-semibold">quick weather updates</span> (because you never know when the Hyderabad monsoon will surprise you), a few <span class="text-yellow-400 font-semibold">cartoons to lower your blood pressure</span> in traffic, and yes, some sleek ads to keep the whole network running.</p>
-                    <p class="text-white font-semibold">Basically, we are your visual travel companion. 🚗✨</p>
-                </div>
-            </div>
-        </section>
+        <!-- Quick Tags -->
+        <div class="block">
+          <p class="lbl">Quick Thoughts <span class="opt">(tap one)</span></p>
+          <div id="tagGroup">
+            <button type="button" class="tag-chip" data-tag="loved" onclick="selectTag(this)">🍿 Loved the content!</button>
+            <button type="button" class="tag-chip" data-tag="cartoons" onclick="selectTag(this)">📺 Needs more cartoons.</button>
+            <button type="button" class="tag-chip" data-tag="news" onclick="selectTag(this)">📰 Give me more news.</button>
+            <button type="button" class="tag-chip" data-tag="ads" onclick="selectTag(this)">🥱 Too many ads.</button>
+            <button type="button" class="tag-chip" data-tag="technical" onclick="selectTag(this)">🔧 Screen was acting weird.</button>
+          </div>
+        </div>
 
-        <!-- ─── FEEDBACK ──────────────────────────────────────── -->
-        <section class="mb-14 section-fade s3" id="feedbackSection">
-            <div class="bg-brand-darkCard border border-brand-darkBorder rounded-2xl p-6 md:p-8">
-                <div class="flex items-center gap-3 mb-2">
-                    <span class="text-2xl">⭐</span>
-                    <h2 class="text-lg font-black text-white">Rate Your Screen Experience</h2>
-                </div>
-                <p class="text-gray-500 text-sm mb-7">Now that we're officially travel buddies, we need a solid favour.</p>
+        <!-- Comment (optional) -->
+        <div class="block">
+          <label class="lbl" for="feedbackComment">Got More to Say? <span class="opt">(Optional)</span></label>
+          <textarea id="feedbackComment" class="field" rows="3" placeholder="Spill the tea. What should we add to the screens next?"></textarea>
+        </div>
 
-                <!-- 5-Star Rating -->
-                <div class="text-center mb-7">
-                    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">How was it today?</p>
-                    <div class="flex justify-center gap-2" id="starRow" role="group" aria-label="Star rating">
-                        <button type="button" class="star-btn" data-star="1" aria-label="1 star" onclick="setStars(1)">☆</button>
-                        <button type="button" class="star-btn" data-star="2" aria-label="2 stars" onclick="setStars(2)">☆</button>
-                        <button type="button" class="star-btn" data-star="3" aria-label="3 stars" onclick="setStars(3)">☆</button>
-                        <button type="button" class="star-btn" data-star="4" aria-label="4 stars" onclick="setStars(4)">☆</button>
-                        <button type="button" class="star-btn" data-star="5" aria-label="5 stars" onclick="setStars(5)">☆</button>
-                    </div>
-                    <p id="starLabel" class="text-xs text-gray-600 mt-2 h-4 transition-all"></p>
-                    <p id="starError" class="text-red-400 text-xs mt-1 hidden">Please tap a star rating first.</p>
-                </div>
+        <!-- Email (optional) -->
+        <div class="block">
+          <label class="lbl" for="feedbackEmail">Your Email <span class="opt">(Optional — if you want us to get back to you)</span></label>
+          <input type="email" id="feedbackEmail" class="field" placeholder="you@example.com" autocomplete="email" inputmode="email">
+          <p id="emailError" class="err hidden" role="alert">Please enter a valid email address.</p>
+        </div>
 
-                <!-- Quick Tags -->
-                <div class="mb-7">
-                    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Quick Thoughts <span class="text-gray-600 font-normal normal-case">(tap one)</span></p>
-                    <div class="flex flex-wrap gap-2" id="tagGroup">
-                        <button type="button" class="tag-chip px-3 py-2 rounded-xl text-sm font-semibold text-gray-400 border-brand-darkBorder bg-brand-darkBg" data-tag="loved" onclick="selectTag(this)">🍿 Loved the content!</button>
-                        <button type="button" class="tag-chip px-3 py-2 rounded-xl text-sm font-semibold text-gray-400 border-brand-darkBorder bg-brand-darkBg" data-tag="cartoons" onclick="selectTag(this)">📺 Needs more cartoons.</button>
-                        <button type="button" class="tag-chip px-3 py-2 rounded-xl text-sm font-semibold text-gray-400 border-brand-darkBorder bg-brand-darkBg" data-tag="news" onclick="selectTag(this)">📰 Give me more news.</button>
-                        <button type="button" class="tag-chip px-3 py-2 rounded-xl text-sm font-semibold text-gray-400 border-brand-darkBorder bg-brand-darkBg" data-tag="ads" onclick="selectTag(this)">🥱 Too many ads.</button>
-                        <button type="button" class="tag-chip px-3 py-2 rounded-xl text-sm font-semibold text-gray-400 border-brand-darkBorder bg-brand-darkBg" data-tag="technical" onclick="selectTag(this)">🔧 Screen was acting weird.</button>
-                    </div>
-                </div>
+        <!-- Submit -->
+        <button type="button" id="submitFeedbackBtn" onclick="submitFeedback()">Submit Feedback →</button>
+        <p id="feedbackStatus" class="hidden" role="alert"></p>
+      </div>
 
-                <!-- Comment (optional) -->
-                <div class="mb-6">
-                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Got More to Say? <span class="text-gray-600 font-normal normal-case">(Optional)</span></label>
-                    <textarea id="feedbackComment" rows="3" placeholder="Spill the tea. What should we add to the screens next?"
-                        class="w-full bg-brand-darkBg border border-brand-darkBorder rounded-xl p-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent resize-none transition-all"></textarea>
-                </div>
+      <!-- Success State -->
+      <div id="successView" class="card" role="status">
+        <div class="emo" aria-hidden="true">🙌</div>
+        <h3>You're a legend.</h3>
+        <p>Thanks for the honest feedback. It genuinely helps us make the ride better for everyone. See you on the next commute!</p>
+      </div>
+    </section>
 
-                <!-- Email (optional) -->
-                <div class="mb-7">
-                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Your Email <span class="text-gray-600 font-normal normal-case">(Optional — if you want us to get back to you)</span></label>
-                    <input type="email" id="feedbackEmail" placeholder="you@example.com"
-                        class="w-full bg-brand-darkBg border border-brand-darkBorder rounded-xl p-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition-all">
-                    <p id="emailError" class="text-red-400 text-xs mt-1.5 hidden">Please enter a valid email address.</p>
-                </div>
+    <!-- ─── SOFT PITCH ─── -->
+    <section class="p-section fade s4">
+      <div class="ps">
+        <p><span class="k">P.S.</span>Are you a local business owner sitting in the back of this cab thinking, <em>"Hey, I want my brand on that screen"?</em></p>
+        <a class="ps-btn" href="/advertise">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          Let's talk. Advertise with us.
+        </a>
+      </div>
+    </section>
+  </main>
 
-                <!-- Submit -->
-                <button type="button" id="submitFeedbackBtn" onclick="submitFeedback()"
-                    class="w-full bg-gradient-to-r from-brand-accent to-blue-600 text-white font-bold py-4 rounded-xl hover:from-blue-600 hover:to-brand-accent transition-all duration-300 shadow-lg hover:shadow-brand-accent/40 active:scale-95 text-sm tracking-wide">
-                    Submit Feedback →
-                </button>
-                <p id="feedbackStatus" class="text-center text-xs text-red-400 mt-3 hidden"></p>
-            </div>
+  <footer class="p-foot">
+    <p>© 2026 CommuteAds Private Limited · Hyderabad, India</p>
+    <nav aria-label="Legal"><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a></nav>
+  </footer>
 
-            <!-- Success State -->
-            <div id="successView" class="hidden flex-col items-center justify-center text-center py-10 px-6 bg-brand-darkCard border border-brand-darkBorder rounded-2xl mt-4">
-                <div class="text-5xl mb-4 animate-float">🙌</div>
-                <h3 class="text-xl font-black text-white mb-2">You're a legend.</h3>
-                <p class="text-gray-400 text-sm max-w-xs">Thanks for the honest feedback. It genuinely helps us make the ride better for everyone. See you on the next commute!</p>
-            </div>
-        </section>
-
-        <!-- ─── SOFT PITCH FOOTER ─────────────────────────────── -->
-        <section class="section-fade s4">
-            <div class="border border-brand-darkBorder rounded-2xl p-6 bg-gradient-to-br from-blue-950/30 to-purple-950/20">
-                <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                    <span class="text-gray-500 font-bold text-xs uppercase tracking-widest block mb-2">P.S.</span>
-                    Are you a local business owner sitting in the back of this cab thinking, <em>"Hey, I want my brand on that screen"?</em>
-                </p>
-                <a href="/advertise"
-                    class="inline-flex items-center gap-2 bg-brand-accent/10 border border-brand-accent/30 text-brand-accent hover:bg-brand-accent hover:text-white transition-all duration-200 font-bold text-sm px-5 py-3 rounded-xl">
-                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                    Let's talk. Advertise with us.
-                </a>
-            </div>
-
-            <p class="text-center text-xs text-gray-700 mt-8">© 2026 CommuteAds Private Limited · Hyderabad, India</p>
-        </section>
-
-    </div>
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
