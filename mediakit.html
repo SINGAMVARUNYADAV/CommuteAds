@@ -9,11 +9,11 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="CommuteAds">
 <meta property="og:title" content="CommuteAds — Media Kit">
-<meta property="og:description" content="CommuteAds media kit: audience, routes, screen specs and CPM rates for in-cab digital advertising across Hyderabad.">
+<meta property="og:description" content="CommuteAds media kit: audience, routes and screen specs for in-cab digital advertising across Hyderabad.">
 <meta property="og:url" content="https://commuteads.com/mediakit">
 <meta property="og:image" content="https://commuteads.com/edited-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="description" content="CommuteAds media kit: audience, routes, screen specs and CPM rates for in-cab digital advertising across Hyderabad.">
+<meta name="description" content="CommuteAds media kit: audience, routes and screen specs for in-cab digital advertising across Hyderabad.">
 <link rel="canonical" href="https://commuteads.com/mediakit">
 <link rel="stylesheet" href="/assets/site.css">
 <script src="/analytics.js" defer></script>
@@ -103,16 +103,6 @@
   .mk-calc input[type="range"]::-moz-range-thumb { width: 28px; height: 28px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 .5px 4px rgba(0, 0, 0, .12), 0 6px 13px rgba(0, 0, 0, .12), 0 0 0 .5px rgba(0, 0, 0, .06); }
   .mk-calc input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4px rgba(0, 113, 227, .35), 0 6px 13px rgba(0, 0, 0, .12); }
   .sov-marks { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 8px; font-variant-numeric: tabular-nums; }
-  .fleet-options { display: flex; flex-direction: column; gap: 10px; }
-  .fleet-opt { display: flex; align-items: center; gap: 14px; cursor: pointer; border-radius: 14px; padding: 15px 18px; box-shadow: inset 0 0 0 1px var(--line); transition: box-shadow .2s, background .2s; }
-  .fleet-opt::before { content: ""; flex: none; width: 20px; height: 20px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px #b0b0b8; transition: box-shadow .2s; }
-  .fleet-opt:hover { box-shadow: inset 0 0 0 1px #86868b; }
-  .fleet-opt.active { box-shadow: inset 0 0 0 2px var(--blue); background: rgba(0, 113, 227, .04); }
-  .fleet-opt.active::before { box-shadow: inset 0 0 0 6px var(--blue); }
-  .fleet-opt:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-  .fleet-opt .name { flex: 1; font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
-  .fleet-opt .cpm-tag { font-size: 14px; color: var(--muted); white-space: nowrap; }
-  .fleet-opt.active .cpm-tag { color: var(--blue); }
   .calc-results { display: flex; flex-direction: column; justify-content: center; gap: 28px; background: var(--bg-alt); border-radius: var(--radius-lg); padding: clamp(24px, 3.4vw, 44px); }
   .result-card + .result-card { padding-top: 28px; border-top: 1px solid var(--line); }
   .result-card .lbl { font-size: 14px; font-weight: 600; color: var(--muted); }
@@ -198,7 +188,7 @@
       <li><a href="/#hostels">Hostels</a></li>
       <li><a href="/#buses">Buses</a></li>
       <li><a href="/#results">Results</a></li>
-      <li><a href="/advertise">Pricing</a></li>
+      <li><a href="/advertise">Pre-book</a></li>
       <li><a href="/mediakit" aria-current="page">Media Kit</a></li>
       <li><a href="/contact">Contact</a></li>
     </ul>
@@ -209,7 +199,7 @@
     </div>
   </div>
   <nav class="gmenu" id="gmenu" data-menu aria-label="Menu">
-    <a href="/#in-cab">In-Cab</a><a href="/#billboards">Billboards</a><a href="/#hostels">Hostels</a><a href="/#buses">Buses</a><a href="/#results">Results</a><a href="/advertise">Pricing</a><a href="/mediakit" aria-current="page">Media Kit</a><a href="/contact">Contact</a><a href="https://app.commuteads.com/fleet/login?as=customer">Advertiser Login</a>
+    <a href="/#in-cab">In-Cab</a><a href="/#billboards">Billboards</a><a href="/#hostels">Hostels</a><a href="/#buses">Buses</a><a href="/#results">Results</a><a href="/advertise">Pre-book</a><a href="/mediakit" aria-current="page">Media Kit</a><a href="/contact">Contact</a><a href="https://app.commuteads.com/fleet/login?as=customer">Advertiser Login</a>
   </nav>
 </header>
 
@@ -219,8 +209,6 @@
     <a class="title" href="#top">Media Kit</a>
     <nav aria-label="On this page">
       <a class="lk" href="#inventory">Audience</a>
-      <a class="lk" href="#pricing">Packages</a>
-      <a class="lk" href="#calculator">Calculator</a>
       <a class="btn-buy" href="/advertise">Pre-book</a>
     </nav>
   </div>
@@ -315,126 +303,8 @@
     </div>
 
     <p class="mk-note rv">
-      <strong>Reach</strong> = unique riders exposed to the screen each month. <strong>Impressions</strong> = every ad slot × the 4 passengers watching it, since a single 15-second play is seen by everyone in the cab at once. Impressions is the figure used for CPM pricing below.
+      <strong>Reach</strong> = unique riders exposed to the screen each month. <strong>Impressions</strong> = every ad slot × the 4 passengers watching it, since a single 15-second play is seen by everyone in the cab at once.
     </p>
-  </div>
-</section>
-
-<!-- ─────────────── Packages ─────────────── -->
-<section class="section light" id="pricing" aria-labelledby="pr-title">
-  <div class="wrap-wide center">
-    <span class="eyebrow rv">Pricing</span>
-    <h2 class="headline md rv" id="pr-title" data-split>Three packages, by audience</h2>
-    <p class="intro" data-scrub>Priced at 20% Share-of-Voice — <strong>roughly 1 in every 5 ad slots is yours.</strong> Higher SOV, longer durations, and combined segments available on request.</p>
-
-    <div class="plans">
-      <div class="plan rv">
-        <span class="tagline">Starter</span>
-        <h3>Uber / Ola / Rapido</h3>
-        <p class="audience">General daily commuters, city-wide</p>
-        <div class="price">₹<span data-count="80">80</span> <small>CPM</small></div>
-        <div class="mk-rows">
-          <div class="row"><span>Impressions (20% SOV)</span><b>14,28,480</b></div>
-          <div class="row"><span>Monthly cost</span></div>
-          <div class="cost">₹1,14,278</div>
-        </div>
-        <a class="btn btn-primary" href="/advertise">Pre-book</a>
-      </div>
-
-      <div class="plan featured rv d1">
-        <span class="tagline">Growth</span>
-        <h3>Corporate Fleet</h3>
-        <p class="audience">Tech &amp; corporate professionals — Hitec City, Gachibowli</p>
-        <div class="price">₹<span data-count="150">150</span> <small>CPM</small></div>
-        <div class="mk-rows">
-          <div class="row"><span>Impressions (20% SOV)</span><b>14,28,480</b></div>
-          <div class="row"><span>Monthly cost</span></div>
-          <div class="cost">₹2,14,272</div>
-        </div>
-        <a class="btn btn-primary" href="/advertise">Pre-book</a>
-      </div>
-
-      <div class="plan rv d2">
-        <span class="tagline">Premium</span>
-        <h3>Airport Fleet</h3>
-        <p class="audience">HNIs &amp; frequent flyers</p>
-        <div class="price">₹<span data-count="250">250</span> <small>CPM</small></div>
-        <div class="mk-rows">
-          <div class="row"><span>Impressions (20% SOV)</span><b>14,28,480</b></div>
-          <div class="row"><span>Monthly cost</span></div>
-          <div class="cost">₹3,57,120</div>
-        </div>
-        <a class="btn btn-primary" href="/advertise">Pre-book</a>
-      </div>
-    </div>
-
-    <div class="mk-sov rv">
-      <div>
-        <h3>What 20% SOV looks like</h3>
-        <p>Each cab plays <strong>96 ad slots an hour</strong>. At 20% SOV, roughly <strong>1 in every 5 slots</strong> is your ad — about <strong>19 plays per hour, per cab</strong>, across all 100 cabs simultaneously. The rest of the inventory runs other brands' campaigns.</p>
-      </div>
-      <div>
-        <div class="slot-row" id="slotRow" aria-hidden="true"></div>
-      </div>
-    </div>
-
-    <p class="note-line rv">Digital Billboards, Hostel Screens and Bus Screens are also open for pre-booking. <a class="more" href="/#closer-look" style="font-size:14px">See all formats</a></p>
-  </div>
-</section>
-
-<!-- ─────────────── Calculator ─────────────── -->
-<section class="section alt" id="calculator" aria-labelledby="ca-title">
-  <div class="wrap-wide center">
-    <span class="eyebrow rv">Calculator</span>
-    <h2 class="headline md rv" id="ca-title" data-split>What does your budget get you?</h2>
-    <p class="intro" data-scrub>Set an amount and a fleet segment — see the reach and impressions it delivers.</p>
-
-    <div class="mk-calc calc-box rv">
-      <div class="calc-inputs">
-        <label class="mk-label" for="amountInput">Monthly budget (₹)</label>
-        <div class="amount-field">
-          <span>₹</span>
-          <input type="number" id="amountInput" value="100000" min="0" step="1000">
-        </div>
-
-        <div class="sov-slider-wrap">
-          <div class="sov-slider-head">
-            <label class="mk-label" for="sovSlider">Share of Voice (SOV)</label>
-            <span class="sov-val" id="sovVal">20%</span>
-          </div>
-          <input type="range" id="sovSlider" min="1" max="100" value="20" style="--fill:20%">
-          <div class="sov-marks"><span>1%</span><span>50%</span><span>100%</span></div>
-        </div>
-
-        <span class="mk-label" id="fleetLabel">Fleet segment</span>
-        <div class="fleet-options" id="fleetOptions" role="radiogroup" aria-labelledby="fleetLabel">
-          <div class="fleet-opt active" data-cpm="80" data-name="Starter — Uber / Ola / Rapido" role="radio" aria-checked="true" tabindex="0">
-            <span class="name">Starter — Uber / Ola / Rapido</span>
-            <span class="cpm-tag">₹80 CPM</span>
-          </div>
-          <div class="fleet-opt" data-cpm="150" data-name="Growth — Corporate Fleet" role="radio" aria-checked="false" tabindex="-1">
-            <span class="name">Growth — Corporate Fleet</span>
-            <span class="cpm-tag">₹150 CPM</span>
-          </div>
-          <div class="fleet-opt" data-cpm="250" data-name="Premium — Airport Fleet" role="radio" aria-checked="false" tabindex="-1">
-            <span class="name">Premium — Airport Fleet</span>
-            <span class="cpm-tag">₹250 CPM</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="calc-results">
-        <div class="result-card accent">
-          <div class="lbl">Impressions delivered</div>
-          <div class="val" id="outImpressions">0</div>
-        </div>
-        <div class="result-card">
-          <div class="lbl">Unique riders reached</div>
-          <div class="val" id="outReach">0</div>
-        </div>
-        <div class="calc-note">Budget and SOV are linked — adjust either one, and the other updates to match. Based on 96 avg ad slots seen per rider across a ride cycle, and a fixed 100-cab total inventory. Figures assume sufficient inventory is available at the time of booking.</div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -444,7 +314,7 @@
     <h2 class="headline sm rv" id="bd-title" data-split>Contact for bookings &amp; custom packages</h2>
     <p class="mk-band-links rv d1"><a href="mailto:connect@commuteads.com">connect@commuteads.com</a> &nbsp;·&nbsp; <a href="https://commuteads.com">commuteads.com</a></p>
     <div class="cta-row on-dark rv d1" style="margin-top:30px"><a class="btn btn-primary" href="/advertise">Pre-book</a><a class="btn btn-secondary" href="/contact">Talk to us</a></div>
-    <p class="fdate rv d2">Rates and inventory current as of [DATE] — subject to change as fleet size grows.</p>
+    <p class="fdate rv d2">Inventory current as of [DATE] — subject to change as the fleet grows.</p>
   </div>
 </section>
 
@@ -454,13 +324,13 @@
 <footer class="gfoot">
   <div class="wrap">
     <div class="notes">
-      <p>Verified views are plays recorded while a passenger was confirmed present in the seat. In-cab rates are per 1,000 verified views; the minimum daily budget is ₹1,000.</p>
+      <p>Verified views are plays recorded while a passenger was confirmed present in the seat.</p>
       <p>Digital Billboards, Hostel Screens and Bus Screens are open for pre-booking and are not yet installed; their images are illustrative.</p>
     </div>
     <div class="crumbs"><b>CommuteAds</b> › Media Kit</div>
     <div class="cols">
       <div><h4>Advertise</h4><ul><li><a href="/#in-cab">In-Cab Screens</a></li><li><a href="/#billboards">Digital Billboards</a></li><li><a href="/#hostels">Hostel Screens</a></li><li><a href="/#buses">Bus Screens</a></li></ul></div>
-      <div><h4>Plan</h4><ul><li><a href="/advertise">Pricing &amp; pre-book</a></li><li><a href="/mediakit">Media kit</a></li><li><a href="/#how-it-works">How it works</a></li><li><a href="/#faq">FAQ</a></li></ul></div>
+      <div><h4>Plan</h4><ul><li><a href="/advertise">Pre-book</a></li><li><a href="/mediakit">Media kit</a></li><li><a href="/#how-it-works">How it works</a></li><li><a href="/#faq">FAQ</a></li></ul></div>
       <div><h4>Account</h4><ul><li><a href="https://app.commuteads.com/fleet/login?as=customer">Advertiser Login</a></li><li><a href="/#results">Dashboard</a></li></ul></div>
       <div><h4>Company</h4><ul><li><a href="/contact">Contact us</a></li><li><a href="/contact">Partner with us</a></li><li><a href="https://www.linkedin.com/company/commuteads/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.instagram.com/commuteads.in/" target="_blank" rel="noopener">Instagram</a></li></ul></div>
       <div><h4>Contact</h4><ul><li><a href="mailto:connect@commuteads.com">connect@commuteads.com</a></li><li>Hyderabad, Telangana, India</li></ul></div>
@@ -509,91 +379,6 @@
     }, {threshold:0.5});
     counters.forEach(c => io.observe(c));
   }
-
-  // SOV slot row: 25 slots, 5 highlighted (20%)
-  const row = document.getElementById('slotRow');
-  for(let i=0;i<25;i++){
-    const s = document.createElement('div');
-    s.className = 'slot' + (i % 5 === 0 ? ' mine' : '');
-    row.appendChild(s);
-  }
-
-  // Calculator — budget and SOV are two-way linked via fixed fleet capacity
-  const TOTAL_CAPACITY_IMPRESSIONS = 7142400; // 100% SOV, 100-cab network, monthly
-  const IMPRESSIONS_PER_RIDER = 96;
-
-  const amountInput = document.getElementById('amountInput');
-  const sovSlider = document.getElementById('sovSlider');
-  const sovVal = document.getElementById('sovVal');
-  const fleetOpts = document.querySelectorAll('.fleet-opt');
-  const outImpressions = document.getElementById('outImpressions');
-  const outReach = document.getElementById('outReach');
-  const num = n => Math.round(n).toLocaleString('en-IN');
-
-  let selectedCpm = 80;
-  let updating = false; // guard against feedback loops
-
-  function renderFromSov(sovPercent){
-    const impressions = TOTAL_CAPACITY_IMPRESSIONS * (sovPercent/100);
-    const reach = impressions / IMPRESSIONS_PER_RIDER;
-    const cost = (impressions/1000) * selectedCpm;
-    outImpressions.textContent = num(impressions);
-    outReach.textContent = num(reach);
-    return cost;
-  }
-
-  function onSovChange(){
-    if(updating) return;
-    updating = true;
-    const sov = parseFloat(sovSlider.value);
-    sovVal.textContent = sov + '%';
-    sovSlider.style.setProperty('--fill', sov + '%');
-    const cost = renderFromSov(sov);
-    amountInput.value = Math.round(cost);
-    updating = false;
-  }
-
-  function onAmountChange(){
-    if(updating) return;
-    updating = true;
-    const amount = parseFloat(amountInput.value) || 0;
-    const impressions = (amount / selectedCpm) * 1000;
-    let sov = (impressions / TOTAL_CAPACITY_IMPRESSIONS) * 100;
-    sov = Math.max(1, Math.min(100, sov));
-    sovSlider.value = sov;
-    sovVal.textContent = Math.round(sov) + '%';
-    sovSlider.style.setProperty('--fill', sov + '%');
-    renderFromSov(sov);
-    updating = false;
-  }
-
-  fleetOpts.forEach(opt => {
-    opt.addEventListener('click', () => {
-      fleetOpts.forEach(o => o.classList.remove('active'));
-      opt.classList.add('active');
-      selectedCpm = parseFloat(opt.dataset.cpm);
-      onSovChange(); // recompute cost for current SOV at new CPM
-    });
-  });
-
-  sovSlider.addEventListener('input', onSovChange);
-  amountInput.addEventListener('input', onAmountChange);
-  onSovChange(); // initial render
-
-  // Fleet segment as an accessible radio group (keyboard + ARIA state); selection itself is the click handler above
-  const fleetList = Array.prototype.slice.call(fleetOpts);
-  fleetList.forEach((opt, i) => {
-    opt.addEventListener('click', () => {
-      fleetList.forEach(o => { const on = o === opt; o.setAttribute('aria-checked', String(on)); o.tabIndex = on ? 0 : -1; });
-    });
-    opt.addEventListener('keydown', (e) => {
-      let next = null;
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); opt.click(); return; }
-      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = fleetList[(i + 1) % fleetList.length];
-      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = fleetList[(i - 1 + fleetList.length) % fleetList.length];
-      if (next) { e.preventDefault(); next.click(); next.focus(); }
-    });
-  });
 
   // "Save as PDF": the browser's print dialog, styled by the @media print rules above
   const printBtn = document.querySelector('[data-print]');
