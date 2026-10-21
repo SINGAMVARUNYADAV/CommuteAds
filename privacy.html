@@ -1,63 +1,138 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en-IN" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy | CommuteAds</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <script src="/analytics.js" defer></script>
-    <meta name="description" content="How CommuteAds Private Limited collects, uses and protects advertiser and website visitor data.">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://commuteads.com/privacy">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="CommuteAds">
-    <meta property="og:title" content="Privacy Policy | CommuteAds">
-    <meta property="og:description" content="How CommuteAds Private Limited collects, uses and protects advertiser and website visitor data.">
-    <meta property="og:url" content="https://commuteads.com/privacy">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: { extend: {
-                colors: { brand: { lightBg:'#f8fafc', lightCard:'#ffffff', lightBorder:'#e2e8f0', darkBg:'#09090b', darkCard:'#141417', darkBorder:'#27272a', accent:'#3b82f6' } },
-                fontFamily: { sans: ['Inter','sans-serif'] }
-            } }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        .legal h2 { font-size:1.25rem; font-weight:700; margin-top:2.5rem; margin-bottom:.75rem; }
-        .legal h3 { font-size:1rem; font-weight:600; margin-top:1.5rem; margin-bottom:.5rem; }
-        .legal p, .legal li { line-height:1.75; font-size:.95rem; }
-        .legal p { margin-bottom:1rem; }
-        .legal ul { list-style:disc; padding-left:1.5rem; margin-bottom:1rem; }
-        .legal li { margin-bottom:.35rem; }
-        .legal a { color:#3b82f6; }
-        .legal a:hover { text-decoration:underline; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy | CommuteAds</title>
+<meta name="description" content="How CommuteAds Private Limited collects, uses and protects advertiser and website visitor data.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://commuteads.com/privacy">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CommuteAds">
+<meta property="og:title" content="Privacy Policy | CommuteAds">
+<meta property="og:description" content="How CommuteAds Private Limited collects, uses and protects advertiser and website visitor data.">
+<meta property="og:url" content="https://commuteads.com/privacy">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/analytics.js" defer></script>
+<script src="/assets/site.js" defer></script>
+<style>
+/* Legal pages (privacy, terms, refund-policy): identical block in each page.
+   Candidate for assets/site.css: .lnav.is-light, .lg-*, .toc */
+body { background: #fff; }
+.lnav.is-light { background: rgba(255, 255, 255, .82); color: var(--ink); border-bottom-color: rgba(0, 0, 0, .1); }
+.lnav.is-light nav a.lk { display: inline; opacity: .8; }
+.lnav.is-light nav a.lk:hover { opacity: 1; text-decoration: underline; }
+.lg-shell { width: min(1120px, calc(100% - 44px)); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 760px); justify-content: center; column-gap: 72px; padding: 80px 0 140px; }
+.lg-head { padding-bottom: 44px; border-bottom: 1px solid var(--line); }
+.lg-head .eyebrow { font-size: 21px; margin-bottom: 10px; }
+.lg-head h1 { font-size: clamp(40px, 6vw, 64px); font-weight: 600; line-height: 1.06; letter-spacing: -.015em; }
+.lg-head .updated { margin-top: 16px; font-size: 17px; color: var(--muted); }
+.lg-doc { font-size: 17px; line-height: 1.6; letter-spacing: -.016em; color: var(--ink); padding-top: 40px; }
+.lg-doc > p:first-child { font-size: 21px; line-height: 1.48; letter-spacing: .004em; color: var(--ink-2); margin-bottom: 8px; }
+.lg-doc h2 { font-size: 28px; font-weight: 600; line-height: 1.18; letter-spacing: .004em; margin: 56px 0 16px; scroll-margin-top: 84px; }
+.lg-doc h3 { font-size: 19px; font-weight: 600; line-height: 1.3; letter-spacing: .012em; margin: 28px 0 8px; }
+.lg-doc p { margin: 0 0 16px; }
+.lg-doc ul { padding-left: 1.25em; margin: 0 0 18px; }
+.lg-doc li { margin: 8px 0; padding-left: 4px; }
+.lg-doc li::marker { color: var(--muted-2); }
+.lg-doc strong { font-weight: 600; }
+.lg-doc a { color: var(--link); }
+.lg-doc a:hover { text-decoration: underline; }
+.lg-more { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: 17px; }
+.lg-more span { color: var(--muted); width: 100%; font-size: 14px; }
+.toc { display: none; }
+.gfoot .legal nav a[aria-current] { color: var(--ink); }
+@media (min-width: 1069px) {
+  .lg-shell { grid-template-columns: 220px minmax(0, 760px); }
+  .lg-head, .lg-doc { grid-column: 2; }
+  .toc { display: block; grid-column: 1; grid-row: 2; position: sticky; top: 92px; align-self: start; margin-top: 48px; font-size: 14px; line-height: 1.35; }
+  .toc p { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .02em; margin-bottom: 12px; }
+  .toc ol { list-style: none; border-left: 1px solid var(--line); }
+  .toc a { display: block; padding: 7px 0 7px 14px; margin-left: -1px; border-left: 2px solid transparent; color: var(--muted); transition: color .2s, border-color .2s; }
+  .toc a:hover { color: var(--ink); }
+  .toc a.on { color: var(--ink); border-left-color: var(--ink); }
+}
+@media (max-width: 833px) {
+  .lnav.is-light nav { gap: 16px; }
+  .lg-shell { padding: 56px 0 100px; }
+  .lg-doc h2 { font-size: 24px; margin-top: 48px; }
+  .lg-doc > p:first-child { font-size: 19px; }
+}
+@media (max-width: 600px) {
+  .lnav.is-light .title { font-size: 17px; }
+  .lnav.is-light .btn-buy { display: none; }
+}
+</style>
 </head>
-<body class="bg-brand-lightBg dark:bg-brand-darkBg text-gray-800 dark:text-gray-300 font-sans antialiased">
+<body>
+<a class="skip" href="#main">Skip to content</a>
 
-    <nav class="w-full fixed top-0 z-50 bg-white/80 dark:bg-[#09090b]/80 backdrop-blur-xl border-b border-brand-lightBorder dark:border-brand-darkBorder">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="/" class="font-bold text-xl text-gray-900 dark:text-white tracking-tight">Commute<span class="text-brand-accent">Ads</span></a>
-            <div class="flex items-center gap-4 text-sm font-medium">
-                <a href="/" class="hidden sm:inline text-gray-600 dark:text-gray-300 hover:text-brand-accent transition">Home</a>
-                <a href="https://app.commuteads.com/fleet/login?as=customer" class="hidden sm:inline text-gray-600 dark:text-gray-300 hover:text-brand-accent transition">Advertiser Login</a>
-                <a href="/advertise" class="bg-brand-accent text-white px-5 py-2 rounded-full hover:bg-blue-600 transition">Pre-Book Slot</a>
-            </div>
-        </div>
+<!-- ─────────────── Global navigation ─────────────── -->
+<header class="gnav">
+  <div class="wrap">
+    <a class="wordmark" href="/">Commute<span>Ads</span></a>
+    <ul>
+      <li><a href="/#in-cab">In-Cab</a></li>
+      <li><a href="/#billboards">Billboards</a></li>
+      <li><a href="/#hostels">Hostels</a></li>
+      <li><a href="/#buses">Buses</a></li>
+      <li><a href="/#results">Results</a></li>
+      <li><a href="/advertise">Pricing</a></li>
+      <li><a href="/mediakit">Media Kit</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+    <div class="end">
+      <button class="ed-pill" type="button" data-open-ed aria-haspopup="dialog">Commute<b>Ed</b></button>
+      <a class="hide-s" href="https://app.commuteads.com/fleet/login?as=customer">Advertiser Login</a>
+      <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="gmenu" data-burger><i></i></button>
+    </div>
+  </div>
+  <nav class="gmenu" id="gmenu" data-menu aria-label="Menu">
+    <a href="/#in-cab">In-Cab</a><a href="/#billboards">Billboards</a><a href="/#hostels">Hostels</a><a href="/#buses">Buses</a><a href="/#results">Results</a><a href="/advertise">Pricing</a><a href="/mediakit">Media Kit</a><a href="/contact">Contact</a><a href="https://app.commuteads.com/fleet/login?as=customer">Advertiser Login</a>
+  </nav>
+</header>
+
+<!-- ─────────────── Local navigation (sticky) ─────────────── -->
+<div class="lnav is-light">
+  <div class="wrap">
+    <a class="title" href="#top">Privacy Policy</a>
+    <nav aria-label="Other policies">
+      <a class="lk" href="/terms">Terms of Service</a>
+      <a class="lk" href="/refund-policy">Refund Policy</a>
+      <a class="btn-buy" href="/advertise">Pre-book</a>
     </nav>
+  </div>
+</div>
 
-    <main class="max-w-3xl mx-auto px-6 pt-32 pb-20">
-        <p class="text-xs font-bold uppercase tracking-widest text-brand-accent mb-3">Legal</p>
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">Privacy Policy</h1>
-        <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">Last updated: 30 September 2026</p>
-        <article class="legal mt-10 text-gray-700 dark:text-gray-300 [&_h2]:text-gray-900 dark:[&_h2]:text-white [&_h3]:text-gray-900 dark:[&_h3]:text-white">
+<main id="main">
+  <div class="lg-shell">
+    <header class="lg-head" id="top">
+      <span class="eyebrow">Legal</span>
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: 30 September 2026</p>
+    </header>
+    <nav class="toc" aria-label="On this page">
+      <p>On this page</p>
+      <ol>
+      <li><a href="#data-we-collect">1. Data we collect</a></li>
+      <li><a href="#how-we-use-your-data">2. How we use your data</a></li>
+      <li><a href="#sharing-your-data">3. Sharing your data</a></li>
+      <li><a href="#cookies">4. Cookies</a></li>
+      <li><a href="#data-storage-and-security">5. Data storage and security</a></li>
+      <li><a href="#how-long-we-keep-data">6. How long we keep data</a></li>
+      <li><a href="#your-rights">7. Your rights</a></li>
+      <li><a href="#children">8. Children</a></li>
+      <li><a href="#changes-to-this-policy">9. Changes to this policy</a></li>
+      <li><a href="#contact-and-grievance-officer">10. Contact and grievance officer</a></li>
+      </ol>
+    </nav>
+    <article class="lg-doc">
 
 <p>CommuteAds Private Limited ("CommuteAds", "we", "us") runs an in-cab digital advertising network in Hyderabad. This Privacy Policy explains what personal data we collect from advertisers and website visitors, how we use it, and the choices you have. We process personal data in line with the Digital Personal Data Protection Act, 2023 and the Information Technology Act, 2000 and its rules.</p>
 
-<h2>1. Data we collect</h2>
+<h2 id="data-we-collect">1. Data we collect</h2>
 <h3>From advertisers and account holders</h3>
 <ul>
 <li>Name, business name, email address, phone number and billing address</li>
@@ -74,7 +149,7 @@
 <h3>From cab passengers</h3>
 <p>Impression counts we report to advertisers are anonymous and aggregated; they never identify a passenger.</p>
 
-<h2>2. How we use your data</h2>
+<h2 id="how-we-use-your-data">2. How we use your data</h2>
 <ul>
 <li>To create and manage your account and run your campaigns</li>
 <li>To review creatives for quality and legal compliance</li>
@@ -85,7 +160,7 @@
 <li>To prevent fraud, secure our platform and meet legal obligations</li>
 </ul>
 
-<h2>3. Sharing your data</h2>
+<h2 id="sharing-your-data">3. Sharing your data</h2>
 <p>We do not sell personal data. We share it only with:</p>
 <ul>
 <li>Service providers who help us run the platform, such as hosting, database, email and payment providers, under confidentiality obligations</li>
@@ -93,40 +168,79 @@
 <li>A buyer or successor if our business is merged or sold, under the same protections</li>
 </ul>
 
-<h2>4. Cookies</h2>
+<h2 id="cookies">4. Cookies</h2>
 <p>We use essential cookies to keep you signed in and, where enabled, Google Analytics cookies to understand how the site is used (pages visited and whether a form was submitted; never what you typed into it). You can block or delete cookies in your browser settings; some features may not work without them.</p>
 
-<h2>5. Data storage and security</h2>
+<h2 id="data-storage-and-security">5. Data storage and security</h2>
 <p>We use encryption in transit, access controls and reputable cloud providers to protect your data. Some providers may store data outside India; where they do, we rely on safeguards permitted under Indian law. No system is completely secure, so please keep your password safe.</p>
 
-<h2>6. How long we keep data</h2>
+<h2 id="how-long-we-keep-data">6. How long we keep data</h2>
 <p>We keep account and campaign data while your account is active. Billing and tax records are kept for the period required by Indian tax law (currently at least eight years). We delete or anonymise other data when it is no longer needed.</p>
 
-<h2>7. Your rights</h2>
+<h2 id="your-rights">7. Your rights</h2>
 <p>You can ask us to access, correct, update or erase your personal data, withdraw consent, or nominate someone to exercise your rights. Email <a href="mailto:connect@commuteads.com">connect@commuteads.com</a> and we will respond within a reasonable time.</p>
 
-<h2>8. Children</h2>
+<h2 id="children">8. Children</h2>
 <p>Our services are for businesses and are not directed at anyone under 18. We do not knowingly collect data from children.</p>
 
-<h2>9. Changes to this policy</h2>
+<h2 id="changes-to-this-policy">9. Changes to this policy</h2>
 <p>We may update this policy from time to time. The "Last updated" date above shows when it last changed. Significant changes will be notified by email or on the dashboard.</p>
 
-<h2>10. Contact and grievance officer</h2>
+<h2 id="contact-and-grievance-officer">10. Contact and grievance officer</h2>
 <p>For privacy questions or complaints, contact our Grievance Officer:</p>
 <p>Grievance Officer, CommuteAds Private Limited<br>Hyderabad, Telangana, India<br>Email: <a href="mailto:connect@commuteads.com">connect@commuteads.com</a></p>
 
-        </article>
-    </main>
+        
 
-    <footer class="border-t border-brand-lightBorder dark:border-brand-darkBorder">
-        <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 dark:text-gray-400">
-            <p>&copy; 2026 CommuteAds Private Limited &middot; Hyderabad, Telangana, India</p>
-            <div class="flex items-center gap-3">
-                <a href="/privacy" class="hover:text-brand-accent transition">Privacy Policy</a><span>&middot;</span>
-                <a href="/terms" class="hover:text-brand-accent transition">Terms of Service</a><span>&middot;</span>
-                <a href="/refund-policy" class="hover:text-brand-accent transition">Refund Policy</a>
-            </div>
-        </div>
-    </footer>
+      <div class="lg-more"><span>More from CommuteAds Legal</span><a class="more" href="/terms">Terms of Service</a><a class="more" href="/refund-policy">Refund Policy</a></div>
+    </article>
+  </div>
+</main>
+
+<!-- ─────────────── Footer ─────────────── -->
+<footer class="gfoot">
+  <div class="wrap">
+    <div class="crumbs"><a href="/"><b>CommuteAds</b></a> › Legal › Privacy Policy</div>
+    <div class="cols">
+      <div><h4>Advertise</h4><ul><li><a href="/#in-cab">In-Cab Screens</a></li><li><a href="/#billboards">Digital Billboards</a></li><li><a href="/#hostels">Hostel Screens</a></li><li><a href="/#buses">Bus Screens</a></li></ul></div>
+      <div><h4>Plan</h4><ul><li><a href="/advertise">Pricing &amp; pre-book</a></li><li><a href="/mediakit">Media kit</a></li><li><a href="/#how-it-works">How it works</a></li><li><a href="/#faq">FAQ</a></li></ul></div>
+      <div><h4>Account</h4><ul><li><a href="https://app.commuteads.com/fleet/login?as=customer">Advertiser Login</a></li><li><a href="/#results">Dashboard</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="/contact">Contact us</a></li><li><a href="/contact">Partner with us</a></li><li><a href="https://www.linkedin.com/company/commuteads/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.instagram.com/commuteads.in/" target="_blank" rel="noopener">Instagram</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="mailto:connect@commuteads.com">connect@commuteads.com</a></li><li>Hyderabad, Telangana, India</li></ul></div>
+    </div>
+    <div class="legal">
+      <span>Copyright © 2026 CommuteAds Private Limited. CIN U73100TS2026PTC223598. All rights reserved.</span>
+      <nav aria-label="Legal"><a href="/privacy" aria-current="page">Privacy Policy</a><a href="/terms">Terms of Service</a><a href="/refund-policy">Refund Policy</a></nav>
+    </div>
+  </div>
+</footer>
+
+<!-- CommuteEd: coming soon -->
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="ed-title" data-ed-modal>
+  <div class="box">
+    <div class="logo">Commute<span>Ed</span></div>
+    <h3 id="ed-title">Coming soon.</h3>
+    <p>Learning on the move: bite-sized lessons for every ride. We're building something new.</p>
+    <button class="btn btn-primary" type="button" data-close-ed>Got it</button>
+  </div>
+</div>
+<script>
+/* "On this page": mark the section being read (legal pages). */
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  if (!links.length || !('IntersectionObserver' in window)) return;
+  var map = {};
+  links.forEach(function (a) { map[a.hash.slice(1)] = a; });
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting || !map[e.target.id]) return;
+      links.forEach(function (a) { a.classList.remove('on'); a.removeAttribute('aria-current'); });
+      map[e.target.id].classList.add('on');
+      map[e.target.id].setAttribute('aria-current', 'location');
+    });
+  }, { rootMargin: '-90px 0px -65% 0px' });
+  Object.keys(map).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+})();
+</script>
 </body>
 </html>

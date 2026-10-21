@@ -97,17 +97,18 @@
 <main id="main">
 
 <!-- ─────────────── Hero ─────────────── -->
-<section class="hero" id="top">
+<section class="hero" id="top" data-scroll="hero">
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
   <h1 class="product rv"><span>CommuteAds</span></h1>
   <p class="kicker rv d1">Advertising that moves with the city.</p>
-  <div class="hero-stage zoom" aria-hidden="true">
+  <div class="hero-stage zoom" aria-hidden="true"><div class="floaty">
     <div class="headrest"></div>
-    <div class="tablet"><div class="screen">
+    <div class="tablet"><div class="sheen"></div><div class="screen">
       <div class="slide s-brand"><div class="wm">Commute<span>Ads</span></div><div class="small">Your brand, at eye level.</div></div>
       <div class="slide s-1"><span class="presence">Passenger present</span><div class="tag">Sponsored</div><div class="big">Weekend health<br>check-up offer.</div><div class="small">Scan to book in seconds.</div><div class="qr"></div></div>
       <div class="slide s-3"><span class="presence">Passenger present</span><div class="tag">Sponsored</div><div class="big">Your next customer<br>is riding with us.</div><div class="small">In-cab screens across Hyderabad.</div><div class="qr"></div></div>
     </div></div>
-  </div>
+  </div></div>
   <div class="hero-foot">
     <div class="wrap">
       <h2 class="headline sm rv">Cabs. Billboards. Hostels. Buses.<br><span class="grad">One campaign, every screen.</span></h2>
@@ -120,10 +121,16 @@
   </div>
 </section>
 
+<!-- ─────────────── Moving city band ─────────────── -->
+<section class="ticker" aria-label="Neighbourhoods we cover and plan to cover">
+  <div class="lane"><span>Gachibowli<i> ●</i></span><span class="hl">Hitec City<i> ●</i></span><span>Financial District<i> ●</i></span><span>Jubilee Hills<i> ●</i></span><span>Madhapur<i> ●</i></span><span class="hl">RGIA Airport<i> ●</i></span><span>Kondapur<i> ●</i></span><span>Banjara Hills<i> ●</i></span><span aria-hidden="true">Gachibowli<i> ●</i></span><span aria-hidden="true" class="hl">Hitec City<i> ●</i></span><span aria-hidden="true">Financial District<i> ●</i></span><span aria-hidden="true">Jubilee Hills<i> ●</i></span><span aria-hidden="true">Madhapur<i> ●</i></span><span aria-hidden="true" class="hl">RGIA Airport<i> ●</i></span><span aria-hidden="true">Kondapur<i> ●</i></span><span aria-hidden="true">Banjara Hills<i> ●</i></span></div>
+  <div class="lane" aria-hidden="true"><span>KPHB<i> ●</i></span><span class="hl">Ameerpet<i> ●</i></span><span>Miyapur<i> ●</i></span><span>Secunderabad<i> ●</i></span><span>Begumpet<i> ●</i></span><span>Kukatpally<i> ●</i></span><span>Dilsukhnagar<i> ●</i></span><span>Ayyappa Society<i> ●</i></span><span aria-hidden="true">KPHB<i> ●</i></span><span aria-hidden="true" class="hl">Ameerpet<i> ●</i></span><span aria-hidden="true">Miyapur<i> ●</i></span><span aria-hidden="true">Secunderabad<i> ●</i></span><span aria-hidden="true">Begumpet<i> ●</i></span><span aria-hidden="true">Kukatpally<i> ●</i></span><span aria-hidden="true">Dilsukhnagar<i> ●</i></span><span aria-hidden="true">Ayyappa Society<i> ●</i></span></div>
+</section>
+
 <!-- ─────────────── Get the highlights ─────────────── -->
 <section class="section dark tight" id="highlights" aria-labelledby="hl-title">
   <div class="wrap-wide gallery-head">
-    <h2 class="headline sm rv" id="hl-title">Get the highlights.</h2>
+    <h2 class="headline sm rv" id="hl-title" data-split>Get the highlights.</h2>
     <a class="more rv" href="/mediakit">Download the media kit</a>
   </div>
   <div class="gallery" data-gallery data-interval="5500" aria-roledescription="carousel" aria-label="Highlights">
@@ -167,7 +174,7 @@
 <!-- ─────────────── Take a closer look ─────────────── -->
 <section class="section alt" id="closer-look" aria-labelledby="cl-title">
   <div class="wrap-wide center">
-    <h2 class="headline sm rv" id="cl-title">Take a closer look.</h2>
+    <h2 class="headline sm rv" id="cl-title" data-split>Take a closer look.</h2>
     <div class="viewer rv" data-viewer>
       <div class="stage">
         <div class="pane on" id="pv-cab" role="tabpanel" aria-labelledby="tab-cab">
@@ -216,21 +223,26 @@
   <div class="wrap center">
     <span class="status live rv">Live now</span>
     <span class="eyebrow rv" style="margin-top:22px">In-Cab Screens</span>
-    <h2 class="headline rv" id="cab-title">The captive<br>audience.</h2>
-    <p class="intro rv">Interactive tablets on the back of cab headrests across Hyderabad. <strong>Your ad plays when a passenger is in the seat</strong>, at eye level, for the whole ride. <strong>A QR code on every ad</strong> takes them straight to your offer.</p>
+    <h2 class="headline rv" id="cab-title" data-split>The captive<br>audience.</h2>
+    <p class="intro" data-scrub>Interactive tablets on the back of cab headrests across Hyderabad. <strong>Your ad plays when a passenger is in the seat</strong>, at eye level, for the whole ride. <strong>A QR code on every ad</strong> takes them straight to your offer.</p>
   </div>
   <div class="wrap-wide chapter-media">
-    <div class="photo zoom"><div class="incab"><img src="/media/suite/incab-818.jpg" alt="A CommuteAds tablet mounted on the back of a cab headrest" loading="lazy" decoding="async"><div class="screen" aria-hidden="true"><div class="slide s-brand"><div class="wm">Commute<span>Ads</span></div></div><div class="slide s-1"><span class="presence">Passenger present</span><div class="tag">Sponsored</div><div class="big">Your brand,<br>at eye level.</div><div class="qr"></div></div><div class="slide s-3"><div class="tag">News · Hyderabad</div><div class="big">Top stories<br>for the ride.</div></div></div></div></div>
+    <div class="photo zoom" data-parallax><div class="incab"><img src="/media/suite/incab-818.jpg" alt="A CommuteAds tablet mounted on the back of a cab headrest" loading="lazy" decoding="async"><div class="screen" aria-hidden="true"><div class="slide s-brand"><div class="wm">Commute<span>Ads</span></div></div><div class="slide s-1"><span class="presence">Passenger present</span><div class="tag">Sponsored</div><div class="big">Your brand,<br>at eye level.</div><div class="qr"></div></div><div class="slide s-3"><div class="tag">News · Hyderabad</div><div class="big">Top stories<br>for the ride.</div></div></div></div></div>
   </div>
   <div class="wrap-wide">
     <div class="bento">
-      <div class="tile rv"><span class="k">A typical ride</span><span class="num grad-blue">30–60 min</span><p>of a commuter's attention, at eye level.</p></div>
+      <div class="tile rv"><span class="k">A typical ride</span><span class="num grad-blue"><span data-count="30">30</span>–<span data-count="60">60</span> min</span><p>of a commuter's attention, at eye level.</p></div>
       <div class="tile rv d1"><span class="k">Blind views</span><span class="num grad-blue">Zero</span><p>Each screen checks that someone is actually in the back seat before your ad counts.</p></div>
       <div class="tile rv d2"><span class="k">Skip button</span><span class="num grad-blue">None</span><p>Locked-down tablets. Passengers can't skip, mute or close your ad.</p></div>
-      <div class="tile span-2 rv">
-        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-        <h3>Live across Hyderabad's busiest routes.</h3>
-        <div class="areas"><span>Gachibowli</span><span>Financial District</span><span>Hitec City</span><span>Jubilee Hills</span><span>Madhapur</span><span>RGIA Airport corridor</span></div>
+      <div class="tile span-2 map-tile rv">
+        <div class="map">
+          <svg data-live viewBox="0 0 1000 430" role="img" aria-label="Illustrative map: cabs moving between Gachibowli, Hitec City, Madhapur, Jubilee Hills, the Financial District and RGIA Airport">
+            <defs><linearGradient id="roadGrad" x1="0" x2="1"><stop offset="0" stop-color="#6e9bff"/><stop offset="1" stop-color="#c3a6ff"/></linearGradient></defs>
+            <path id="r1" class="road" d="M330,118 C380,128 410,145 452,150 S560,104 604,108"/><path id="r2" class="road" d="M250,232 C270,190 300,150 330,118"/><path id="r3" class="road" d="M176,322 C200,290 225,262 250,232"/><path id="r4" class="road" d="M176,322 C360,425 640,425 826,372"/><path id="r5" class="road" d="M604,108 C700,170 765,262 826,372"/><path class="road-glow" d="M330,118 C380,128 410,145 452,150 S560,104 604,108"/><path class="road-glow" d="M250,232 C270,190 300,150 330,118"/><path class="road-glow" d="M176,322 C200,290 225,262 250,232"/><path class="road-glow" d="M176,322 C360,425 640,425 826,372"/><path class="road-glow" d="M604,108 C700,170 765,262 826,372"/><g class="hub"><circle class="ring" cx="330" cy="118" r="9"/><circle class="core" cx="330" cy="118" r="6"/><text x="316" y="106" text-anchor="end">Hitec City</text></g><g class="hub"><circle class="ring" cx="452" cy="150" r="9"/><circle class="core" cx="452" cy="150" r="6"/><text x="466" y="172" text-anchor="start">Madhapur</text></g><g class="hub"><circle class="ring" cx="604" cy="108" r="9"/><circle class="core" cx="604" cy="108" r="6"/><text x="618" y="100" text-anchor="start">Jubilee Hills</text></g><g class="hub"><circle class="ring" cx="250" cy="232" r="9"/><circle class="core" cx="250" cy="232" r="6"/><text x="236" y="238" text-anchor="end">Gachibowli</text></g><g class="hub"><circle class="ring" cx="176" cy="322" r="9"/><circle class="core" cx="176" cy="322" r="6"/><text x="162" y="328" text-anchor="end">Financial District</text></g><g class="hub"><circle class="ring" cx="826" cy="372" r="9"/><circle class="core" cx="826" cy="372" r="6"/><text x="810" y="358" text-anchor="end">RGIA Airport</text></g><circle class="cab" r="6"><animateMotion dur="9s" begin="0s" repeatCount="indefinite"><mpath href="#r4"/></animateMotion></circle><circle class="cab" r="6"><animateMotion dur="6s" begin="-2s" repeatCount="indefinite"><mpath href="#r1"/></animateMotion></circle><circle class="cab" r="6"><animateMotion dur="4s" begin="-1s" repeatCount="indefinite"><mpath href="#r2"/></animateMotion></circle><circle class="cab" r="6"><animateMotion dur="7s" begin="-3s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#r5"/></animateMotion></circle><circle class="cab" r="6"><animateMotion dur="3.5s" begin="-1s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#r3"/></animateMotion></circle><circle class="cab" r="6"><animateMotion dur="11s" begin="-6s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#r4"/></animateMotion></circle><circle class="cab" r="6"><animateMotion dur="7.5s" begin="-5s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#r1"/></animateMotion></circle>
+          </svg>
+          <span class="illus">Illustrative map</span>
+        </div>
+        <div class="cap-row"><h3>Live across Hyderabad's busiest routes.</h3><div class="areas"><span>Gachibowli</span><span>Financial District</span><span>Hitec City</span><span>Jubilee Hills</span><span>Madhapur</span><span>RGIA Airport corridor</span></div></div>
       </div>
       <div class="tile rv d1">
         <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg></span>
@@ -246,11 +258,11 @@
   <div class="wrap center">
     <span class="status soon rv">Pre-booking open</span>
     <span class="eyebrow rv" style="margin-top:22px">Digital Billboards</span>
-    <h2 class="headline rv" id="bb-title">Impossible<br>to miss.</h2>
-    <p class="intro rv">High-brightness LED boards on Hyderabad's busiest corridors. <strong>Change your creative in minutes</strong>, <strong>schedule it by the hour</strong>, and see exactly when it ran.</p>
+    <h2 class="headline rv" id="bb-title" data-split>Impossible<br>to miss.</h2>
+    <p class="intro" data-scrub>High-brightness LED boards on Hyderabad's busiest corridors. <strong>Change your creative in minutes</strong>, <strong>schedule it by the hour</strong>, and see exactly when it ran.</p>
   </div>
   <div class="wrap-wide chapter-media">
-    <div class="photo zoom"><picture><source media="(max-width:700px)" srcset="/media/suite/billboard-800.jpg"><img src="/media/suite/billboard-1408.jpg" alt="Digital billboard showing CommuteAds above evening traffic at a Gachibowli junction" loading="lazy" decoding="async" style="aspect-ratio:1408/768"></picture><span class="illus">Illustrative image</span></div>
+    <div class="photo zoom" data-parallax><picture><source media="(max-width:700px)" srcset="/media/suite/billboard-800.jpg"><img src="/media/suite/billboard-1408.jpg" alt="Digital billboard showing CommuteAds above evening traffic at a Gachibowli junction" loading="lazy" decoding="async" style="aspect-ratio:1408/768"></picture><span class="illus">Illustrative image</span></div>
   </div>
   <div class="wrap-wide">
     <div class="bento">
@@ -267,11 +279,11 @@
   <div class="wrap center">
     <span class="status soon rv">Pre-booking open</span>
     <span class="eyebrow rv" style="margin-top:22px">Hostel Screens</span>
-    <h2 class="headline rv" id="ho-title">Where young<br>Hyderabad lives.</h2>
-    <p class="intro rv">Screens in the lobbies and dining halls of hostels and PGs. <strong>Students and early-career professionals, every single day</strong>, at breakfast, at dinner and in the evening wind-down.</p>
+    <h2 class="headline rv" id="ho-title" data-split>Where young<br>Hyderabad lives.</h2>
+    <p class="intro" data-scrub>Screens in the lobbies and dining halls of hostels and PGs. <strong>Students and early-career professionals, every single day</strong>, at breakfast, at dinner and in the evening wind-down.</p>
   </div>
   <div class="wrap-wide chapter-media">
-    <div class="photo zoom"><picture><source media="(max-width:700px)" srcset="/media/suite/hostel-dining-800.jpg"><img src="/media/suite/hostel-dining-1408.jpg" alt="Students in a hostel dining hall with a CommuteAds screen on the wall" loading="lazy" decoding="async" style="aspect-ratio:1408/768"></picture><span class="illus">Illustrative image</span></div>
+    <div class="photo zoom" data-parallax><picture><source media="(max-width:700px)" srcset="/media/suite/hostel-dining-800.jpg"><img src="/media/suite/hostel-dining-1408.jpg" alt="Students in a hostel dining hall with a CommuteAds screen on the wall" loading="lazy" decoding="async" style="aspect-ratio:1408/768"></picture><span class="illus">Illustrative image</span></div>
   </div>
   <div class="wrap-wide">
     <div class="bento">
@@ -287,11 +299,12 @@
   <div class="wrap center">
     <span class="status soon rv">Pre-booking open</span>
     <span class="eyebrow rv" style="margin-top:22px">Bus Screens</span>
-    <h2 class="headline rv" id="bu-title">Every stop<br>is a moment.</h2>
-    <p class="intro rv">The screen passengers already watch for the next stop now carries your message. <strong>Timed to the route</strong>, so the right ad plays near the right place.</p>
+    <h2 class="headline rv" id="bu-title" data-split>Every stop<br>is a moment.</h2>
+    <p class="intro" data-scrub>The screen passengers already watch for the next stop now carries your message. <strong>Timed to the route</strong>, so the right ad plays near the right place.</p>
+    <div class="stops rv" aria-hidden="true"><small>Next stop</small><div class="roll"><ul><li>KPHB Colony</li><li>JNTU</li><li>Miyapur</li><li>Ameerpet</li><li>Dilsukhnagar</li><li>Secunderabad</li><li>Kondapur</li></ul></div></div>
   </div>
   <div class="wrap-wide chapter-media">
-    <div class="photo zoom"><picture><source media="(max-width:700px)" srcset="/media/suite/bus-800.jpg"><img src="/media/suite/bus-1408.jpg" alt="Inside a city bus with screens showing the next stop and a CommuteAds message" loading="lazy" decoding="async" style="aspect-ratio:1408/768"></picture><span class="illus">Illustrative image</span></div>
+    <div class="photo zoom" data-parallax><picture><source media="(max-width:700px)" srcset="/media/suite/bus-800.jpg"><img src="/media/suite/bus-1408.jpg" alt="Inside a city bus with screens showing the next stop and a CommuteAds message" loading="lazy" decoding="async" style="aspect-ratio:1408/768"></picture><span class="illus">Illustrative image</span></div>
   </div>
   <div class="wrap-wide">
     <div class="bento">
@@ -307,8 +320,8 @@
 <section class="section light" id="results" aria-labelledby="rs-title">
   <div class="wrap center">
     <span class="eyebrow rv">Results</span>
-    <h2 class="headline md rv" id="rs-title">Every screen.<br>One dashboard.</h2>
-    <p class="intro rv">Plan once and run everywhere. Then see what actually played: <strong>when, where and how often</strong>. Real proof of play, not estimated reach.</p>
+    <h2 class="headline md rv" id="rs-title" data-split>Every screen.<br>One dashboard.</h2>
+    <p class="intro" data-scrub>Plan once and run everywhere. Then see what actually played: <strong>when, where and how often</strong>. Real proof of play, not estimated reach.</p>
   </div>
   <div class="wrap">
     <div class="dash zoom" aria-hidden="true">
@@ -317,7 +330,7 @@
         <div class="kpi"><small>Verified plays</small><b>Every play logged</b></div>
         <div class="kpi"><small>Where it ran</small><b>Time + location</b></div>
         <div class="kpi"><small>QR scans</small><b>Tracked</b></div>
-        <div class="chart"><svg viewBox="0 0 600 170" preserveAspectRatio="none"><defs><linearGradient id="cf" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#2f6bff" stop-opacity=".22"/><stop offset="1" stop-color="#2f6bff" stop-opacity="0"/></linearGradient></defs><path d="M0,140 C60,128 90,86 150,96 C210,106 240,52 300,62 C360,72 390,30 450,40 C510,50 540,34 600,22 L600,170 L0,170Z" fill="url(#cf)"/><path d="M0,140 C60,128 90,86 150,96 C210,106 240,52 300,62 C360,72 390,30 450,40 C510,50 540,34 600,22" fill="none" stroke="#2f6bff" stroke-width="3"/></svg></div>
+        <div class="chart"><svg viewBox="0 0 600 170" preserveAspectRatio="none"><defs><linearGradient id="cf" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#2f6bff" stop-opacity=".22"/><stop offset="1" stop-color="#2f6bff" stop-opacity="0"/></linearGradient></defs><path class="area" d="M0,140 C60,128 90,86 150,96 C210,106 240,52 300,62 C360,72 390,30 450,40 C510,50 540,34 600,22 L600,170 L0,170Z" fill="url(#cf)"/><path class="line" d="M0,140 C60,128 90,86 150,96 C210,106 240,52 300,62 C360,72 390,30 450,40 C510,50 540,34 600,22" fill="none" stroke="#2f6bff" stroke-width="3"/><circle class="dot" cx="598" cy="23" r="5" fill="#2f6bff"/></svg></div>
       </div>
     </div>
     <div class="cta-row chapter-cta rv"><a class="more" href="https://app.commuteads.com/fleet/login?as=customer">Sign in to your dashboard</a></div>
@@ -328,28 +341,28 @@
 <section class="section alt" id="pricing" aria-labelledby="pr-title">
   <div class="wrap-wide center">
     <span class="eyebrow rv">In-Cab pricing</span>
-    <h2 class="headline md rv" id="pr-title">Choose your<br>audience.</h2>
-    <p class="intro rv">You pay per 1,000 verified views: <strong>times a passenger was confirmed in the seat.</strong></p>
+    <h2 class="headline md rv" id="pr-title" data-split>Choose your<br>audience.</h2>
+    <p class="intro" data-scrub>You pay per 1,000 verified views: <strong>times a passenger was confirmed in the seat.</strong></p>
     <div class="plans">
-      <div class="plan rv">
+      <div data-tilt class="plan rv">
         <span class="tagline">Everyday commuters</span>
         <h3>Uber, Ola &amp; Rapido</h3>
         <p>Daily urban commuters in high-frequency ride-hailing fleets.</p>
-        <div class="price">₹150<small>per 1,000 verified views</small></div>
+        <div class="price">₹<span data-count="150">150</span><small>per 1,000 verified views</small></div>
         <a class="btn btn-primary" href="/advertise">Pre-book</a>
       </div>
-      <div class="plan rv d1">
+      <div data-tilt class="plan rv d1">
         <span class="tagline">Tech corridors</span>
         <h3>Corporate Executives</h3>
         <p>White-collar professionals on the Hitec City and Financial District runs.</p>
-        <div class="price">₹250 – ₹300<small>per 1,000 verified views</small></div>
+        <div class="price">₹<span data-count="250">250</span> – ₹<span data-count="300">300</span><small>per 1,000 verified views</small></div>
         <a class="btn btn-primary" href="/advertise">Pre-book</a>
       </div>
-      <div class="plan featured rv d2">
+      <div data-tilt class="plan featured rv d2">
         <span class="tagline">Elite reach</span>
         <h3>Airport Transfers</h3>
         <p>Business and international travellers to and from RGIA.</p>
-        <div class="price">₹400 – ₹450<small>per 1,000 verified views</small></div>
+        <div class="price">₹<span data-count="400">400</span> – ₹<span data-count="450">450</span><small>per 1,000 verified views</small></div>
         <a class="btn btn-primary" href="/advertise">Pre-book</a>
       </div>
     </div>
@@ -360,11 +373,11 @@
 <!-- ─────────────── How it works ─────────────── -->
 <section class="section light" id="how-it-works" aria-labelledby="hw-title">
   <div class="wrap-wide center">
-    <h2 class="headline md rv" id="hw-title">From brief to live,<br>in three steps.</h2>
+    <h2 class="headline md rv" id="hw-title" data-split>From brief to live,<br>in three steps.</h2>
     <div class="steps">
-      <div class="step rv"><div class="n">01</div><h3>Choose your screens</h3><p>Cabs today; billboards, hostels and buses on pre-booking. Pick your audience and budget.</p></div>
-      <div class="step rv d1"><div class="n">02</div><h3>Upload your ad</h3><p>A 10- or 20-second video. We review every creative within 24–48 hours so your brand always looks right.</p></div>
-      <div class="step rv d2"><div class="n">03</div><h3>Watch it run</h3><p>Track verified plays, locations and QR scans in your dashboard, and pause any time.</p></div>
+      <div data-tilt class="step rv"><div class="n">01</div><h3>Choose your screens</h3><p>Cabs today; billboards, hostels and buses on pre-booking. Pick your audience and budget.</p></div>
+      <div data-tilt class="step rv d1"><div class="n">02</div><h3>Upload your ad</h3><p>A 10- or 20-second video. We review every creative within 24–48 hours so your brand always looks right.</p></div>
+      <div data-tilt class="step rv d2"><div class="n">03</div><h3>Watch it run</h3><p>Track verified plays, locations and QR scans in your dashboard, and pause any time.</p></div>
     </div>
   </div>
 </section>
@@ -372,15 +385,15 @@
 <!-- ─────────────── Why CommuteAds ─────────────── -->
 <section class="section alt why" aria-labelledby="wy-title" data-carousel>
   <div class="wrap-wide">
-    <h2 class="headline sm rv" id="wy-title">Why advertise with CommuteAds.</h2>
+    <h2 class="headline sm rv" id="wy-title" data-split>Why advertise with CommuteAds.</h2>
   </div>
   <div class="track" tabindex="0" aria-label="Reasons to advertise with CommuteAds">
-    <article class="why-card"><span class="ico" style="background:linear-gradient(135deg,#30d158,#0f9d58)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><h3>Zero blind views.</h3><p>Your ad only counts when a passenger is confirmed in the seat.</p></article>
-    <article class="why-card"><span class="ico" style="background:linear-gradient(135deg,#ff6a3d,#ff2d87)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M10 18h4"/></svg></span><h3>Unskippable.</h3><p>Locked-down tablets: passengers can't skip, mute or close your ad.</p></article>
-    <article class="why-card"><span class="ico" style="background:linear-gradient(135deg,#2f6bff,#8b5cff)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-6"/></svg></span><h3>Real-time dashboard.</h3><p>See how many people saw your ad today. Full transparency, zero guesswork.</p></article>
-    <article class="why-card"><span class="ico" style="background:linear-gradient(135deg,#ff9f0a,#ff6a00)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><h3>Hyper-local.</h3><p>Choose tech parks, neighbourhoods or the airport corridor to reach the right crowd.</p></article>
-    <article class="why-card"><span class="ico" style="background:linear-gradient(135deg,#14b8a6,#0f766e)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></span><h3>Change ads anytime.</h3><p>Update your video remotely, without waiting days for a print run.</p></article>
-    <article class="why-card"><span class="ico" style="background:linear-gradient(135deg,#1d1d1f,#55555c)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6"/></svg></span><h3>A registered company.</h3><p>Work directly with CommuteAds Private Limited, with a proper invoice for every campaign.</p></article>
+    <article data-tilt class="why-card"><span class="ico" style="background:linear-gradient(135deg,#30d158,#0f9d58)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><h3>Zero blind views.</h3><p>Your ad only counts when a passenger is confirmed in the seat.</p></article>
+    <article data-tilt class="why-card"><span class="ico" style="background:linear-gradient(135deg,#ff6a3d,#ff2d87)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M10 18h4"/></svg></span><h3>Unskippable.</h3><p>Locked-down tablets: passengers can't skip, mute or close your ad.</p></article>
+    <article data-tilt class="why-card"><span class="ico" style="background:linear-gradient(135deg,#2f6bff,#8b5cff)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-6"/></svg></span><h3>Real-time dashboard.</h3><p>See how many people saw your ad today. Full transparency, zero guesswork.</p></article>
+    <article data-tilt class="why-card"><span class="ico" style="background:linear-gradient(135deg,#ff9f0a,#ff6a00)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><h3>Hyper-local.</h3><p>Choose tech parks, neighbourhoods or the airport corridor to reach the right crowd.</p></article>
+    <article data-tilt class="why-card"><span class="ico" style="background:linear-gradient(135deg,#14b8a6,#0f766e)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></span><h3>Change ads anytime.</h3><p>Update your video remotely, without waiting days for a print run.</p></article>
+    <article data-tilt class="why-card"><span class="ico" style="background:linear-gradient(135deg,#1d1d1f,#55555c)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6"/></svg></span><h3>A registered company.</h3><p>Work directly with CommuteAds Private Limited, with a proper invoice for every campaign.</p></article>
   </div>
   <div class="paddles"><button type="button" data-prev aria-label="Previous">‹</button><button type="button" data-next aria-label="Next">›</button></div>
 </section>
@@ -388,15 +401,15 @@
 <!-- ─────────────── Who advertises ─────────────── -->
 <section class="section light" aria-labelledby="wa-title">
   <div class="wrap-wide center">
-    <h2 class="headline md rv" id="wa-title">Who advertises<br>with us.</h2>
-    <p class="intro rv">Local businesses and brands that want <strong>Hyderabad's commuters to notice them.</strong></p>
+    <h2 class="headline md rv" id="wa-title" data-split>Who advertises<br>with us.</h2>
+    <p class="intro" data-scrub>Local businesses and brands that want <strong>Hyderabad's commuters to notice them.</strong></p>
     <div class="uses">
-      <div class="use rv"><div class="emo" aria-hidden="true">🏢</div><h3>Real estate &amp; villas</h3><p>Put a launch in front of professionals riding through Gachibowli, the Financial District and Hitec City.</p><div class="fit">Best fit: Corporate</div></div>
-      <div class="use rv d1"><div class="emo" aria-hidden="true">💪</div><h3>Gyms &amp; fitness studios</h3><p>Reach daily commuters near your location with an opening offer they can scan from the seat.</p><div class="fit">Best fit: Uber, Ola &amp; Rapido</div></div>
-      <div class="use rv d2"><div class="emo" aria-hidden="true">🩺</div><h3>Clinics &amp; diagnostics</h3><p>Promote health check-ups and weekend offers to families and working professionals.</p><div class="fit">Best fit: Uber, Ola &amp; Rapido</div></div>
-      <div class="use rv"><div class="emo" aria-hidden="true">🏨</div><h3>Hotels &amp; restaurants</h3><p>Welcome business travellers on the RGIA corridor before they decide where to stay or eat.</p><div class="fit">Best fit: Airport</div></div>
-      <div class="use rv d1"><div class="emo" aria-hidden="true">🛍️</div><h3>Retail &amp; D2C brands</h3><p>Launch a product or festive sale to a captive audience, with a QR straight to your store.</p><div class="fit">Best fit: Any audience</div></div>
-      <div class="use rv d2"><div class="emo" aria-hidden="true">🎓</div><h3>Education &amp; coaching</h3><p>Reach students and young professionals with admissions, courses and upskilling programmes.</p><div class="fit">Best fit: Hostels, cabs</div></div>
+      <div data-tilt class="use rv"><div class="emo" aria-hidden="true">🏢</div><h3>Real estate &amp; villas</h3><p>Put a launch in front of professionals riding through Gachibowli, the Financial District and Hitec City.</p><div class="fit">Best fit: Corporate</div></div>
+      <div data-tilt class="use rv d1"><div class="emo" aria-hidden="true">💪</div><h3>Gyms &amp; fitness studios</h3><p>Reach daily commuters near your location with an opening offer they can scan from the seat.</p><div class="fit">Best fit: Uber, Ola &amp; Rapido</div></div>
+      <div data-tilt class="use rv d2"><div class="emo" aria-hidden="true">🩺</div><h3>Clinics &amp; diagnostics</h3><p>Promote health check-ups and weekend offers to families and working professionals.</p><div class="fit">Best fit: Uber, Ola &amp; Rapido</div></div>
+      <div data-tilt class="use rv"><div class="emo" aria-hidden="true">🏨</div><h3>Hotels &amp; restaurants</h3><p>Welcome business travellers on the RGIA corridor before they decide where to stay or eat.</p><div class="fit">Best fit: Airport</div></div>
+      <div data-tilt class="use rv d1"><div class="emo" aria-hidden="true">🛍️</div><h3>Retail &amp; D2C brands</h3><p>Launch a product or festive sale to a captive audience, with a QR straight to your store.</p><div class="fit">Best fit: Any audience</div></div>
+      <div data-tilt class="use rv d2"><div class="emo" aria-hidden="true">🎓</div><h3>Education &amp; coaching</h3><p>Reach students and young professionals with admissions, courses and upskilling programmes.</p><div class="fit">Best fit: Hostels, cabs</div></div>
     </div>
   </div>
 </section>
@@ -404,7 +417,7 @@
 <!-- ─────────────── Keep exploring ─────────────── -->
 <section class="section alt" aria-labelledby="ke-title">
   <div class="wrap-wide center">
-    <h2 class="headline sm rv" id="ke-title">Keep exploring CommuteAds.</h2>
+    <h2 class="headline sm rv" id="ke-title" data-split>Keep exploring CommuteAds.</h2>
     <div class="explore">
       <div class="fmt rv"><a class="thumb" href="#in-cab" aria-label="In-Cab Screens"><div class="incab"><img src="/media/suite/incab-818.jpg" alt="" loading="lazy" decoding="async"><div class="screen" aria-hidden="true"><div class="slide s-brand"><div class="wm">Commute<span>Ads</span></div></div><div class="slide s-1"><div class="big">Your brand.</div></div><div class="slide s-3"><div class="big">At eye level.</div></div></div></div></a><span class="status live">Live now</span><h3>In-Cab Screens</h3><p>30–60 unskippable minutes at eye level.</p><span class="from">From ₹150 / 1,000 views</span><a class="btn btn-primary" href="/advertise">Book</a></div>
       <div class="fmt rv d1"><a class="thumb" href="#billboards" aria-label="Digital Billboards"><img src="/media/suite/billboard-800.jpg" alt="" loading="lazy" decoding="async"></a><span class="status soon">Pre-booking</span><h3>Digital Billboards</h3><p>Big, bright and on the roads that matter.</p><span class="from">Pricing on request</span><a class="btn btn-secondary" href="/advertise">Pre-book</a></div>
@@ -432,7 +445,7 @@
 <!-- ─────────────── Closing band ─────────────── -->
 <section class="band" aria-labelledby="bd-title">
   <div class="wrap">
-    <h2 class="headline rv" id="bd-title">Your brand.<br><span class="grad">Every screen.</span></h2>
+    <h2 class="headline rv" id="bd-title" data-split>Your brand.<br><span class="grad">Every screen.</span></h2>
     <div class="cta-row on-dark rv d1"><a class="btn btn-primary" href="/advertise">Plan a campaign</a><a class="btn btn-secondary" href="/contact">Talk to us</a></div>
   </div>
 </section>
