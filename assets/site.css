@@ -84,7 +84,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hero-mark .mark { height: clamp(46px, 5.6vw, 72px); filter: drop-shadow(0 10px 40px rgba(243, 76, 60, .45)); }
 .slide.s-brand .mark { height: max(18px, 8cqw); margin: 0 auto 3%; }
 .gnav ul { display: flex; gap: 0; list-style: none; flex: 1; justify-content: center; }
-.gnav ul a { display: block; padding: 0 12px; line-height: 44px; opacity: .8; transition: opacity .2s; }
+.gnav ul a { display: block; padding: 0 clamp(7px, .9vw, 12px); line-height: 44px; white-space: nowrap; opacity: .8; transition: opacity .2s; }
+.gnav .end { white-space: nowrap; }
 .gnav ul a:hover, .gnav ul a[aria-current] { opacity: 1; }
 .gnav .end { display: flex; align-items: center; gap: 14px; }
 .gnav .end a { opacity: .8; } .gnav .end a:hover { opacity: 1; }
@@ -446,6 +447,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 1068px) {
   .explore { grid-template-columns: repeat(2, 1fr); row-gap: 48px; }
   .gfoot .cols { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 1240px) {
+  .gnav ul, .gnav .end .hide-s { display: none; }
+  .burger { display: block; }
 }
 @media (max-width: 833px) {
   .gnav ul, .gnav .end .hide-s { display: none; }
