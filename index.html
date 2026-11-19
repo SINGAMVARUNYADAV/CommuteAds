@@ -88,7 +88,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:200;op
 .nav ul a{position:relative}
 .nav ul a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .35s}
 .nav ul a:hover::after{transform:scaleX(1);transform-origin:left}
-.menu-btn{display:none;background:none;border:0;color:inherit;font:inherit;font-size:15px}
+.menu-btn{display:none;background:none;border:0;color:inherit;font:inherit;font-size:15px;padding:12px 4px;cursor:pointer}
+.skip{position:absolute;left:-9999px;top:8px;z-index:300;background:#fff;color:#000;padding:10px 16px;border-radius:8px}.skip:focus{left:16px}
 
 /* ---------- hero ---------- */
 .hero{position:relative;height:100svh;min-height:560px;overflow:hidden;color:#fff;
@@ -110,9 +111,10 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:200;op
 @keyframes bob{50%{transform:translate(-50%,6px)}}
 .badge{position:fixed;right:clamp(10px,3vw,40px);bottom:clamp(10px,3vw,30px);width:118px;height:118px;z-index:90;display:grid;place-items:center;font-size:13px;color:var(--blue-deep);transition:color .4s}
 .badge.on-dark{color:#fff}
-.badge svg{position:absolute;inset:0;animation:spin 18s linear infinite}
+.badge{pointer-events:none;transition:color .4s,opacity .4s}.badge.gone{opacity:0;visibility:hidden}
+.badge svg{position:absolute;inset:0;animation:spin 18s linear infinite;pointer-events:none}
 .badge text{font-size:9.4px;letter-spacing:.16em;text-transform:uppercase;fill:currentColor}
-.badge a{position:relative;font-size:13px}
+.badge a{position:relative;font-size:13px;pointer-events:auto;padding:10px}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* ---------- sections ---------- */
@@ -302,7 +304,7 @@ footer h2 em{color:#ffd7c2}
 .svc>*:not(.bg){position:relative;z-index:2}
 .svc:hover .bg{transform:scale(1.06)}
 .svc .st{position:absolute!important;top:22px;left:22px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px;border-radius:999px;background:#0008;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.svc .st.live{background:#16a34a}
+.svc .st.live{background:#15803d}
 .svc .il{position:absolute!important;top:26px;right:22px;font-size:10px;letter-spacing:.08em;opacity:.7}
 .svc h3{font-weight:500;font-size:clamp(24px,2.4vw,36px);letter-spacing:-.02em}
 .svc p{font-size:15px;line-height:1.5;opacity:.9;max-width:42ch;margin-top:8px}
@@ -347,11 +349,12 @@ footer h2 em{color:#ffd7c2}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <header class="nav on-dark" id="nav">
   <a class="logo" href="#top" aria-label="Commute Ads home"><svg class="mark" viewBox="24.5 3.5 158 158" aria-hidden="true"><path fill="#F34C3C" d="M70 49H115.5L73 114H159L138 147H50L29.5 114Z"/><path fill="#F34C3C" d="M134 18L177.5 83H136L115 49.5Z"/></svg>Commute Ads</a>
-  <button class="menu-btn" id="menuBtn" aria-expanded="false">Menu</button>
-  <ul>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navList">Menu</button>
+  <ul id="navList">
     <li><a href="#how-it-works">How it works</a></li>
     <li><a href="#screens">Screens</a></li>
     <li><a href="#who">Who advertises</a></li>
@@ -376,7 +379,7 @@ footer h2 em{color:#ffd7c2}
         <span class="reveal-line"><span>Your next customer</span></span>
         <span class="reveal-line l2"><span>is <em>riding</em> with us.</span></span>
       </h1>
-      <p class="sub">Your ad on the tablet in front of every passenger, for the whole ride. It plays only when someone is in the seat, and they can scan to act on it before the next signal.</p>
+      <p class="sub">Your ad on the tablet in front of every passenger in Uber, Ola, Rapido and airport cabs, for the whole ride. It plays only when someone is in the seat, and they can scan to act on it before the next signal.</p>
       <div class="btns"><a class="btn solid" href="/advertise">Pre-book a slot →</a><a class="btn ghost" href="#how-it-works">See how it works</a></div>
     </div>
     <div class="rig" id="rig" role="img" aria-label="A Commute Ads tablet on a cab headrest playing an ad">
@@ -389,7 +392,7 @@ footer h2 em{color:#ffd7c2}
               <div class="s-tiles"><div class="s-tile" data-l="NewsSense" style="background-image:url(https://images.unsplash.com/photo-1504244648668-89000185ea9b?auto=format&fit=crop&w=300&q=70)"></div><div class="s-tile hl" data-l="Wellness" style="background-image:url(https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=300&q=70)"></div><div class="s-tile" data-l="City" style="background-image:url(https://images.unsplash.com/photo-1750834115164-8c2658f18dd0?auto=format&fit=crop&w=300&q=70)"></div><div class="s-tile" data-l="Markets" style="background-image:url(https://images.unsplash.com/photo-1570795876989-bcec725b8e72?auto=format&fit=crop&w=300&q=70)"></div><div class="s-tile" data-l="Learn" style="background-image:url(https://images.unsplash.com/photo-1524069290683-0457abfe42c3?auto=format&fit=crop&w=300&q=70)"></div><div class="s-tile" data-l="Actor Wiki" style="background-image:url(https://images.unsplash.com/photo-1583500178689-665d1f77e67d?auto=format&fit=crop&w=300&q=70)"></div></div>
               <div class="s-panel">
                 <div class="s-brand"><span id="bLogo" style="background:#0f766e">YB</span><em style="font-style:normal;font-family:var(--sans)" id="bName">Your brand</em></div>
-                <div class="s-ad"><div class="s-slide on" style="background-image:url(https://images.unsplash.com/photo-1607567618395-62fc2d132c3e?auto=format&fit=crop&w=600&q=70)"><div class="s-qr"></div><small>SPONSORED</small><b>Villas ready to move in</b><small>Gachibowli · scan to know more</small></div><div class="s-slide" style="background-image:url(https://images.unsplash.com/photo-1693214674477-1159bddf1598?auto=format&fit=crop&w=600&q=70)"><div class="s-qr"></div><small>SPONSORED</small><b>First month 50% off</b><small>Near Cyber Towers · scan to know more</small></div><div class="s-slide" style="background-image:url(https://images.unsplash.com/photo-1758691462863-9e1b8a863140?auto=format&fit=crop&w=600&q=70)"><div class="s-qr"></div><small>SPONSORED</small><b>Full health check-up</b><small>This weekend · scan to know more</small></div><div class="s-slide" style="background-image:url(https://images.unsplash.com/photo-1640114162784-20c35f7aec3f?auto=format&fit=crop&w=600&q=70)"><div class="s-qr"></div><small>SPONSORED</small><b>Dinner for two</b><small>Jubilee Hills · scan to know more</small></div></div>
+                <div class="s-ad"><div class="s-slide on" style="background-image:url(https://images.unsplash.com/photo-1607567618395-62fc2d132c3e?auto=format&fit=crop&w=600&q=70)"><div class="s-qr"></div><small>SPONSORED</small><b>Villas ready to move in</b><small>Gachibowli · scan to know more</small></div><div class="s-slide" style="background-image:url(https://images.unsplash.com/photo-1693214674477-1159bddf1598?auto=format&fit=crop&w=600&q=70)"><div class="s-qr"></div><small>SPONSORED</small><b>Opening offer this week</b><small>Near Cyber Towers · scan to know more</small></div><div class="s-slide" style="background-image:url(https://images.unsplash.com/photo-1758691462863-9e1b8a863140?auto=format&fit=crop&w=600&q=70)"><div class="s-qr"></div><small>SPONSORED</small><b>Full health check-up</b><small>This weekend · scan to know more</small></div><div class="s-slide" style="background-image:url(https://images.unsplash.com/photo-1640114162784-20c35f7aec3f?auto=format&fit=crop&w=600&q=70)"><div class="s-qr"></div><small>SPONSORED</small><b>Dinner for two</b><small>Jubilee Hills · scan to know more</small></div></div>
                 <div class="s-meta"><span>Ad</span><span id="sCount">0:15</span></div>
                 <div class="s-bar"><i id="sBar"></i></div>
               </div>
@@ -403,9 +406,10 @@ footer h2 em{color:#ffd7c2}
     </div>
   </div>
   <div class="ticker" id="ticker">&gt; </div>
-  <svg class="chev" viewBox="0 0 28 14" fill="none" stroke="#fff" stroke-width="1.6"><path d="M1 1l13 12L27 1"/></svg>
+  <svg class="chev" aria-hidden="true" viewBox="0 0 28 14" fill="none" stroke="#fff" stroke-width="1.6"><path d="M1 1l13 12L27 1"/></svg>
 </section>
 
+<main id="main">
 <!-- STATEMENT -->
 <section class="statement wrap" id="statement">
   <div class="sticky">
@@ -429,7 +433,7 @@ footer h2 em{color:#ffd7c2}
 </section>
 
 <!-- MARQUEE -->
-<div class="marquee" aria-label="Live across Hyderabad">
+<div class="marquee" role="region" aria-label="Live across Hyderabad">
   <div class="track">
     <span>Gachibowli</span><span>Financial District</span><span>Hitec City</span><span>Jubilee Hills</span><span>Madhapur</span><span>RGIA Airport Corridor</span>
     <span>Gachibowli</span><span>Financial District</span><span>Hitec City</span><span>Jubilee Hills</span><span>Madhapur</span><span>RGIA Airport Corridor</span>
@@ -453,18 +457,18 @@ footer h2 em{color:#ffd7c2}
     <article class="svc d fade" id="buses"><div class="bg" style="background-image:url(/media/suite/bus-1408.jpg)"></div><span class="st">Pre-booking open</span><span class="il">Illustrative</span>
       <h3>Bus screens</h3><p>The screen passengers already watch for the next stop now carries your message, timed to the route.</p></article>
     <article class="svc e meta fade"><div class="phone"><i style="background-image:url(https://images.unsplash.com/photo-1724862936518-ae7fcfc052c1?auto=format&fit=crop&w=500&q=70)"></i></div><span class="st">New</span>
-      <h3>Meta ads</h3><p>Instagram and Facebook campaigns alongside your screens, so the people who saw you in the cab see you again on their phone.</p></article>
+      <h3>Meta ads</h3><p>Instagram and Facebook campaigns planned with your screen campaign, so your brand reaches Hyderabad in the cab and on the phone.</p></article>
   </div>
 </section>
 
 <!-- STEPS -->
 <section class="steps wrap" id="how-it-works">
   <div class="head">
-    <h2>From brief to <em>live</em><br>in minutes.</h2>
+    <h2>From brief to <em>live</em><br>in three steps.</h2>
     <p>No complicated agencies. No middlemen. Three simple steps to get your brand riding the streets.</p>
   </div>
   <div class="step fade"><div class="n">01</div><h3>Select your audience</h3><p>Choose who you want to reach (corporate workers, airport travellers or daily commuters) and set your budget.</p></div>
-  <div class="step fade"><div class="n">02</div><h3>Upload your ad</h3><p>Drop in your video or image. It's formatted automatically to fit our in-cab screens.</p></div>
+  <div class="step fade"><div class="n">02</div><h3>Upload your ad</h3><p>Upload your video (MP4 or MOV, 1080p). Our team reviews every creative before it plays, typically within 24–48 hours.</p></div>
   <div class="step fade"><div class="n">03</div><h3>Go live &amp; track</h3><p>Once approved, your campaign goes out to the cabs. Log in to your dashboard to see how many people saw it today.</p></div>
 </section>
 
@@ -480,10 +484,10 @@ footer h2 em{color:#ffd7c2}
         <div><p>Put a new launch in front of professionals riding through Gachibowli, the Financial District and Hitec City.</p><span class="chip" style="background:#0f766e">Corporate executives</span></div>
       </article>
       <article class="card ph"><div class="img" style="background-image:url(https://images.unsplash.com/photo-1693214674477-1159bddf1598?auto=format&fit=crop&w=900&q=70)"></div><h3>Gyms &amp; fitness</h3>
-        <div><p>Reach daily commuters near your location with an offer they can act on the same week, straight from the seat.</p><span class="chip" style="background:#ea580c">Uber, Ola &amp; Rapido</span></div>
+        <div><p>Reach daily commuters near your location with an offer they can act on the same week, straight from the seat.</p><span class="chip" style="background:#c2410c">Uber, Ola &amp; Rapido</span></div>
       </article>
       <article class="card ph"><div class="img" style="background-image:url(https://images.unsplash.com/photo-1758691462863-9e1b8a863140?auto=format&fit=crop&w=900&q=70)"></div><h3>Clinics &amp; diagnostics</h3>
-        <div><p>Promote check-ups and weekend offers to families and working professionals on everyday rides.</p><span class="chip" style="background:#0d9488">Uber, Ola &amp; Rapido</span></div>
+        <div><p>Promote check-ups and weekend offers to families and working professionals on everyday rides.</p><span class="chip" style="background:#0f766e">Uber, Ola &amp; Rapido</span></div>
       </article>
       <article class="card ph"><div class="img" style="background-image:url(https://images.unsplash.com/photo-1768289269971-6171457bed13?auto=format&fit=crop&w=900&q=70)"></div><h3>PGs &amp; hostels</h3>
         <div><p>Fill beds by reaching people new to the city, interns and young professionals, on their way to work.</p><span class="chip" style="background:#7c3aed">Corporate executives</span></div>
@@ -495,7 +499,7 @@ footer h2 em{color:#ffd7c2}
         <div><p>Launch a product or sale to a captive audience for the whole ride, with a QR straight to your store.</p><span class="chip" style="background:#2563eb">Any audience</span></div>
       </article>
       <article class="card ph"><div class="img" style="background-image:url(https://images.unsplash.com/photo-1709290749293-c6152a187b14?auto=format&fit=crop&w=900&q=70)"></div><h3>Education &amp; coaching</h3>
-        <div><p>Reach students and young professionals with admissions, courses and upskilling on their daily commute.</p><span class="chip" style="background:#ca8a04">Uber, Ola &amp; Rapido</span></div>
+        <div><p>Reach students and young professionals with admissions, courses and upskilling on their daily commute.</p><span class="chip" style="background:#854d0e">Uber, Ola &amp; Rapido</span></div>
       </article>
       <article class="card photo">
         <h3>Inside the cab</h3>
@@ -532,6 +536,8 @@ footer h2 em{color:#ffd7c2}
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- FOOTER -->
 <footer id="contact">
@@ -601,9 +607,9 @@ if (gl) {
   const size = () => { const s = Math.min(devicePixelRatio, 1.5) * .75; cv.width = innerWidth * s; cv.height = innerHeight * s; gl.viewport(0, 0, cv.width, cv.height); };
   size(); addEventListener('resize', size);
   addEventListener('pointermove', e => { tx = e.clientX / innerWidth; ty = e.clientY / innerHeight; }, {passive:true});
-  const t0 = performance.now();
+  const t0 = performance.now(); let drawn = false;
   const frame = now => {
-    if (heroOn && !document.hidden) {
+    if (heroOn && !document.hidden && !(reduce && drawn)) { drawn = true;
       mx += (tx - mx) * .05; my += (ty - my) * .05;
       gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT);
       gl.uniform2f(ur, cv.width, cv.height); gl.uniform1f(ut, reduce ? 0 : (now - t0) / 1000); gl.uniform2f(um, mx, my);
@@ -620,7 +626,7 @@ const BR=[['Your brand','#0f766e','YB'],['Your brand','#ea580c','YB'],['Your bra
 const sl=[...document.querySelectorAll('.s-slide')], bar=document.getElementById('sBar'), cnt=document.getElementById('sCount');
 const bN=document.getElementById('bName'), bL=document.getElementById('bLogo'), tl=[...document.querySelectorAll('.s-tile')];
 let ai=0, aStart=performance.now(); const DUR=6000;
-const adTick=now=>{const p=Math.min(1,(now-aStart)/DUR); bar.style.width=(p*100)+'%'; cnt.textContent='0:'+String(Math.ceil((1-p)*15)).padStart(2,'0');
+const adTick=now=>{if(!heroOn||document.hidden){aStart=now-(parseFloat(bar.style.width)||0)/100*DUR;return requestAnimationFrame(adTick);}const p=Math.min(1,(now-aStart)/DUR); bar.style.width=(p*100)+'%'; cnt.textContent='0:'+String(Math.ceil((1-p)*15)).padStart(2,'0');
   if(p>=1){sl[ai].classList.remove('on');ai=(ai+1)%sl.length;sl[ai].classList.add('on');bN.textContent=BR[ai][0];bL.textContent=BR[ai][2];bL.style.background=BR[ai][1];
     tl.forEach((t,k)=>t.classList.toggle('hl',k===(ai+1)%tl.length));aStart=now;}
   requestAnimationFrame(adTick);};
@@ -669,6 +675,7 @@ const onScroll = () => {
   nav.classList.toggle('on-dark', dark);
   nav.classList.toggle('solid', hr.bottom <= 60);
   badge.classList.toggle('on-dark', hr.bottom > innerHeight - 70 || fr.top < innerHeight - 70);
+  badge.classList.toggle('gone', fr.top < innerHeight);
   // statement
   const sp = prog(st); const k = Math.floor(sp * 1.25 * words.length);
   words.forEach((w, i) => w.classList.toggle('on', reduce || i <= k));
@@ -693,6 +700,7 @@ document.querySelectorAll('.fade').forEach((el, i) => { el.style.transitionDelay
 const mb = document.getElementById('menuBtn');
 mb.addEventListener('click', () => { const o = nav.classList.toggle('open'); mb.setAttribute('aria-expanded', o); });
 nav.querySelectorAll('ul a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('open')) { nav.classList.remove('open'); mb.setAttribute('aria-expanded', false); mb.focus(); } });
 })();
 </script>
 </body>
