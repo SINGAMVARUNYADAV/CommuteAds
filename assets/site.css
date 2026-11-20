@@ -228,9 +228,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .presence::before { content: ""; width: max(6px, 1.1cqw); aspect-ratio: 1; border-radius: 50%; background: var(--live); }
 
 /* photo with the live in-cab screen composited over it */
-.incab { position: relative; aspect-ratio: 818 / 550; overflow: hidden; border-radius: inherit; }
+.incab { position: relative; aspect-ratio: 3 / 2; overflow: hidden; border-radius: inherit; }
 .incab > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.incab .screen { position: absolute; left: 12.35%; top: 21.6%; width: 45.6%; height: 43.8%; border-radius: 5px; }
+.incab .screen { position: absolute; left: 58.7%; top: 40.1%; width: 12.1%; height: 17.4%; border-radius: 3px; transform: perspective(600px) rotateY(-4deg); }
 .incab .slide { padding: 7%; }
 .photo { position: relative; border-radius: var(--radius-xl); overflow: hidden; background: #111; }
 .photo img { width: 100%; height: 100%; object-fit: cover; }
