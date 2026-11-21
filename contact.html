@@ -238,7 +238,6 @@
           <select id="ct-subject" name="subject" required aria-required="true" aria-describedby="ct-subjectErr">
             <option value="" disabled selected>Select a topic…</option>
             <option value="Sales Inquiry">Sales Inquiry</option>
-            <option value="Auto Advertising">Auto Advertising Enquiry</option>
             <option value="Campaign Support">Campaign Support</option>
             <option value="Billing & Payments">Billing &amp; Payments</option>
             <option value="Partnership">Partnership Opportunity</option>
@@ -324,7 +323,11 @@
 
         // Form submission
         // /contact?topic=auto (from the auto advertising page) preselects the subject
-        if (new URLSearchParams(location.search).get('topic') === 'auto') document.getElementById('ct-subject').value = 'Auto Advertising';
+        if (new URLSearchParams(location.search).get('topic') === 'auto') {
+            document.getElementById('ct-subject').value = 'Sales Inquiry';
+            const msg = document.getElementById('ct-message');
+            if (!msg.value) msg.value = 'Auto advertising enquiry: ';
+        }
 
         document.getElementById('contactForm').addEventListener('submit', async (e) => {
             e.preventDefault();
